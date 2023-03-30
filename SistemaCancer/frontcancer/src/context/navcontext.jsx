@@ -12,7 +12,6 @@ export const Navcontextprovider = ({ children }) => {
   return (
     <Navcontext.Provider value={{ logged, setLogged }}>
       {children}
-      <Login />
     </Navcontext.Provider>
   );
 };

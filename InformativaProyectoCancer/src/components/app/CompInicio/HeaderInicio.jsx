@@ -1,5 +1,5 @@
+import styled, { keyframes } from 'styled-components'
 
-import styled from "styled-components";
 import { Link , Outlet } from "react-router-dom";
 import persona_a from "../../img/persona_a.png";
 import Typewriter from 'typewriter-effect';
@@ -7,7 +7,7 @@ import Typewriter from 'typewriter-effect';
 const HeaderInicio=()=> {
   return (
     <Header>
-    <Img><img src={persona_a} alt="" /></Img>
+   <Img src={persona_a} alt="" />
     <Datos> <H1>
 <Typewriter
   options={{
@@ -33,20 +33,64 @@ const HeaderInicio=()=> {
 }
 
 export default HeaderInicio
+
+// animacion blur
+const animation = keyframes`
+0% {
+    transform: translateY(5em);
+    transform:rotate(90deg);
+  }
+ 50% {
+    transform:translateY(10em);
+  }
+  100%{
+    transform:translateY(5em);
+    transform:rotate(90deg);
+  }
+`
+
 const Header = styled.header`
 width:100%;
 height:100%;
 display:flex;
 flex-direction:row;
 justify-content:center;
+&::before{
+content:"";
+position:absolute;
+width:8em;
+height:8em;
+background-color:#000;
+transform:rotate(45deg);
+left:20vh;
+
+filter: blur(1.5px);
+animation: ${animation} 5s linear infinite;
+z-index:0;
+transform:rotate(45deg);
+}
+&::after{
+content:"";
+position:absolute;
+width:10em;
+height:10em;
+background-color:blue;
+transform:rotate(45deg);
+left:11vh;
+filter: blur(3px);
+animation: ${animation} 5s linear infinite;
+
+z-index:1;
+transform:rotate(45deg);
+}
 `;
-const Img = styled.div`
-width:30%;
+const Img = styled.img`
+width:20%;
 display:flex;
 justify-content:center;
 align-items:center;
-
 background-color:transparent;
+z-index:2;
 
 `;
 const P = styled.div`

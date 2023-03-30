@@ -3,6 +3,7 @@ import styled from "styled-components";
 import doc from "../img/doc.jpg";
 import doc1 from "../img/doc1.jpg";
 import HeaderInicio from "../app/CompInicio/HeaderInicio";
+import Footer from "./Footer";
 const Inicio = () => {
   return (
     <>
@@ -35,6 +36,8 @@ const Inicio = () => {
         <Div2></Div2>
         <Div3></Div3>
       </Section>
+<Footer/>
+
     </>
   );
 };
@@ -49,7 +52,7 @@ const Tratamientos = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin:2em 0;
+  margin:8em 0;
 `;
 const P = styled.p`
 background-color:transparent;

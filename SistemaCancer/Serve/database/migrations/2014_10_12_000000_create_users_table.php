@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('telefono');
             $table->string('rol');
             $table->string('password');
+            
         });
     }
 
