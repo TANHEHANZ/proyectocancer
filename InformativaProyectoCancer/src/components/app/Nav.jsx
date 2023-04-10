@@ -44,6 +44,7 @@ const Logo  = styled.div`
  &::first-letter{
     color:blue;
  font-size:1.5em;
+ font-weight:bold;
  }
 `;
 
@@ -68,7 +69,7 @@ const Links = styled(Link)`
 const Linkss = styled(Link)`
      text-decoration:none;
     color:#ffffff;
-    padding:0.5em 1.5em ;
+    padding:0.4em 1.5em ;
     background-color:blue;
 border-radius:1em;
 transition: all 0.5s ease-in-out; 

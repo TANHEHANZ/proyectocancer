@@ -1,9 +1,10 @@
 import styled, { keyframes } from 'styled-components'
-
+import '../../../../index.css'
 import { Link , Outlet } from "react-router-dom";
 import persona_a from "../../img/persona_a.png";
 import Typewriter from 'typewriter-effect';
 
+import doctoresun from "../../img/doctoresun.png"
 const HeaderInicio=()=> {
   return (
     <Header>
@@ -19,6 +20,7 @@ const HeaderInicio=()=> {
     autoStart: true,
     loop: true,
   }}
+  className="typewriter"
 />
 </H1>
 <P> Atención médica inteligente para el cáncer en Bolivia:Una plataforma de información confiable</P>
@@ -41,11 +43,14 @@ const animation = keyframes`
     transform:rotate(90deg);
   }
  50% {
-    transform:translateY(10em);
+    transform:translatey(10em);
+    border-radius:50%;
+
   }
   100%{
     transform:translateY(5em);
     transform:rotate(90deg);
+
   }
 `
 
@@ -55,31 +60,18 @@ height:100%;
 display:flex;
 flex-direction:row;
 justify-content:center;
-&::before{
-content:"";
-position:absolute;
-width:8em;
-height:8em;
-background-color:#000;
-transform:rotate(45deg);
-left:20vh;
-
-filter: blur(1.5px);
-animation: ${animation} 5s linear infinite;
-z-index:0;
-transform:rotate(45deg);
-}
+position:relative;
 &::after{
 content:"";
 position:absolute;
-width:10em;
-height:10em;
-background-color:blue;
+height:24em;
+width:24em;
+background-image:url('figura1.png');
+background-repeat: no-repeat;
+background-size: cover;
 transform:rotate(45deg);
-left:11vh;
-filter: blur(3px);
-animation: ${animation} 5s linear infinite;
-
+left:1em;
+top:-2em;
 z-index:1;
 transform:rotate(45deg);
 }
@@ -91,7 +83,7 @@ justify-content:center;
 align-items:center;
 background-color:transparent;
 z-index:2;
-
+filter:drop-shadow(8px 5px 5px #000);
 `;
 const P = styled.div`
 width:100%;
@@ -109,18 +101,16 @@ margin:0 1em;
 
 
 `;
-const H1 = styled.h2`
+const H1 = styled.div`
 width:100%;
 height:5em;
 font-size:2em;
 display:flex;
 justify-content:center;
 align-items:center;
-&::first-letter{
-    color:blue;
-    font-size:1.5em;
-}
+color:#000;
 `;
+
 export const Linkss = styled (Link)`
   text-decoration:none;
   color:#ffffff;
@@ -141,5 +131,5 @@ flex-direction:row-reverse;
 justify-content:center;
 align-items:center;
 gap:2em;
-
+margin:1em 0;
 `;

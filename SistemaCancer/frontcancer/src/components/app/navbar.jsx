@@ -43,7 +43,7 @@ const Navbar = () => {
           <Topnav>
             <Logout onClick={Cerrasesion}>Salir</Logout>
             <User>
-              <Topnavimg src="src\img\avatar.png" alt="" />
+              <Topnavimg src="" alt="" />
               <Nameuser>{user.nombre}</Nameuser>
             </User>
           </Topnav>
@@ -57,23 +57,17 @@ export default Navbar;
 
 const Divheader = styled.div`
   display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  overflow-x: hidden;
+ 
 `;
 
 
-// reserar4live
-
-
 const Header = styled.header`
+  background: blue;
   min-width: 250px;
   height: 100vh;
-  background: #22577a;
   display: flex;
   flex-direction: column;
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 10%);
-  overflow-x: scroll;
 
 `;
 const Img = styled.img`
@@ -118,25 +112,34 @@ const Navuser = styled.div`
 `;
 const Topnav = styled.div`
   max-width: 100%;
-  background: #e2e2e9;
+  background: #ffffff;
+ box-shadow:0 0 10px 0.8px ;
   display: flex;
-  justify-content: flex-end;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+gap:1em;
+  justify-content:flex-end;
+  align-items:center;
 `;
 const Topnavimg = styled.img`
   width: 33px;
   height: 33px;
   margin: 3px;
   background-color:transparent;
+  
 `;
 const Logout = styled.button`
-  background: none;
-  margin: 0 15px;
+  background: blue;
   cursor: pointer;
+  border:none;
   color:#fff;
+  font-size:1em;
+width:5em;
+height:2em;
+transition:all 0.5s ease-in-out;
+border-radius:0.5em;
   &:hover {
-    color: #94b5e6;
-    text-decoration: underline;
+    color: #000000;
+  background: #ffffff;
+
   }
 `;
 const User = styled.div`
