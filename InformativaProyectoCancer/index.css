@@ -6,7 +6,7 @@
   border: 0;
   box-sizing: border-box;
   font-family: 'Kanit', sans-serif;
-  background-color: #ffffff;
+  background-color: #BFBFBF ;
 }
 
 
@@ -14,10 +14,10 @@
   width: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: #001affb4;
+  background: #515681b4;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ffffff93;
+  background: #ffffff69;
   border-radius: 2em;
 }
 

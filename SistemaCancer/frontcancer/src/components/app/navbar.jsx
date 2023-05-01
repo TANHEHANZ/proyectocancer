@@ -25,7 +25,17 @@ const Navbar = () => {
   return (
     <>
         <Divheader>
-        <Header>
+        <Topnav>
+       
+            <Logout onClick={Cerrasesion}>Salir</Logout>
+            <User>
+              <Topnavimg src="" alt="" />
+              <Nameuser>{user.nombre}</Nameuser>
+            </User>
+           
+          </Topnav>
+       <Divpadre>
+       <Header>
           <Logo>
             <Imge src="" alt="" />
           </Logo>
@@ -37,65 +47,38 @@ const Navbar = () => {
              <LaboratorioComponent />
        )}
 
-
         </Header>
-        <Navuser>
-          <Topnav>
-            <Logout onClick={Cerrasesion}>Salir</Logout>
-            <User>
-              <Topnavimg src="" alt="" />
-              <Nameuser>{user.nombre}</Nameuser>
-            </User>
-          </Topnav>
+        <Navuser>  
           <Outlet />
         </Navuser>
+       </Divpadre>
       </Divheader>
     </>
   );
 };
 export default Navbar;
 
+const Divpadre = styled.div`
+display:flex;
+flex-direction:row;
+`;
+
+
 const Divheader = styled.div`
   display: flex;
- 
+  flex-direction:column;
 `;
 
 
 const Header = styled.header`
-  background: blue;
+  background: #8c8c8ce1;
   min-width: 250px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 10%);
+  box-shadow: 0 0.5px 1px rgb(0 0 0 / 10%);
+`;
 
-`;
-const Img = styled.img`
-  width: 25px;
-  height: 25px;
-  margin: 0 10px;
-  filter: invert(99%) sepia(6%) saturate(2%) hue-rotate(92deg) brightness(112%)
-    contrast(100%);
-`;
-const Linkes = styled(Link)`
-  padding: 10px 10px 10px 30px;
-  cursor: pointer;
-  text-decoration: none;
-  color: #aeaeae;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 15px;
-  &:hover {
-    background: #fff;
-    color: #0066ff;
-    border-radius: 0px -20px 10px 0px;
-  }
-  &:hover Img {
-    filter: invert(25%) sepia(42%) saturate(5518%) hue-rotate(211deg)
-      brightness(100%) contrast(102%);
-  }
-`;
 const Imge = styled.img``;
 const Logo = styled.div`
   width: 100%;
@@ -105,15 +88,16 @@ const Logo = styled.div`
   margin: 15px 0px 10px 0px;
 `;
 const Navuser = styled.div`
-  min-width: calc(100% - 250px);
-  height: 100vh;
+  min-width: calc(100% - 258px);
+  height: 100%;
   display: flex;
   flex-direction: column;
+  background:#ffff;
 `;
 const Topnav = styled.div`
   max-width: 100%;
   background: #ffffff;
- box-shadow:0 0 10px 0.8px ;
+ box-shadow:0 0px 5px 1px #0005 ;
   display: flex;
 gap:1em;
   justify-content:flex-end;

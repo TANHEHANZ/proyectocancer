@@ -3,86 +3,101 @@ import styled from "styled-components";
 import Tratamientos from "../app/CompInicio/Tratamientos";
 import HeaderInicio from "../app/CompInicio/HeaderInicio";
 import Footer from "./Footer";
-import doc1 from "../img/doctoresun.png";
+import cam from "../img/camilla.jpg";
+import Cars from "./CompInicio/Cars";
 
 const Inicio = () => {
   return (
     <>
       <HeaderInicio />
-  
+      <Cars/>
       <Section>
         <Div1>
-          <Contenido>
-            <H2>Tituo</H2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat dolorum porro accusamus, perferendis voluptate quisquam aperiam eveniet </p>
-          </Contenido>
-          <Contenido>
-            <H2>Titulo</H2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat dolorum porro accusamus, perferendis voluptate quisquam aperiam eveniet </p>
-          </Contenido>
-          <Contenido>
-            <H2>Titulo</H2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat dolorum porro accusamus, perferendis voluptate quisquam aperiam eveniet </p>
-          </Contenido>
-          <Contenido>
-            <H2>Titulo</H2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat dolorum porro accusamus, perferendis voluptate quisquam aperiam eveniet </p>
-          </Contenido>
+          <article>
+            <h3>Tituo</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+              dolorum porro accusamus, perferendis voluptate quisquam aperiam
+              eveniet
+            </p>
+          </article>
+          <article>
+            <h3>Titulo</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+              dolorum porro accusamus, perferendis voluptate quisquam aperiam
+              eveniet{" "}
+            </p>
+          </article>
+          <article>
+            <h3>Titulo</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+              dolorum porro accusamus, perferendis voluptate quisquam aperiam
+              eveniet{" "}
+            </p>
+          </article>
+          <article>
+            <h3>Titulo</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+              dolorum porro accusamus, perferendis voluptate quisquam aperiam
+              eveniet{" "}
+            </p>
+          </article>
         </Div1>
-        <Div2><Img src={doc1} alt="" /></Div2>
+          <img src={cam} alt="" />
       </Section>
-      <Tratamientos/>
-<Footer/>
+      <Tratamientos />
+      <Footer />
     </>
   );
 };
 
 export default Inicio;
 
-
-
 const Section = styled.section`
   width: 90%;
   height: 50vh;
   display: flex;
-  margin: 2em auto;
+  margin: 3em auto;
   gap: 1em;
-  flex-direction:row;
-`;
-const Div1 = styled.div`
-  width: 130%;
-  height: 100%;
-  display:flex;
-  flex-wrap: wrap;
-  gap:1em;
-`;
-
-const Contenido = styled.div`
-  width: 45%;
-  height: 45%;
-  text-align:justify;
-  padding:0.5em;
- display:flex;
- flex-direction:column;
- gap:0.5em;
- overflow:hidden;
-
-`;
-const H2 = styled.h2`
-  font-size:1.5em;
-  
-::first-letter{
-  color:blue;
-  font-size:1.5em;
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
+& img{
+  width:40%;
+  height:100%;
+  object-fit:cover;
+  position:relative;
 }
+
 `;
 
-const Div2 = styled.div`
-  width: 70%;
-  height: 100%;
-  background-color: #051940;
-`;
-const Img = styled.img`
-width:100%;
-height:auto;
+
+const Div1 = styled.div`
+width:60%;
+height:100%;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+align-items:center;
+gap:1em;
+& article{
+width: calc(90% / 2);
+height:11.5em;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color:#127369;
+& h3{
+  padding:0.8em;
+  color:#127369;
+  text-transform:uppercase;
+  font-weight:200;
+}
+& p{
+  padding:0 1em;
+}
+}
+
 `;

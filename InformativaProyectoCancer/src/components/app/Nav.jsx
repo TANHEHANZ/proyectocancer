@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Link , Outlet } from "react-router-dom";
+import estetoscopio from "../img/estetoscopio.png"
 const Nav = () => {
   return (
     <>
     <Bodydiv>
         <Nava>
-            <Logo>Cancer</Logo>
+            <Logo>Cancer
+              <img src={estetoscopio} alt="" />
+            </Logo>
           <Divnav>
             <li><Links to="/">Inicio</Links></li>
             <li><Links to="/Tipos_de_cancer">Tipos de Cancer</Links></li>
@@ -27,20 +30,31 @@ export default Nav;
 const Bodydiv = styled.div`
 width:100%;
 height:100%;
-
 `;
 const Nava=styled.div`
 width:100%;
 height:12vh;
 display:flex;
 justify-content: space-around;
-margin:0.1em 0 ;
+margin: 0 ;
 align-items:center;
-box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-
+position:fixed;
+z-index:200;
+top:0;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `;
 const Logo  = styled.div`
  font-size:1.2em;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ & img{
+  height:35px;
+  width:auto;
+  margin :0;
+  
+ }
+
  &::first-letter{
     color:blue;
  font-size:1.5em;
@@ -63,14 +77,14 @@ const Links = styled(Link)`
     font-size:0.9em;
     transition: all; 
 &:hover{
-    border-bottom:solid 2px blue;
+    border-bottom:solid 2px #127369;
 }
 `;
 const Linkss = styled(Link)`
      text-decoration:none;
     color:#ffffff;
     padding:0.4em 1.5em ;
-    background-color:blue;
+    background-color:#127369;
 border-radius:1em;
 transition: all 0.5s ease-in-out; 
 &:hover{
