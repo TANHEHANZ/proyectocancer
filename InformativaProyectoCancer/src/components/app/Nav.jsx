@@ -30,6 +30,7 @@ export default Nav;
 const Bodydiv = styled.div`
 width:100%;
 height:100%;
+overflow:hidden;
 `;
 const Nava=styled.div`
 width:100%;

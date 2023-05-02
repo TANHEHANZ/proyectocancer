@@ -17,41 +17,30 @@ const Navbar = () => {
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
   const Cerrasesion = async () => {
-
     localStorage.removeItem("user");
     navegation("/login");
   };
- 
+
   return (
     <>
-        <Divheader>
-        <Topnav>
-       
-            <Logout onClick={Cerrasesion}>Salir</Logout>
-            <User>
-              <Topnavimg src="" alt="" />
-              <Nameuser>{user.nombre}</Nameuser>
-            </User>
-           
-          </Topnav>
-       <Divpadre>
-       <Header>
-          <Logo>
-            <Imge src="" alt="" />
-          </Logo>
-       {user.rol == "administrador" && (
-       <AdminComponent/>
-       )}
+      <Divheader>
+        <Divpadre>
+          <Header>
+            {user.rol == "administrador" && <AdminComponent />}
 
-       {user.rol == "laboratorio" && (
-             <LaboratorioComponent />
-       )}
-
-        </Header>
-        <Navuser>  
-          <Outlet />
-        </Navuser>
-       </Divpadre>
+            {user.rol == "laboratorio" && <LaboratorioComponent />}
+          </Header>
+          <Navuser>
+          <Topnav>
+          <Logout onClick={Cerrasesion}>Salir</Logout>
+          <User>
+            <Topnavimg src="src\img\user.png" alt="" />
+            <Nameuser>{user.nombre}</Nameuser>
+          </User>
+        </Topnav>
+            <Outlet />
+          </Navuser>
+        </Divpadre>
       </Divheader>
     </>
   );
@@ -59,84 +48,74 @@ const Navbar = () => {
 export default Navbar;
 
 const Divpadre = styled.div`
-display:flex;
-flex-direction:row;
+  display: flex;
+  flex-direction: row;
 `;
-
 
 const Divheader = styled.div`
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
 `;
-
 
 const Header = styled.header`
-  background: #8c8c8ce1;
   min-width: 250px;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0.5px 1px rgb(0 0 0 / 10%);
 `;
 
-const Imge = styled.img``;
-const Logo = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 15px 0px 10px 0px;
-`;
 const Navuser = styled.div`
   min-width: calc(100% - 258px);
   height: 100%;
   display: flex;
   flex-direction: column;
-  background:#ffff;
+
 `;
 const Topnav = styled.div`
-  max-width: 100%;
-  background: #ffffff;
- box-shadow:0 0px 5px 1px #0005 ;
+  max-width: 98%;
+  background-color: rgb(48, 65, 75);
   display: flex;
-gap:1em;
-  justify-content:flex-end;
-  align-items:center;
+  gap: 1em;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: solid 1px #fff2;
+  height:10vh;
 `;
 const Topnavimg = styled.img`
   width: 33px;
   height: 33px;
   margin: 3px;
-  background-color:transparent;
-  
+  background-color: transparent;
+  filter:invert(100%);
 `;
 const Logout = styled.button`
-  background: blue;
   cursor: pointer;
-  border:none;
-  color:#fff;
-  font-size:1em;
-width:5em;
-height:2em;
-transition:all 0.5s ease-in-out;
-border-radius:0.5em;
+  border: solid 1px #069266;
+  color: #069266;
+  font-size: 1em;
+  width: 5em;
+  height: 2em;
+  transition: all 0.5s ease-in-out;
+  border-radius: 5px;
+  background-color:transparent;
   &:hover {
-    color: #000000;
-  background: #ffffff;
-
+    color: #fff;
+    
   }
 `;
 const User = styled.div`
   display: flex;
-  color:#fff;
-  flex-direction: column;
+  color: #fff;
+  flex-direction: row;
   align-items: center;
   margin-right: 35px;
 `;
 const Nameuser = styled.label`
   cursor: pointer;
   margin: 2px;
+  border-left:solid 1px #069266;
+padding: 0 0.5em ;
   &:hover {
-    color: #0066ff;
+    color: #069266;
   }
 `;

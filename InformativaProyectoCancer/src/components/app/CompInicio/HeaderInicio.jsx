@@ -80,30 +80,20 @@ const animation = keyframes`
 `;
 
 const Header = styled.header`
-margin-top:12vh;
-  width: 100%;
+margin:12vh 0 2em 8em;
+  width: 100;
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    height: 24em;
-    width: 24em;
-    transform: rotate(45deg);
-    left: 1em;
-    top: -2em;
-    z-index: 1;
-    transform: rotate(45deg);
-  }
+ 
 `;
 const Img = styled.div`
   width: 50%;
   display: flex;
   justify-content: center;
   position: relative;
+  
   &::before {
     position: absolute;
     content: "";

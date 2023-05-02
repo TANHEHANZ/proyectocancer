@@ -61,7 +61,7 @@ const Cars1 = styled.div`
   gap: 1em;
   margin: 1em 0;
   & section {
-    width: calc(70% / 4);
+    width: calc(65% / 4);
     height: auto;
     backdrop-filter: blur(12px) saturate(29%);
     -webkit-backdrop-filter: blur(12px) saturate(29%);
@@ -93,7 +93,7 @@ const Cars1 = styled.div`
       padding:1em;
       &::first-letter{
     color:#fff;
-
+    font-size:1.2em;
       }
     }
     & img{

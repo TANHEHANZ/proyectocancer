@@ -60,7 +60,7 @@ const Section = styled.section`
   width: 90%;
   height: 50vh;
   display: flex;
-  margin: 3em auto;
+  margin: 7em auto;
   gap: 1em;
   flex-direction: row;
   justify-content:center;
@@ -71,10 +71,7 @@ const Section = styled.section`
   object-fit:cover;
   position:relative;
 }
-
 `;
-
-
 const Div1 = styled.div`
 width:60%;
 height:100%;
