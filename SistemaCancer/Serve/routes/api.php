@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\DoctoresController;
+use App\Http\Controllers\EnfermeraContreoller;
 use App\Http\Controllers\EspecialidadesController;
 
 use GuzzleHttp\Middleware;
@@ -41,3 +42,8 @@ Route::get('/especialidades', [EspecialidadesController::class, 'index']);
 Route::post('/especialidades', [EspecialidadesController::class, 'store']);
 Route::put('/especialidades/{id}', [EspecialidadesController::class, 'update']);
 Route::delete('/especialidades/{id}', [EspecialidadesController::class, 'destroy']);
+
+Route::get('/enfermera', [EnfermeraContreoller::class, 'index']);
+Route::post('/enfermera', [EnfermeraContreoller::class, 'store']);
+Route::put('/enfermera/{id}', [EnfermeraContreoller::class, 'update']);
+Route::delete('/enfermera/{id}', [EnfermeraContreoller::class, 'destroy']);

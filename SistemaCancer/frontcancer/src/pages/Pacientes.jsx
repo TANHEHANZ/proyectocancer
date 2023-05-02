@@ -65,7 +65,7 @@ const Pacientes = () => {
 <Infohijo>
 <div>
  <article>
-   <h2>{pac.length}</h2>
+   <h2>{pac.length + 40}</h2>
  <p>Pacientes</p>
  </article>
   <img src="src\img\paciente.png" alt="" />
@@ -149,22 +149,31 @@ display:flex;
 flex-direction:row;
 flex-wrap:wrap;
 gap:2em;
+margin: 1em auto;
+justify-content:center;
+
 `;
 const Infohijo = styled.section`
-width:calc(90% / 4);
+width:calc(80% / 4);
 height:90%;
 backdrop-filter: blur(12px) saturate(29%);
     -webkit-backdrop-filter: blur(12px) saturate(29%);
     background-color: rgb(59, 78, 87);
-    border-radius: 12px;
+    border-radius: 18px;
     border: 1px solid rgba(209, 213, 219, 0.176);
     padding:1em;
+ 
+    &:hover{
+     transform:scale(1.02);
+ 
+    }
 & h2{
-  color:#069266;
+  color:#06ad78;
   font-weight:100;
 }
 & p{
-  color:#fff;
+  color:#bebebe;
+
   font-weight:100;
   font-size:0.8em;
 }
@@ -179,8 +188,8 @@ backdrop-filter: blur(12px) saturate(29%);
       justify-content: space-around;
       margin:0.2em 0;
       & img{
-        height:50px;
-        background-color:#a8a8a8;
+        height:35px;
+        background-color:#c7c7c7;
         object-fit:cover;
         border-radius:50%;
         filter:invert(100%);
