@@ -31,11 +31,58 @@ const Pacientes = () => {
 
   return (
     <Section>
-      <H1>Pacientes</H1>
+  <Info>
+<Infohijo>
+<div>
+ <article>
+   <h2>{pac.length}</h2>
+ <p>Pacientes</p>
+ </article>
+  <img src="src\img\paciente.png" alt="" />
+</div>
+<p>Lorem ipsum dolor sit amet.</p>
+</Infohijo>
+<Infohijo>
+<div>
+ <article>
+   <h2>{pac.length}</h2>
+ <p>Pacientes</p>
+ </article>
+  <img src="src\img\paciente.png" alt="" />
+</div>
+<p>Lorem ipsum dolor sit amet.</p>
+</Infohijo>
+<Infohijo>
+<div>
+ <article>
+   <h2>{pac.length}</h2>
+ <p>Pacientes</p>
+ </article>
+  <img src="src\img\paciente.png" alt="" />
+</div>
+<p>Lorem ipsum dolor sit amet.</p>
+</Infohijo>
+<Infohijo>
+<div>
+ <article>
+   <h2>{pac.length}</h2>
+ <p>Pacientes</p>
+ </article>
+  <img src="src\img\paciente.png" alt="" />
+</div>
+<p>Lorem ipsum dolor sit amet.</p>
+</Infohijo>
+  </Info>
       <Div>
-        <button onClick={openModal}>
+        {/* <button >
           <img src="" alt="" /> Nuevo
-        </button>
+        </button> */}
+        <section>
+          <h1>Registro Pacientes</h1>
+          <button onClick={openModal}> nuevo</button>
+          <button onClick={openModal}> Excel</button>
+          <button onClick={openModal}> Pdf</button>
+        </section>
         <table>
           <thead>
             <tr>
@@ -75,13 +122,13 @@ const Pacientes = () => {
                       >
                         Editar
                       </button>
-                      <Abutton
+                      <button
                         onClick={() => {
                           deletePacientes(v.id, getApi);
                         }}
                       >
                        Eliminar
-                      </Abutton>
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -94,25 +141,58 @@ const Pacientes = () => {
 };
 
 export default Pacientes;
+
+const Info = styled.article`
+width:100%;
+height:8em;
+display:flex;
+flex-direction:row;
+flex-wrap:wrap;
+gap:2em;
+`;
+const Infohijo = styled.section`
+width:calc(90% / 4);
+height:90%;
+backdrop-filter: blur(12px) saturate(29%);
+    -webkit-backdrop-filter: blur(12px) saturate(29%);
+    background-color: rgb(59, 78, 87);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.176);
+    padding:1em;
+& h2{
+  color:#069266;
+  font-weight:100;
+}
+& p{
+  color:#fff;
+  font-weight:100;
+  font-size:0.8em;
+}
+    & article {
+      display:flex;
+      flex-direction:column;
+
+    }
+    & div{
+      display:flex;
+      flex-direction:row;
+      justify-content: space-around;
+      margin:0.2em 0;
+      & img{
+        height:50px;
+        background-color:#a8a8a8;
+        object-fit:cover;
+        border-radius:50%;
+        filter:invert(100%);
+      }
+    }
+`;
+
 const Section = styled.section`
   width: 100%;
   height: 100%;
   background-color: transparent;
   padding: 1em;
-`;
-
-const H1 = styled.h1`
-  width: 100%;
-  font-size: 1.5em;
-  margin:1em;
-  &::first-letter {
-    font-size: 1.4em;
-    color: blue;
-  }
-`;
-const Abutton = styled.button`
-background-color:#c85858 !important;
-
 `;
 
 const Div = styled.div`
@@ -121,57 +201,89 @@ const Div = styled.div`
   display: flex;
   margin:0 auto;
   flex-direction: column;
-  & > button {
-    width: 15%;
-    padding: 1em 2em;
-    border: none;
-    background-color: #0000ffc7;
-    border-radius: 0.5em;
-    color: #fff;
+  border-radius:15px;
+  border:solid 1px #fff2;
+  & section{
+display:flex;
+flex-direction:row;
+gap :1em;
+margin:0.5em 1em 0 1em;
+& > h1{
+  font-size:0.9em;
+  font-weight:100;
+  color:#fff;
+  text-transform:uppercase;
+}
+& > button {
+   padding:0.2em 1em;
+   color:#069266;
+   border:solid 1px #069266;
+   background-color:transparent;
+   cursor: pointer;
   }
+  }
+ 
   & table {
     margin: 1em auto;
-    background-color: #0005;
-    width: 85%;
+    /* background-color: transparent; */
+    width: 90%;
+    background-color:rgb(59, 78, 87);
     height: auto;
-    padding: 1em;
     border-collapse: collapse;
-    & th {
-      border: 0.5px solid #ffffff54;
-      height: 0em;
-      padding: 0.6em 0.5em;
-      background-color: #0037ffe3;
-      color: #fff;
-    }
-    & tr {
-        background-color: #ffffff;
-      border: 0.5px solid #ffffff54;
+   
+    & button{
+background-color:transparent;
+border:solid 1px #09216f;
+color:#fff;
+margin:0 5px;
+cursor: pointer;
+padding:0.2em 1em;
+&:nth-child(2){
+border:solid 1px #6f0909;
 
-  color: #211e1e;
-  text-align: left;
-  font-weight:100;
+}
+&:hover{
+  background-color:#09216f;
+  &:nth-child(2){
+background-color: #6f0909;
+}
+}
+    }
+    & th {
+      font-size:1em;
+     font-weight:100;
+   
+    }
+    & td{
+      color:#fff;
+      font-weight:lighter;
+      font-size:0.8em;
+      padding:0.5em 0;
+    }
+  
+    & tr {
+   border-top:solid 1px #fff2;
+   border-bottom:solid 1px #fff2;
+   
   &:hover{
-    background-color: #3636ffdf;
-    color:#fff;
+  
+        background-color:#069266;
+        color:#fff;
+      
   }
     }
     & thead {
-      background-color: #fff;
+     color:#069266;
+     padding:1em 0;
+     & tr {
+      &:hover{
+        background-color:transparent;
+        color:#069266;
+        font-weight:100;
+      }
+     }
     }
-   & button{
-    width:80%;
-    padding:0.5em;
-    border:none;
-   cursor: pointer;
-   margin:1px auto;
-   border-radius:0.5em;
-   background-color:#1e52fc;
-    color:#fff;
-&:hover{
-    background-color:#fff !important;
-    color:blue;
-}
-   }
+
    
   }
 `;

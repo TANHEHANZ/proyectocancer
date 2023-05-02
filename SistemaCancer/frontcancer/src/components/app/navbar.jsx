@@ -58,14 +58,14 @@ const Divheader = styled.div`
 `;
 
 const Header = styled.header`
-  min-width: 250px;
+  min-width: 280px;
   height: 100vh;
   display: flex;
   flex-direction: column;
 `;
 
 const Navuser = styled.div`
-  min-width: calc(100% - 258px);
+  min-width: calc(100% - 310px);
   height: 100%;
   display: flex;
   flex-direction: column;

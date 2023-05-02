@@ -24,7 +24,7 @@ const Botoncerrar=styled.button`
   width: 35px;
   font-size: 15px;
   border: none;
-  border-radius: 20px;
+  border-radius: 50%;
   color:black;
   cursor: pointer;
   transition: 0.5s;
@@ -53,16 +53,15 @@ const DivAtras = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
+animation:transitionBackground 1s ease ;
 
-  animation-name: transitionBackground;
-  animation-duration: 1s;
   @keyframes transitionBackground {
     0% {
       background-color: rgba(0, 0, 0, 0.1);
     }
     100% {
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.7);
     }
   }
 `;
@@ -71,16 +70,17 @@ const DivChildContainer = styled.div`
   z-index: 1;
   border-radius: 10px;
   min-width: 400px;
-  background-color: white;
+  background-color: rgba(59, 78, 87, 0.927);
   animation: move 1s;
   transform: translateY(50px);
   margin-bottom: 100px;
+  border:solid 1px #fff2;
 `;
 
 const PTitulo = styled.p`
   width: 100%;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 200;
+  font-size: 1em;
   display:flex;
   justify-content: center;
   color: #fff;
@@ -92,7 +92,8 @@ const DivCabecera = styled.div`
   display: flex ;
   justify-content: space-between;
   align-items: center;
-  background: #034078;
+  background: #069266;
+  border-radius:10px 10px 0 0;
 `;
 const DivBody = styled.div`
   padding: 26px;

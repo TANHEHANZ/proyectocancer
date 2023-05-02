@@ -141,7 +141,7 @@ export const Master = styled.nav`
     margin:1em 0;
   }
   & > section {
-    height: 12vh;
+    height: 16vh;
     display: flex;
     flex-direction: row;
     justify-content: center;

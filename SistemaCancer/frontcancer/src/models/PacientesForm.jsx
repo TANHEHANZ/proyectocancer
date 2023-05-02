@@ -187,7 +187,30 @@ const PacientesForm = ({
 };
 export default PacientesForm;
 
-const Container = styled.div``;
+const Container = styled.div`
+display:flex;
+flex-direction:row;
+flex-wrap:wrap;
+
+& form{
+  display:flex;
+  width:25em;
+flex-direction:row;
+flex-wrap:wrap;
+ gap:0.5em;
+ justify-content:center;
+ align-items:center;
+& label{
+  color: #fff;
+ text-transform:uppercase;
+ font-size:0.7em;
+}
+& input{
+  background-color:transparent;
+  border:solid 1px #fff2;
+}
+}
+`;
 const Divinputlabel = styled.div`
   display: flex;
   flex-direction: column;
@@ -203,11 +226,10 @@ const Input = styled.input`
   margin-top: 5px;
   margin-bottom: 5px;
   height: 30px;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
   outline: none;
   &:focus {
-    border: 1.5px solid #034078;
+    border: 1.5px solid #069266;
   }
 `;
 const Divboton = styled.div`
@@ -215,13 +237,14 @@ const Divboton = styled.div`
   justify-content: center;
 `;
 const Botonagregar = styled.button`
-  padding: 10px;
+  padding: 0.5em 3em ;
   cursor: pointer;
-  background: #034078;
+  background: transparent;
   color: #fff;
+  border:solid 1px #069266;
   border-radius: 7px;
   &:hover {
-    background: #0077b6;
+    background: #069266;
   }
 `;
 const Select = styled.select`
