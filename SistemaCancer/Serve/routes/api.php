@@ -1,10 +1,8 @@
 <?php
-
 use App\Http\Controllers\CentrosController;
 use App\Http\Controllers\CiudadesControllererrer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\DoctoresController;
@@ -12,10 +10,12 @@ use App\Http\Controllers\EnfermeraContreoller;
 use App\Http\Controllers\EspecialidadesController;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\MuestrasControllerer;
+use App\Http\Controllers\MunicipiosController;
 use App\Http\Controllers\ProvinciasControllererrer;
+use App\Http\Controllers\ResultadosControllerer;
 use App\Http\Controllers\SeguimientoControllerer;
 use App\Http\Controllers\TiposcancersControllererrer;
-use GuzzleHttp\Middleware;
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -48,6 +48,12 @@ Route::get('/especialidades', [EspecialidadesController::class, 'index']);
 Route::post('/especialidades', [EspecialidadesController::class, 'store']);
 Route::put('/especialidades/{id}', [EspecialidadesController::class, 'update']);
 Route::delete('/especialidades/{id}', [EspecialidadesController::class, 'destroy']);
+
+Route::get('/enfermera', [EnfermeraContreoller::class, 'index']);
+Route::post('/enfermera', [EnfermeraContreoller::class, 'store']);
+Route::put('/enfermera/{id}', [EnfermeraContreoller::class, 'update']);
+Route::delete('/enfermera/{id}', [EnfermeraContreoller::class, 'destroy']);
+
 
 Route::get('/laboratorio', [LaboratorioController::class, 'index']);
 Route::post('/laboratorio', [LaboratorioController::class, 'store']);
