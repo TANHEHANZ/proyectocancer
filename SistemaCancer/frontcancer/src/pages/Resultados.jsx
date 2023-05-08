@@ -1,23 +1,23 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { useModal } from "../hooks/useModal";
-import EspecialidadesForm from "../models/EspecialidadesForm";
+import ResultadosForm from "../models/ResultadosForm";
 import { UseFech } from "../hooks/useFech";
-import { deleteEspecialidades, getEspecialidades } from "../services/Especialidad";
+import { deleteResultados, getResultados } from "../services/Resultados";
 import styled from "styled-components";
+const Resultados = () => {
 
-export const Especialidades = () => {
+  const [resultadoactual, setResultadoactual] = useState({});
+  const { getApi, data: resul} = UseFech(getResultados);
 
-  const [especialidadactual, setEspecialidadactual] = useState({});
-  const { getApi, data: espe } = UseFech(getEspecialidades);
   const { openModal, closeModal } = useModal(
-    Object.keys(especialidadactual).lengTh > 0
-      ? "Editar pacientes"
-      : "Agregar Pacientes",
-    <EspecialidadesForm
+    Object.keys(resultadoactual).lengTh > 0
+      ? "Editar Resultados"
+      : "Agregar Resultado",
+    <ResultadosForm
       getApi={getApi}
-      especialidadactual={especialidadactual}
-      setEspecialidadactual={setEspecialidadactual}
+      resultadoactual={resultadoactual}
+      setResultadoactual={setResultadoactual}
       closeModal={() => {
         closeModal();
       }}
@@ -25,76 +25,103 @@ export const Especialidades = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(especialidadactual).lengTh > 0) {
+    if (Object.keys(resultadoactual).length > 0) {
       openModal();
     }
-  }, [especialidadactual]);
-
+  }, [resultadoactual]);
   return (
     <Section>
     <Info>
- <Infohijo>
- <div>
-  <article>
-    <h2>{espe.length}</h2>
-  <p>Pacientes</p>
-  </article>
-   <img src="src\img\paciente.png" alt="" />
- </div>
- <p>Lorem ipsum dolor sit amet.</p>
- </Infohijo>
-   </Info>
-     <Div>
-     <section>
-           <h1>Registro Especialidad</h1>
-           <button onClick={openModal}> nuevo</button>
-           <button onClick={openModal}> Excel</button>
-           <button onClick={openModal}> Pdf</button>
-         </section>
-       <table>
-         <thead>
-           <tr>
-             <th>Nº</th>
-             <th>Nombre</th>
+  <Infohijo>
+  <div>
+   <article>
+     <h2>{resul.length}</h2>
+   <p>Resultados</p>
+   </article>
+    <img src="src\img\paciente.png" alt="" />
+  </div>
+  <p>Lorem ipsum dolor sit amet.</p>
+  </Infohijo>
+  <Infohijo>
+  <div>
+   <article>
+     <h2>{resul.length}</h2>
+   <p>Resultados</p>
+   </article>
+    <img src="src\img\paciente.png" alt="" />
+  </div>
+  <p>Lorem ipsum dolor sit amet.</p>
+  </Infohijo>
+  <Infohijo>
+  <div>
+   <article>
+     <h2>{resul.length}</h2>
+   <p>Pacientes</p>
+   </article>
+    <img src="src\img\paciente.png" alt="" />
+  </div>
+  <p>Lorem ipsum dolor sit amet.</p>
+  </Infohijo>
+    </Info>
+        <Div>
+        
+          <section>
+            <h1>Registro Resultados</h1>
+            <button onClick={openModal}> nuevo</button>
+            <button onClick={openModal}> Excel</button>
+            <button onClick={openModal}> Pdf</button>
+          </section>
+          <table>
+            <thead>
+              <tr>
+                <th>Nº</th>
+                <th>resultados</th>
+                <th>id_muestras</th>
+                <th>id_laboratorios</th>
+                <th>fecha</th>
             
-           </tr>
-         </thead>
-         {espe
-           .filter((v) =>
-             v.nombre.toLowerCase().includes(filtro.toLowerCase())
-           )
-           .map((v, i) => (
-             <tbody key={i}>
-               <tr>
-                 <td>{i + 1}</td>
-                 <td>{v.nombre}</td>
-                 <td>
-                   <div>
-                     <button
-                       onClick={() => {
-                         setEspecialidadactual(v);
-                       }}
-                     >
-                       Editar
-                     </button>
-                     <button
-                       onClick={() => {
-                         deleteEspecialidades(v.id, getApi);
-                       }}
-                     >
-                      Eliminar
-                     </button>
-                   </div>
-                 </td>
-               </tr>
-             </tbody>
-           ))}
-       </table>
-     </Div>
-   </Section>
+              </tr>
+            </thead>
+            {resul
+              .filter((v) =>
+                v.resultados.toLowerCase().includes(filtro.toLowerCase())
+              )
+              .map((v, i) => (
+                <tbody key={i}>
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td>{v.resultados}</td>
+                    <td>{v.id_muestras}</td>
+                    <td>{v.id_laboratorios}</td>
+                    <td>{v.fecha}</td>
+                    <td>
+                      <div>
+                        <button
+                          onClick={() => {
+                            setResultadoactual(v);
+                          }}
+                        >
+                          Editar
+                        </button>
+                        <button
+                          onClick={() => {
+                            deleteResultados(v.id, getApi);
+                          }}
+                        >
+                         Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+          </table>
+        </Div>
+      </Section>
   )
 }
-export default Especialidades
+
+export default Resultados
 
 const Info = styled.article`
 width:100%;
@@ -255,4 +282,5 @@ padding:0 1.5em;
    
   }
 `;
+
 

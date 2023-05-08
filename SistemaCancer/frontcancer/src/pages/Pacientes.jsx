@@ -62,21 +62,9 @@ const Pacientes = () => {
 </div>
 <p>Lorem ipsum dolor sit amet.</p>
 </Infohijo>
-<Infohijo>
-<div>
- <article>
-   <h2>{pac.length + 40}</h2>
- <p>Pacientes</p>
- </article>
-  <img src="src\img\paciente.png" alt="" />
-</div>
-<p>Lorem ipsum dolor sit amet.</p>
-</Infohijo>
   </Info>
       <Div>
-        {/* <button >
-          <img src="" alt="" /> Nuevo
-        </button> */}
+      
         <section>
           <h1>Registro Pacientes</h1>
           <button onClick={openModal}> nuevo</button>
@@ -206,12 +194,13 @@ const Section = styled.section`
 
 const Div = styled.div`
   width: 90%;
-  height: 100%;
+  height: 60vh;
   display: flex;
   margin:0 auto;
   flex-direction: column;
   border-radius:15px;
   border:solid 1px #fff2;
+  
   & section{
 display:flex;
 flex-direction:row;
@@ -261,13 +250,17 @@ background-color: #6f0909;
     & th {
       font-size:1em;
      font-weight:100;
-   
+ 
     }
     & td{
       color:#fff;
       font-weight:lighter;
       font-size:0.8em;
       padding:0.5em 0;
+      text-align:center;
+      &:nth-child(1){
+padding:0 1.5em;
+   }
     }
   
     & tr {

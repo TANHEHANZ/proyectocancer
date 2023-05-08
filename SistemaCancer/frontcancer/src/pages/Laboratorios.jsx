@@ -1,23 +1,22 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { useModal } from "../hooks/useModal";
-import EspecialidadesForm from "../models/EspecialidadesForm";
+import LaboratoriosForm from "../models/LaboratoriosForm";
 import { UseFech } from "../hooks/useFech";
-import { deleteEspecialidades, getEspecialidades } from "../services/Especialidad";
+import { deleteLaboratorio, getLaboratotio } from "../services/Laboratorios";
 import styled from "styled-components";
+const Laboratorios = () => {
+  const [laboratorioactual, setLaboratorioactual] = useState({});
+  const { getApi, data: lab } = UseFech(getLaboratotio);
 
-export const Especialidades = () => {
-
-  const [especialidadactual, setEspecialidadactual] = useState({});
-  const { getApi, data: espe } = UseFech(getEspecialidades);
   const { openModal, closeModal } = useModal(
-    Object.keys(especialidadactual).lengTh > 0
+    Object.keys(laboratorioactual).lengTh > 0
       ? "Editar pacientes"
       : "Agregar Pacientes",
-    <EspecialidadesForm
+    <LaboratoriosForm
       getApi={getApi}
-      especialidadactual={especialidadactual}
-      setEspecialidadactual={setEspecialidadactual}
+      laboratorioactual={laboratorioactual}
+      setLaboratorioactual={setLaboratorioactual}
       closeModal={() => {
         closeModal();
       }}
@@ -25,10 +24,11 @@ export const Especialidades = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(especialidadactual).lengTh > 0) {
+    if (Object.keys(laboratorioactual).lengTh > 0) {
       openModal();
     }
-  }, [especialidadactual]);
+  }, [laboratorioactual]);
+
 
   return (
     <Section>
@@ -36,8 +36,8 @@ export const Especialidades = () => {
  <Infohijo>
  <div>
   <article>
-    <h2>{espe.length}</h2>
-  <p>Pacientes</p>
+    <h2>{lab.length}</h2>
+  <p>Laboratorio</p>
   </article>
    <img src="src\img\paciente.png" alt="" />
  </div>
@@ -46,7 +46,7 @@ export const Especialidades = () => {
    </Info>
      <Div>
      <section>
-           <h1>Registro Especialidad</h1>
+           <h1>Registro Laboratorio</h1>
            <button onClick={openModal}> nuevo</button>
            <button onClick={openModal}> Excel</button>
            <button onClick={openModal}> Pdf</button>
@@ -56,10 +56,12 @@ export const Especialidades = () => {
            <tr>
              <th>Nº</th>
              <th>Nombre</th>
+             <th>ubicacion</th>
+             <th>id_doctores</th>
             
            </tr>
          </thead>
-         {espe
+         {lab
            .filter((v) =>
              v.nombre.toLowerCase().includes(filtro.toLowerCase())
            )
@@ -68,18 +70,20 @@ export const Especialidades = () => {
                <tr>
                  <td>{i + 1}</td>
                  <td>{v.nombre}</td>
+                 <td>{v.ubicacion}</td>
+                 <td>{v.id_doctores}</td>
                  <td>
                    <div>
                      <button
                        onClick={() => {
-                         setEspecialidadactual(v);
+                         setLaboratorioactual(v);
                        }}
                      >
                        Editar
                      </button>
                      <button
                        onClick={() => {
-                         deleteEspecialidades(v.id, getApi);
+                         deleteLaboratorio(v.id, getApi);
                        }}
                      >
                       Eliminar
@@ -94,7 +98,8 @@ export const Especialidades = () => {
    </Section>
   )
 }
-export default Especialidades
+
+export default Laboratorios
 
 const Info = styled.article`
 width:100%;

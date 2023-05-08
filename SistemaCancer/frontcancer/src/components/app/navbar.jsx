@@ -59,7 +59,7 @@ const Divheader = styled.div`
 
 const Header = styled.header`
   min-width: 280px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -90,8 +90,8 @@ const Topnavimg = styled.img`
 `;
 const Logout = styled.button`
   cursor: pointer;
-  border: solid 1px #069266;
-  color: #069266;
+  border: solid 1px #02d08f;
+  color: #02d08f;
   font-size: 1em;
   width: 5em;
   height: 2em;
@@ -113,9 +113,9 @@ const User = styled.div`
 const Nameuser = styled.label`
   cursor: pointer;
   margin: 2px;
-  border-left:solid 1px #069266;
+  border-left:solid 1px #02d08f;
 padding: 0 0.5em ;
   &:hover {
-    color: #069266;
+    color: #02d08f;
   }
 `;

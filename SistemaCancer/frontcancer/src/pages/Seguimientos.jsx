@@ -1,22 +1,23 @@
-import React from "react";
+import React from 'react'
 import { useState, useEffect } from "react";
 import { useModal } from "../hooks/useModal";
-import DoctoresForm from "../models/DoctoresForm";
+import SeguimientosForm from "../models/SeguimientosForm";
 import { UseFech } from "../hooks/useFech";
-import { deleteDoctores, getDoctores } from "../services/Doctor";
+import { deleteSeguimiento, getSeguimiento } from "../services/Seguimentos";
 import styled from "styled-components";
 
-const Doctores = () => {
-  const [doctoresactual, setDoctoresactual] = useState({});
-  const { getApi, data: doc } = UseFech(getDoctores);
+const Seguimientos = () => {
+
+  const [seguimientoactual, setSeguimientoactual] = useState({});
+  const { getApi, data: segui} = UseFech(getSeguimiento);
   const { openModal, closeModal } = useModal(
-    Object.keys(doctoresactual).lengTh > 0
-      ? "Editar pacientes"
-      : "Agregar Pacientes",
-    <DoctoresForm
+    Object.keys(seguimientoactual).lengTh > 0
+      ? "Editar Resultados"
+      : "Agregar Resultado",
+    <SeguimientosForm
       getApi={getApi}
-      doctoresactual={doctoresactual}
-      setDoctoresactual={setDoctoresactual}
+      seguimientoactual={seguimientoactual}
+      setSeguimientoactual={setSeguimientoactual}
       closeModal={() => {
         closeModal();
       }}
@@ -24,19 +25,19 @@ const Doctores = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(doctoresactual).lengTh > 0) {
+    if (Object.keys(seguimientoactual).length > 0) {
       openModal();
     }
-  }, [doctoresactual]);
+  }, [seguimientoactual]);
 
   return (
     <Section>
-     <Info>
+    <Info>
   <Infohijo>
   <div>
    <article>
-     <h2>{doc.length}</h2>
-   <p>Pacientes</p>
+     <h2>{segui.length}</h2>
+   <p>Resultados</p>
    </article>
     <img src="src\img\paciente.png" alt="" />
   </div>
@@ -45,8 +46,8 @@ const Doctores = () => {
   <Infohijo>
   <div>
    <article>
-     <h2>{doc.length}</h2>
-   <p>Pacientes</p>
+     <h2>{segui.length}</h2>
+   <p>Resultados</p>
    </article>
     <img src="src\img\paciente.png" alt="" />
   </div>
@@ -55,7 +56,7 @@ const Doctores = () => {
   <Infohijo>
   <div>
    <article>
-     <h2>{doc.length}</h2>
+     <h2>{segui.length}</h2>
    <p>Pacientes</p>
    </article>
     <img src="src\img\paciente.png" alt="" />
@@ -63,67 +64,71 @@ const Doctores = () => {
   <p>Lorem ipsum dolor sit amet.</p>
   </Infohijo>
     </Info>
-      <Div>
-      <section>
-            <h1>Registro Muestras</h1>
+        <Div>
+        
+          <section>
+            <h1>Registro Seguimientos</h1>
             <button onClick={openModal}> nuevo</button>
             <button onClick={openModal}> Excel</button>
             <button onClick={openModal}> Pdf</button>
           </section>
-        <table>
-          <thead>
-            <tr>
-              <th>Nº</th>
-              <th>Nombre</th>
-              <th>Ap Paterno</th>
-              <th>Ap Materno</th>
-              <th>Ci</th>
-              <th>Especialidades</th>
-              <th>ACCIONES</th>
-            </tr>
-          </thead>
-          {doc
-            .filter((v) =>
-              v.nombre.toLowerCase().includes(filtro.toLowerCase())
-            )
-            .map((v, i) => (
-              <tbody key={i}>
-                <tr>
-                  <td>{i + 1}</td>
-                  <td>{v.nombre}</td>
-                  <td>{v.ap_paterno}</td>
-                  <td>{v.ap_materno}</td>
-                  <td>{v.ci}</td>
-                  <td>{v.id_especialidades}</td>
+          <table>
+            <thead>
+              <tr>
+              
+                <th>Nº</th>
+                <th>id_muestras</th>
+                <th>id_resultados</th>
+                <th>id_doctores</th>
+                <th>id_centros</th>
+                <th>fecha</th>
+                <th>observaciones</th>
+            
+              </tr>
+            </thead>
+            {segui
+              .filter((v) =>
+                v.observaciones.toLowerCase().includes(filtro.toLowerCase())
+              )
+              .map((v, i) => (
+                <tbody key={i}>
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td>{v.id_muestras}</td>
+                    <td>{v.id_resultados}</td>
+                    <td>{v.id_doctores}</td>
+                    <td>{v.id_centros}</td>
+                    <td>{v.fecha}</td>
+                  
+                    <td>{v.observaciones}</td>
+                    <td>
+                      <div>
+                        <button
+                          onClick={() => {
+                            setSeguimientoactual(v);
+                          }}
+                        >
+                          Editar
+                        </button>
+                        <button
+                          onClick={() => {
+                            deleteSeguimiento(v.id, getApi);
+                          }}
+                        >
+                         Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+          </table>
+        </Div>
+      </Section>
+  )
+}
 
-                  <td>
-                    <div>
-                      <button
-                        onClick={() => {
-                          setDoctoresactual(v);
-                        }}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        onClick={() => {
-                          deleteDoctores(v.id, getApi);
-                        }}
-                      >
-                       Eliminar
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-        </table>
-      </Div>
-    </Section>
-  );
-};
-
-export default Doctores
+export default Seguimientos
 
 const Info = styled.article`
 width:100%;
@@ -284,4 +289,5 @@ padding:0 1.5em;
    
   }
 `;
+
 

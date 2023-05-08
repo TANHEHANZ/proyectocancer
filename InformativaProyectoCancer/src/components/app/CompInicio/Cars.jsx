@@ -65,9 +65,9 @@ const Cars1 = styled.div`
     height: auto;
     backdrop-filter: blur(12px) saturate(29%);
     -webkit-backdrop-filter: blur(12px) saturate(29%);
-    background-color: rgba(255, 255, 255, 0.26);
+    background-color: #16877cd5;
     border-radius: 12px;
-    border: 1px solid rgba(209, 213, 219, 0.3);
+    border: 1px solid rgba(209, 213, 219, 0.605);
     margin: 1em 0;
     display:flex;
     flex-direction:column;

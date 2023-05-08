@@ -51,37 +51,38 @@ export default HeaderInicio;
 // animacion blur
 const animation = keyframes`
 0% {
-  Top:50%;
+ top:60%;
   width:0;
    height:0;
    z-index:1;
   }
  50% {
-  Top:-1.5em;
+  top:1%;
+
   width:24em;
    height:24em;
   }
   60%{
-    width:25em;
+    width:24em;
     height:24em;
     
   }
   70%{
     opacity:50%;
-    width:25.5em;
+    width:25em;
     height:25em;
   }
   100%{
     opacity:0%;
-    width:26em;
+    width:25.5em;
     height:25.5em;
    
   }
 `;
 
 const Header = styled.header`
-margin:12vh 0 2em 8em;
-  width: 100;
+margin:15vh 0 2em 8em;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
@@ -105,7 +106,7 @@ const Img = styled.div`
       inset 0 3px 8px #444444, inset 0 3px 10px #444444;
       z-index:-1;
   animation: ${animation} 5s ease-out infinite;
-     
+    
   }
   & img{
     width: 20rem;
@@ -113,7 +114,7 @@ const Img = styled.div`
     object-fit: cover;
     filter: drop-shadow(0px 2px 5px #505050);
     border-radius: 50%;
-    margin: 1em 0 0 5em;
+    margin: 3em 0 0 5em;
    z-index:100;
   }
 `;

@@ -6,14 +6,13 @@ import {
 
   postDoctor,
   updateDoctores,
-  getDoctores,
 } from "../services/Doctor";
 import { getEspecialidades} from "../services/Especialidad";
 
 const DoctoresForm = ({
   getApi,
-  dooctoractual,
-  setDooctoractual,
+  doctoresactual,
+  setDoctoresactual,
   closeModal,
 }) => {
   const [nombre, setNombre] = useState("");
@@ -21,25 +20,25 @@ const DoctoresForm = ({
   const [ap_materno, setAp_materno] = useState("");
   const [ci, setCi] = useState("");
   const [id_especialidades, setId_especialidades] = useState("");
-  const { data: especialidad } = UseFech(getEspecialidades);
+  const { data: especi } = UseFech(getEspecialidades);
   useEffect(() => {
-    if (Object.keys(dooctoractual).length > 0) {
-        setNombre(dooctoractual.nombre);
-        setAp_paterno(dooctoractual.ap_paterno);
-        setAp_materno(dooctoractual.ap_materno);
-        setCi(dooctoractual.ci);
+    if (Object.keys(doctoresactual).length > 0) {
+        setNombre(doctoresactual.nombre);
+        setAp_paterno(doctoresactual.ap_paterno);
+        setAp_materno(doctoresactual.ap_materno);
+        setCi(doctoresactual.ci);
     }
     return () => {
-        setDooctoractual({});
+        setDoctoresactual({});
     };
-  }, [dooctoractual]);
+  }, [doctoresactual]);
 
   const updatepost = (e) => {
     e.preventDefault();
-    if (Object.keys(dooctoractual).length > 0) {
+    if (Object.keys(doctoresactual).length > 0) {
         updateDoctores(
         {
-        id: dooctoractual.id,
+        id: doctoresactual.id,
         nombre:nombre,
         ap_paterno:ap_paterno,
         ap_materno:ap_materno,
@@ -52,7 +51,7 @@ const DoctoresForm = ({
           setAp_materno("");
           setCi("");
           closeModal();
-          setdooctoractual({});
+          setDoctoresactual({});
           getApi();
         }
       );
@@ -121,9 +120,9 @@ const DoctoresForm = ({
               <label>especialidades</label>
               <Select onChange={(e) => setId_especialidades(e.target.value)}>
                 <option >seleccione las especialidades</option>
-                {especialidad.map((v, i) => (
+                {especi.map((v, i) => (
                   <option key={i} value={v.id}>
-                    {v.especialidad}
+                    {v.nombre}
                   </option>
                 ))}
               </Select>
@@ -147,7 +146,7 @@ const DoctoresForm = ({
 
       <Divboton>
         <Botonagregar onClick={(e) => updatepost(e)}>
-          {Object.keys(dooctoractual).length > 0 ? "Editar" : "Agregar"}
+          {Object.keys(doctoresactual).length > 0 ? "Editar" : "Agregar"}
         </Botonagregar>
       </Divboton>
     </form>
