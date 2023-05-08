@@ -16,7 +16,7 @@ export const getCentros= async () => {
 };
 export const deleteCentros= async (id, callback) => {
   
-    const response = await fetch(`${baseUrl}doctores/${id}`, {
+    const response = await fetch(`${baseUrl}centros/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -28,27 +28,27 @@ export const deleteCentros= async (id, callback) => {
         callback();
     }
 };
-export const updateCentros= async (dooctoresactual,callback) => {
+export const updateCentros= async (centrosactual,callback) => {
   
-    const response = await fetch(`${baseUrl}doctores/${dooctoresactual.id}`, {
+    const response = await fetch(`${baseUrl}centros/${centrosactual.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         accept: "application/json",
       },
       body: JSON.stringify({
-        nombre:dooctoresactual.nombre,
-        ap_paterno:dooctoresactual.ap_paterno,
-        ap_materno:dooctoresactual.ap_materno,
-        ci:dooctoresactual.ci,
-        id_especialidades:dooctoresactual.id_especialidades,
+        nombre:centrosactual.nombre,
+        ubicacion:centrosactual.ubicacion,
+        id_municipios:centrosactual.id_municipios,
+      
+        
     })});
     if(response.ok){
       callback();
     }
   }
-  export const postDoctor = async (nombre,ap_paterno,ap_materno,ci,id_especialidades,callback) => {
-    const response = await fetch(`${baseUrl}doctores`, {
+  export const postCentros = async (nombre,ubicacion,id_municipios,callback) => {
+    const response = await fetch(`${baseUrl}centros`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,10 +56,9 @@ export const updateCentros= async (dooctoresactual,callback) => {
       },
       body: JSON.stringify({
         nombre:nombre,
-        ap_paterno:ap_paterno,
-        ap_materno:ap_materno,
-        ci:ci,
-        id_especialidades
+        ubicacion:ubicacion,
+        id_municipios:id_municipios,
+        
     })});
     if(response.ok){
       callback();

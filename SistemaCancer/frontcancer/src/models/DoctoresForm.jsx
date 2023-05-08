@@ -156,19 +156,19 @@ const DoctoresForm = ({
 };
 export default DoctoresForm;
 
-const Container = styled.div``;
-const Divinputlabel = styled.div`
+export const Container = styled.div``;
+export const Divinputlabel = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Divinput = styled.div`
+export const Divinput = styled.div`
   display: flex;
   flex-direction: column;
   margin: 5px;
   align-items: center;
   
 `;
-const Input = styled.input`
+export const Input = styled.input`
   margin-top: 5px;
   margin-bottom: 5px;
   height: 30px;
@@ -179,11 +179,11 @@ const Input = styled.input`
     border: 1.5px solid #034078;
   }
 `;
-const Divboton = styled.div`
+export const Divboton = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Botonagregar = styled.button`
+export const Botonagregar = styled.button`
   padding: 10px;
   cursor: pointer;
   background: #034078;
@@ -193,7 +193,7 @@ const Botonagregar = styled.button`
     background: #0077b6;
   }
 `;
-const Select = styled.select`
+export const Select = styled.select`
   width: 180px;
   outline: none;
   font-size: 16px;

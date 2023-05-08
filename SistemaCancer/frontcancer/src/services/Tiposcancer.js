@@ -14,9 +14,9 @@ export const getTiposcancer = async () => {
         console.log(error);
     }
 };
-export const deleteSeguimiento = async (id, callback) => {
+export const deleteTiposcancer= async (id, callback) => {
   
-    const response = await fetch(`${baseUrl}seguimiento/${id}`, {
+    const response = await fetch(`${baseUrl}tiposcancers/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -28,42 +28,31 @@ export const deleteSeguimiento = async (id, callback) => {
         callback();
     }
 };
-export const updateSeguimiento = async (seguimientoactual,callback) => {
+export const updateTiposcancer = async (tiposcancersactual,callback) => {
   
-    const response = await fetch(`${baseUrl}seguimiento/${seguimientoactual.id}`, {
+    const response = await fetch(`${baseUrl}tiposcancers/${tiposcancersactual.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         accept: "application/json",
       },
       body: JSON.stringify({
-        id_muestras:seguimientoactual.id_muestras,
-        id_resultados:seguimientoactual.id_resultados,
-        id_doctores:seguimientoactual.id_doctores,
-        id_centros:seguimientoactual.id_centros,
-        fecha:seguimientoactual.fecha,
-        telefono:seguimientoactual.telefono,
-        observaciones:seguimientoactual.observaciones,
+        nombre:tiposcancersactual.nombre,
+       
     })});
     if(response.ok){
       callback();
     }
   }
-  export const postseguimiento = async (id_muestras,id_resultados,id_doctores,id_centros,fecha,telefono,observaciones,callback) => {
-    const response = await fetch(`${baseUrl}seguimiento`, {
+  export const postTiposcancer = async (nombre,callback) => {
+    const response = await fetch(`${baseUrl}tiposcancers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         accept: "application/json",
       },
       body: JSON.stringify({
-        id_muestras:id_muestras,
-        id_resultados:id_resultados,
-        id_doctores:id_doctores,
-        id_centros:id_centros,
-        fecha:fecha,
-        telefono:telefono,
-        observaciones:observaciones,
+        nombre:nombre,
       
     })});
     if(response.ok){

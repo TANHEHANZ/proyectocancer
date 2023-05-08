@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { useModal } from "../hooks/useModal";
-import MuestrasForm from "../models/MuestrasForm";
+
+import MuestrasForm from '../models/MuestrasForm';
 import { UseFech } from "../hooks/useFech";
 import { deleteMuestras, getMuestras } from "../services/Muestras";
 import styled from "styled-components";
