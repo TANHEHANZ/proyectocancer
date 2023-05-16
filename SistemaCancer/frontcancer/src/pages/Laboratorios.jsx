@@ -29,10 +29,29 @@ const Laboratorios = () => {
       openModal();
     }
   }, [laboratorioactual]);
-
-
+  const [notificaciones, setNotificaciones] = useState([]);
+  useEffect(() => {
+    obtenerNotificaciones();
+  }, []);
+  const obtenerNotificaciones = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/laboratorio/pacientes-no-notificados');
+      const data = await response.json();
+      setNotificaciones(data);
+    } catch (error) {
+      console.error('Error al obtener las notificaciones:', error);
+    }
+  };
   return (
     <Section>
+       <div>
+      <h2>Notificaciones del Laboratorio</h2>
+      <ul>
+        {notificaciones.map((paciente) => (
+          <li key={paciente.id}>{paciente.nombre}</li>
+        ))}
+      </ul>
+    </div>
     <Info>
  <Infohijo>
  <div>

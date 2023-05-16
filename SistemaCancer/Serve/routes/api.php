@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\CentrosController;
 use App\Http\Controllers\CiudadesControllererrer;
+use App\Http\Controllers\ConsultasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -59,6 +60,7 @@ Route::get('/laboratorio', [LaboratorioController::class, 'index']);
 Route::post('/laboratorio', [LaboratorioController::class, 'store']);
 Route::put('/laboratorio/{id}', [LaboratorioController::class, 'update']);
 Route::delete('/laboratorio/{id}', [LaboratorioController::class, 'destroy']);
+Route::delete('/laboratorio/{id}', [LaboratorioController::class, 'obtenerPacientesNoNotificados']);
 
 Route::get('/centros', [CentrosController::class, 'index']);
 Route::post('/centros', [CentrosController::class, 'store']);
@@ -99,3 +101,10 @@ Route::get('/tiposcancers', [TiposcancersControllererrer::class, 'index']);
 Route::post('/tiposcancers', [TiposcancersControllererrer::class, 'store']);
 Route::put('/tiposcancers/{id}', [TiposcancersControllererrer::class, 'update']);
 Route::delete('/tiposcancers/{id}', [TiposcancersControllererrer::class, 'destroy']);
+
+
+Route::post('/generar-reporte', [ConsultasController::class, 'generarReporte']);
+
+Route::get('ciudad-pdf', [ConsultasController::class, 'indexgrapciudadpdf']);
+Route::post('generar-pdf', [ConsultasController::class, 'generar']);
+

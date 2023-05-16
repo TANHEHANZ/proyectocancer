@@ -1,5 +1,9 @@
 import React from "react";
 import { Navcontextprovider } from "./context/navcontext";
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import Login from "./pages/Login";
 import { ModalContextProvider } from "./context/modalContext";
 import { Usercontextprovider } from "./context/userContext";
@@ -64,7 +68,7 @@ function App() {
           </Navcontextprovider>
         </Usercontextprovider>
         </ModalContextProvider>
-
+        <ToastContainer />
       </BrowserRouter>
     </>
   );

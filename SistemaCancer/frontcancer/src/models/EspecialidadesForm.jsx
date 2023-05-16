@@ -10,6 +10,8 @@ import {
   
 } from "../services/Especialidad";
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const PacientesForm = ({
   getApi,
   especialidadactual,
@@ -42,6 +44,16 @@ const PacientesForm = ({
           closeModal();
           setEspecialidadactual({});
           getApi();
+          toast.info('Los datos se han actualizado correctamente.',{
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: 1,
+            theme: "dark",
+          });
         }
       );
     } else {
@@ -51,6 +63,16 @@ const PacientesForm = ({
          
         getApi();
         closeModal();
+        toast.success('Los datos se han guardado correctamente.',{
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       });
     }
   };

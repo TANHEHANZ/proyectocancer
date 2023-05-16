@@ -17,8 +17,8 @@ const LaboratoriosForm = ({ getApi,
   const [ubicacion, setUbicacion] = useState("");
   const [id_doctores, setId_doctores] = useState("");
   const { data: doc } = UseFech(getDoctores);
-
-
+  const [anotificado,setAnotificado]=useState(false);
+console.log(anotificado);
         useEffect(() => {
             if (Object.keys(laboratorioactual).length > 0) {
                 setNombre(laboratorioactual.nombre);
@@ -107,7 +107,7 @@ const LaboratoriosForm = ({ getApi,
      
    
       <Divboton>
-        <Botonagregar onClick={(e) => updatepost(e)}>
+        <Botonagregar onClick={(e) => updatepost(e)} >
           {Object.keys(laboratorioactual).length > 0 ? "Editar" : "Agregar"}
         </Botonagregar>
       </Divboton>

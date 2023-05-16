@@ -12,5 +12,6 @@ class Laboratorios extends Model
         'nombre',
         'ubicacion',
         'id_doctores',
+        'notificado',
     ];
 }

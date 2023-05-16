@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateLaboratoriosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('laboratorios', function (Blueprint $table) {
@@ -19,6 +15,7 @@ class CreateLaboratoriosTable extends Migration
             $table->string('ubicacion');
             $table->foreignId('id_doctores')->constrained('doctores')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
+            $table->boolean('notificado')->default(false);
         });
     }
 

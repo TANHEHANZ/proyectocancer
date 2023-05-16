@@ -184,13 +184,18 @@ export const Divboton = styled.div`
   justify-content: center;
 `;
 export const Botonagregar = styled.button`
-  padding: 10px;
+width:70%;
+margin:0 auto;
+padding:0.5em 0;
   cursor: pointer;
-  background: #034078;
+  background: #05bd79;
   color: #fff;
   border-radius: 7px;
+  border:solid 1px #0002;
+
   &:hover {
-    background: #0077b6;
+    background: #ffffff;
+    color:#05bd79;
   }
 `;
 export const Select = styled.select`

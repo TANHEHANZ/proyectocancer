@@ -17,6 +17,7 @@ class LaboratorioController extends Controller
         $Laboratorios->nombre=$request->nombre;
         $Laboratorios->ubicacion=$request->ubicacion;
         $Laboratorios->id_doctores=$request->id_doctores;
+        $Laboratorios->notificado=true;
         $Laboratorios->save();
         return $Laboratorios;
     }
@@ -32,5 +33,10 @@ class LaboratorioController extends Controller
     public function destroy($id)
     {
         return Laboratorios::destroy($id);
+    }
+    public function obtenerPacientesNoNotificados()
+    {
+        $pacientes = Laboratorios::where('notificado', false)->get();
+        return response()->json($pacientes);
     }
 }
