@@ -201,7 +201,7 @@ margin:0.5em 1em 0 1em;
    
     & button{
 background-color:transparent;
-border:solid 1px #09216f;
+border:solid 1px #ffffff;
 color:#fff;
 margin:0 5px;
 cursor: pointer;
@@ -211,7 +211,7 @@ border:solid 1px #6f0909;
 
 }
 &:hover{
-  background-color:#09216f;
+  background-color:#6f0909;
   &:nth-child(2){
 background-color: #6f0909;
 }

@@ -44,13 +44,13 @@ const PacientesForm = ({
         updatePacientes(
         {
         id: pacienteactual.id,
-        nombre:pacienteactual.nombre,
-        ap_paterno:pacienteactual.ap_paterno,
-        ap_materno:pacienteactual.ap_materno,
-        sexo:pacienteactual.sexo,
-        fecha_nacimiento:pacienteactual.fecha_nacimiento,
-        telefono:pacienteactual.telefono,
-        ci:pacienteactual.ci,
+        nombre:nombre,
+        ap_paterno:ap_paterno,
+        ap_materno:ap_materno,
+        sexo:sexo,
+        fecha_nacimiento:fecha_nacimiento,
+        telefono:telefono,
+        ci:ci,
         },
         () => {
           setNombre("");

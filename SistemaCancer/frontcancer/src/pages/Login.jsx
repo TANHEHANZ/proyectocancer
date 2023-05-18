@@ -26,12 +26,7 @@ function Login() {
     });
     if (response.ok) {
       const responsejson = await response?.json();
-      /*       console.log(responsejson.user) */
-      setUser(responsejson.user[0]);
-      /*  document.cookie = `token=${responsejson.access_token}; max-age=${60 * 60};
-            path=/; somesite=stric`; */
-      /*      document.cookie = `user=${JSON.stringify(responsejson.user[0])}; max-age=${60 * 60 * 24};
-            path=/; somesite=stric`; */
+      setUser(responsejson.user[0]); 
       localStorage.setItem("user", JSON.stringify(responsejson.user[0]));
       setLogged(true);
       setUser((user) => ({ ...user, isLogged: true }));

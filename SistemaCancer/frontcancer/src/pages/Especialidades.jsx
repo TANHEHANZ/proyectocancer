@@ -28,7 +28,7 @@ export const Especialidades = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(especialidadactual).lengTh > 0) {
+    if (Object.keys(especialidadactual).length > 0) {
       openModal();
     }
   }, [especialidadactual]);
@@ -77,19 +77,16 @@ export const Especialidades = () => {
               v.nombre.toLowerCase().includes(filtro.toLowerCase())
             )
             .map((v, i) => (
-              <tbody key={i}>
+              <tbody key={i}
+              >
                 <tr>
                   <td>{i + 1}</td>
-                  <td>{v.nombre}</td>
+                  <td onClick={() => {
+                          setEspecialidadactual(v);
+                        }} >{v.nombre}</td>
                   <td>
                     <div>
-                      <button
-                        onClick={() => {
-                          setEspecialidadactual(v);
-                        }}
-                      >
-                        Editar
-                      </button>
+                    
                       <button
                         onClick={() => {
                           handleDelete(v.id);

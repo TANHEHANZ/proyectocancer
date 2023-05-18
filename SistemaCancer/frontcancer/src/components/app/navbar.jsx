@@ -27,7 +27,6 @@ const Navbar = () => {
         <Divpadre>
           <Header>
             {user.rol == "administrador" && <AdminComponent />}
-
             {user.rol == "laboratorio" && <LaboratorioComponent />}
           </Header>
           <Navuser>
