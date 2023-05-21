@@ -16,11 +16,12 @@ class CreateMuestrasTable extends Migration
         Schema::create('muestras', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pacientes')->constrained('pacientes')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('id_centros')->constrained('centros')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('id_tiposcancers')->constrained('tiposcancers')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('id_enfermeras')->constrained('enfermeras')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('descripcion');
             $table->date('fecha');
-
+            $table->foreignId('id_tipomuestras')->constrained('tipomuestras')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_enfermeras')->constrained('enfermeras')->cascadeOnUpdate()->cascadeOnDelete();
+// $table->foreignId('id_centros')->constrained('centros')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->foreignId('id_tiposcancers')->constrained('tiposcancers')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

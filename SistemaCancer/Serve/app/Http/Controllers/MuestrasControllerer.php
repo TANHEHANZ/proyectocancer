@@ -15,10 +15,10 @@ class MuestrasControllerer extends Controller
     {
         $muestras = new Muestras();
         $muestras->id_pacientes = $request->id_pacientes;
-        $muestras->id_centros = $request->id_centros;
-        $muestras->id_tiposcancers = $request->id_tiposcancers;
-        $muestras->id_enfermeras = $request->id_enfermeras;
         $muestras->fecha = $request->fecha;
+        $muestras->descripcion = $request->descripcion;
+        $muestras->id_tipomuestras = $request->id_tipomuestras;
+        $muestras->id_enfermeras = $request->id_enfermeras;
         $muestras->save();
         return $muestras;
     }
@@ -26,10 +26,10 @@ class MuestrasControllerer extends Controller
     {
         $muestras =Muestras::find($id);
         $muestras->id_pacientes = $request->id_pacientes;
-        $muestras->id_centros = $request->id_centros;
-        $muestras->id_tiposcancers = $request->id_tiposcancers;
-        $muestras->id_enfermeras = $request->id_enfermeras;
         $muestras->fecha = $request->fecha;
+        $muestras->descripcion = $request->descripcion;
+        $muestras->id_tipomuestras = $request->id_tipomuestras;
+        $muestras->id_enfermeras = $request->id_enfermeras;
         $muestras->save();
         return $muestras;
     }

@@ -16,6 +16,7 @@ const AdminComponent = () => {
   <section>
   <h2>Dashboard</h2>
       <Linkes to="/home">
+        
         <img src="src\img\casa.png" alt="" /> Home
       </Linkes>
       <h2>Gestion de pacientes</h2>

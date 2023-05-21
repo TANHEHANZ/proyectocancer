@@ -13,8 +13,11 @@ class Doctores extends Model
         'ap_paterno',
         'ap_materno',
         'ci',
-        'fecha_nacimiento',
-        'hora_nacimiento',
+        'correo',
+        'Direccion',
+        'Credenciales',
+        'descripcion',
+        'id_centros',
         'id_especialidades'
     ];
 }

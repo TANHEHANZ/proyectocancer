@@ -20,6 +20,11 @@ class PacientesController extends Controller
         $pacientes->fecha_nacimiento=$request->fecha_nacimiento;
         $pacientes->telefono=$request->telefono;
         $pacientes->ci=$request->ci;
+        $pacientes->direccion=$request->direccion;
+        $pacientes->correo=$request->correo;
+        $pacientes->edad=$request->edad;
+        $pacientes->id_doctores=$request->id_doctores;
+        $pacientes->id_enfermeras=$request->id_enfermeras;
         $pacientes->save();
         return $pacientes;
     }
@@ -33,6 +38,11 @@ class PacientesController extends Controller
         $pacientes->fecha_nacimiento=$request->fecha_nacimiento;
         $pacientes->telefono=$request->telefono;
         $pacientes->ci=$request->ci;
+        $pacientes->direccion=$request->direccion;
+        $pacientes->correo=$request->correo;
+        $pacientes->edad=$request->edad;
+        $pacientes->id_doctores=$request->id_doctores;
+        $pacientes->id_enfermeras=$request->id_enfermeras;
         $pacientes->save();
         return $pacientes;
     }

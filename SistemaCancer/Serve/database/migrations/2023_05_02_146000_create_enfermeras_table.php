@@ -15,6 +15,10 @@ class CreateEnfermerasTable extends Migration
             $table->string('ap_paterno');
             $table->string('ap_materno');
             $table->string('ci');
+            $table->string('direccion');
+            $table->string('experiencia');
+            $table->string('correo');
+            $table->foreignId('id_centros')->constrained('centros')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -19,6 +19,10 @@ class EnfermeraContreoller extends Controller
         $Enfermera->ap_paterno=$request->ap_paterno;
         $Enfermera->ap_materno=$request->ap_materno;
         $Enfermera->ci=$request->ci;
+        $Enfermera->direccion=$request->direccion;
+        $Enfermera->experiencia=$request->experiencia;
+        $Enfermera->correo=$request->correo;
+        $Enfermera->id_centros=$request->id_centros;
         $Enfermera->save();
         return $Enfermera;
     }
@@ -29,6 +33,10 @@ class EnfermeraContreoller extends Controller
         $Enfermera->ap_paterno=$request->ap_paterno;
         $Enfermera->ap_materno=$request->ap_materno;
         $Enfermera->ci=$request->ci;
+        $Enfermera->direccion=$request->direccion;
+        $Enfermera->experiencia=$request->experiencia;
+        $Enfermera->correo=$request->correo;
+        $Enfermera->id_centros=$request->id_centros;
         $Enfermera->save();
         return $Enfermera;
     }

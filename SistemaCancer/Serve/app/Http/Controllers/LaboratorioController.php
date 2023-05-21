@@ -17,7 +17,9 @@ class LaboratorioController extends Controller
         $Laboratorios->nombre=$request->nombre;
         $Laboratorios->ubicacion=$request->ubicacion;
         $Laboratorios->id_doctores=$request->id_doctores;
-        $Laboratorios->notificado=true;
+        $Laboratorios->contacto=$request->contacto;
+        $Laboratorios->email=$request->email;
+
         $Laboratorios->save();
         return $Laboratorios;
     }
@@ -27,6 +29,8 @@ class LaboratorioController extends Controller
         $Laboratorios->nombre=$request->nombre;
         $Laboratorios->ubicacion=$request->ubicacion;
         $Laboratorios->id_doctores=$request->id_doctores;
+        $Laboratorios->contacto=$request->contacto;
+        $Laboratorios->email=$request->email;
         $Laboratorios->save();
         return $Laboratorios;
     }

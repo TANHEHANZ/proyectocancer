@@ -9,10 +9,11 @@ class Muestras extends Model
 {
     use HasFactory;
     protected $fillable = [
+
         'id_pacientes',
-        'id_centros',
-        'id_tiposcancers',
-        'id_enfermeras',
+        'descripcion',
         'fecha',
+        'id_tipomuestras',
+        'id_enfermeras',
     ];
 }

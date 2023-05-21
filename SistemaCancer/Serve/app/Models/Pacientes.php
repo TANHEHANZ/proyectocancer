@@ -16,6 +16,10 @@ class Pacientes extends Model
         'fecha_nacimiento',
         'telefono',
         'ci',
-       
+        'direccion',
+        'correo',
+        'edad',
+        'id_doctores',
+        'id_enfermeras',
     ];
 }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useModal } from '../hooks/useModal'
 import CentrosForm from '../models/CentrosForm'
-import { getCentros , deleteCentros } from '../services/Centros'
+import { getCentros, deleteCentros } from '../services/Centros';
+
 import { UseFech } from '../hooks/useFech'
 import styled from 'styled-components'
 const Centros = () => {

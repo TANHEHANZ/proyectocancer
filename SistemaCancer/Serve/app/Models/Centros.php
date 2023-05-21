@@ -11,6 +11,5 @@ class Centros extends Model
      protected $fillable = [
         'nombre',
         'ubicacion',
-        'id_municipios',
     ];
 }

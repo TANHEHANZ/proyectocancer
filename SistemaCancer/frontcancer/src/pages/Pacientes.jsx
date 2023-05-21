@@ -32,154 +32,86 @@ const Pacientes = () => {
   return (
     <Section>
       <div>
-      <Info>
-        <Infohijo>
-          <div>
-            <article>
-              <h2>{pac.length}</h2>
-              <p>Pacientes</p>
-            </article>
-            <img src="src\img\paciente.png" alt="" />
-          </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </Infohijo>
-        <Infohijo>
-          <div>
-            <article>
-              <h2>{pac.length}</h2>
-              <p>Pacientes</p>
-            </article>
-            <img src="src\img\paciente.png" alt="" />
-          </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </Infohijo>
-        <Infohijo>
-          <div>
-            <article>
-              <h2>{pac.length}</h2>
-              <p>Pacientes</p>
-            </article>
-            <img src="src\img\paciente.png" alt="" />
-          </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </Infohijo>
-      </Info>
-      <Div>
-        <section>
-          <h1>Registro Pacientes</h1>
-          <button onClick={openModal}> nuevo</button>
-          <button onClick={openModal}> Excel</button>
-          <button onClick={openModal}> Pdf</button>
-        </section>
-        <table>
-          <thead>
-            <tr>
-              <th>Nº</th>
-              <th>Nombre</th>
-              <th>Ap Paterno</th>
-              <th>Ap Materno</th>
-              <th>Sexo</th>
-              <th>F nacimiento</th>
-              <th>Telefono</th>
-              <th>Ci</th>
-              <th>ACCIONES</th>
-            </tr>
-          </thead>
-          {pac
-            .filter((v) =>
-              v.nombre.toLowerCase().includes(filtro.toLowerCase())
-            )
-            .map((v, i) => (
-              <tbody key={i}>
-                <tr
-                  onClick={() => {
-                    setPacienteactual(v);
-                  }}
-                >
-                  <td>{i + 1}</td>
-                  <td>{v.nombre}</td>
-                  <td>{v.ap_paterno}</td>
-                  <td>{v.ap_materno}</td>
-                  <td>{v.sexo}</td>
-                  <td>{v.fecha_nacimiento}</td>
-                  <td>{v.telefono}</td>
-                  <td>{v.ci}</td>
+        <article>
+          <label htmlFor="">Busqueda por criterios</label>
+          <input
+            type="text"
+            placeholder="Buscar"
+            value={filtro}
+            onChange={(e) => setFiltro(e.target.value)}
+          />
+        </article>
+        <Div>
+          <section>
+            <h1>Registro Pacientes</h1>
+            <button onClick={openModal}> nuevo</button>
+          </section>
+          <Paciente>
+            {pac
+              .filter((v) =>
+                v.nombre.toLowerCase().includes(filtro.toLowerCase())
+              )
+              .map((v, i) => (
+                <Car>
+                  <label>Id° : {v.id}</label>
+                  <label>Nombre : {v.nombre}</label>
+                  <label>Ap Paterno:{v.ap_paterno}</label>
+                  <label>Sexo: {v.sexo}</label>
+                  <label>F nacimiento : {v.fecha_nacimiento}</label>
+                  <label>Telefono: {v.telefono}</label>
+                  <label>Ci: {v.ci}</label>
+                  <button  onClick={() => {
+                      setPacienteactual(v);
+                    }}>Mas info</button>
+                </Car>
+              ))}
+          </Paciente>
+          {/* <table>
+            <thead>
+             
+            </thead>
+            {pac
+              .filter((v) =>
+                v.nombre.toLowerCase().includes(filtro.toLowerCase())
+              )
+              .map((v, i) => (
+                <tbody key={i}>
+                  <tr
+                    onClick={() => {
+                      setPacienteactual(v);
+                    }}
+                  >
+                    <td>{v.id}</td>
+                    <td>{v.nombre}</td>
+                    <td>{v.ap_paterno}</td>
+                    <td>{v.ap_materno}</td>
+                    <td>{v.sexo}</td>
+                    <td>{v.fecha_nacimiento}</td>
+                    <td>{v.telefono}</td>
+                    <td>{v.ci}</td>
 
-                  <td>
-                    <div>
-                      <button
-                        onClick={() => {
-                          deletePacientes(v.id, getApi);
-                        }}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-        </table>
-      </Div>
+                    <td>
+                      <div>
+                        <button
+                          onClick={() => {
+                            deletePacientes(v.id, getApi);
+                          }}
+                        >
+                          Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+          </table> */}
+        </Div>
       </div>
-      <article> datos</article>
     </Section>
   );
 };
 
 export default Pacientes;
-
-const Info = styled.article`
-  width: 100%;
-  height: 8em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 2em;
-  margin: 1em auto;
-  justify-content: center;
-`;
-const Infohijo = styled.section`
-  width: calc(80% / 4);
-  height: 90%;
-  backdrop-filter: blur(12px) saturate(29%);
-  -webkit-backdrop-filter: blur(12px) saturate(29%);
-  background-color: rgb(59, 78, 87);
-  border-radius: 18px;
-  border: 1px solid rgba(209, 213, 219, 0.176);
-  padding: 1em;
-
-  &:hover {
-    transform: scale(1.02);
-  }
-  & h2 {
-    color: #06ad78;
-    font-weight: 100;
-  }
-  & p {
-    color: #bebebe;
-
-    font-weight: 100;
-    font-size: 0.8em;
-  }
-  & article {
-    display: flex;
-    flex-direction: column;
-  }
-  & div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 0.2em 0;
-    & img {
-      height: 35px;
-      background-color: #c7c7c7;
-      object-fit: cover;
-      border-radius: 50%;
-      filter: invert(100%);
-    }
-  }
-`;
 
 const Section = styled.section`
   width: 100%;
@@ -188,28 +120,45 @@ const Section = styled.section`
   padding: 1em;
   display: flex;
   flex-direction: row;
-  & > div{
-    width:60%;
-    height:auto;
-  }
-  & > article{
-    border:solid 1px #fff2;
-    width:35%;
-    margin:0 auto;
 
+  & > div {
+    width: 100%;
+    height: auto;
+    & > article {
+      height: 3em;
+      gap: 1em;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      & label {
+        font-size: 0.8em;
+        text-transform: uppercase;
+        font-weight: 400;
+        width: 15%;
+        color: #fff;
+      }
+      & input {
+        width: 70%;
+        border: solid 1px #069266;
+        background-color: transparent;
+        color: #069266;
+      }
+    }
   }
 `;
 
 const Div = styled.div`
   width: 100%;
-  height: 60vh;
+  height: auto;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
   border-radius: 15px;
   border: solid 1px #fff2;
 
-  & section {
+  & > section {
     display: flex;
     flex-direction: row;
     gap: 1em;
@@ -291,4 +240,29 @@ const Div = styled.div`
     }
   }
 `;
- 
+const Paciente = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  flex-wrap: wrap;
+  gap: 1em;
+`;
+const Car = styled.article`
+  width: calc(90% / 3);
+  height: 20em;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  border: ridge 1px #fff2;
+  color: #fff;
+  gap: 0.5em;
+  font-size:0.9em;
+  & button {
+    width: 100%;
+    height: 2.5em;
+    border-radius: 0.5em;
+    border: none;
+  }
+`;

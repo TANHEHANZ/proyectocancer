@@ -28,6 +28,9 @@ import Ciudades from "./pages/Ciudades";
 import Provincias from "./pages/Provincias";
 import Tiposcancer from "./pages/Tiposcancer";
 import Ususarios from "./pages/Ususarios";
+import PacienteDetalle from "./pages/PacienteDetalle";
+import CrudApp from "./componentes/Cruds/CrudApp";
+import CrudApi from "./componentes/Cruds/CrudApi";
 
 function App() {
   return (
@@ -49,7 +52,14 @@ function App() {
                 >
                   <Route path="home" element={<Home />} />
                   <Route path="pacientes" element={<Pacientes />} />
+
+                  <Route path="/pacientes/:id" element={<PacienteDetalle />} />
+
+
                   <Route path="doctores" element={<Doctores />} />
+                  <Route path="crudapi" element={<CrudApi />} />
+                  
+                  <Route path="cruds" element={<CrudApp />} />
                   <Route path="especialidades" element={<Especialidades />} />
                   <Route path="enfermeras" element={< Enfermeras/>} />
                   <Route path="centros" element={<Centros />} />

@@ -13,5 +13,9 @@ class Enfermera extends Model
         'ap_paterno',
         'ap_materno',
         'ci',
+        'direccion',
+        'experiencia',
+        'correo',
+        'id_centros',
     ];
 }

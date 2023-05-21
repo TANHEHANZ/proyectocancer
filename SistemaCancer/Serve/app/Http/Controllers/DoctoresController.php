@@ -19,7 +19,12 @@ class DoctoresController extends Controller
         $doctores->ap_paterno=$request->ap_paterno;
         $doctores->ap_materno=$request->ap_materno;
         $doctores->ci=$request->ci;
+        $doctores->correo=$request->correo;
+        $doctores->Direccion=$request->Direccion;
+        $doctores->Credenciales=$request->Credenciales;
+        $doctores->descripcion=$request->descripcion;
         $doctores->id_especialidades=$request->id_especialidades;
+        $doctores->id_centros=$request->id_centros;
         $doctores->save();
         return $doctores;
     }
@@ -30,7 +35,12 @@ class DoctoresController extends Controller
         $doctores->ap_paterno=$request->ap_paterno;
         $doctores->ap_materno=$request->ap_materno;
         $doctores->ci=$request->ci;
+        $doctores->correo=$request->correo;
+        $doctores->Direccion=$request->Direccion;
+        $doctores->Credenciales=$request->Credenciales;
+        $doctores->descripcion=$request->descripcion;
         $doctores->id_especialidades=$request->id_especialidades;
+        $doctores->id_centros=$request->id_centros;
         $doctores->save();
         return $doctores;
     }

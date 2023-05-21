@@ -13,9 +13,10 @@ class CreateLaboratoriosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('ubicacion');
+            $table->string('contacto');
+            $table->string('email');
             $table->foreignId('id_doctores')->constrained('doctores')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
-            $table->boolean('notificado')->default(false);
         });
     }
 

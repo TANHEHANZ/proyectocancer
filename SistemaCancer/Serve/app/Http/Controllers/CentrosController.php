@@ -16,7 +16,6 @@ class CentrosController extends Controller
         $Centros=new Centros();
         $Centros->nombre=$request->nombre;
         $Centros->ubicacion=$request->ubicacion;
-        $Centros->id_municipios=$request->id_municipios;
         $Centros->save();
         return $Centros;
     }
@@ -25,7 +24,6 @@ class CentrosController extends Controller
         $Centros=Centros::find($id);
         $Centros->nombre=$request->nombre;
         $Centros->ubicacion=$request->ubicacion;
-        $Centros->id_municipios=$request->id_municipios;
         $Centros->save();
         return $Centros;
     }

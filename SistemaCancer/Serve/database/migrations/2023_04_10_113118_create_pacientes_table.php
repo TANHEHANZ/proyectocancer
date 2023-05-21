@@ -22,6 +22,11 @@ class CreatePacientesTable extends Migration
             $table->date('fecha_nacimiento');
             $table->string('telefono');
             $table->string('ci');
+            $table->string('direccion');
+            $table->string('correo');
+            $table->integer('edad');
+            $table->foreignId('id_doctores')->constrained('doctores')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_enfermeras')->constrained('enfermeras')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

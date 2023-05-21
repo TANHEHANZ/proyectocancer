@@ -1,16 +1,9 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateDoctoresTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('doctores', function (Blueprint $table) {
@@ -19,16 +12,15 @@ class CreateDoctoresTable extends Migration
             $table->string('ap_paterno');
             $table->string('ap_materno');
             $table->string('ci');
-            $table->foreignId('id_especialidades')->constrained('especialidades')->cascadeOnUpdate()->cascadeOnDelete(); 
+            $table->string('correo');
+            $table->string('Direccion');
+            $table->string('Credenciales');
+            $table->string('descripcion');
+            $table->foreignId('id_especialidades')->constrained('especialidades')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_centros')->constrained('centros')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('doctores');
