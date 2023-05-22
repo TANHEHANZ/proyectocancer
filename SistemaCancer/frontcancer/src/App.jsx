@@ -30,7 +30,6 @@ import CrudApp from "./componentes/Cruds/CrudApp";
 import CrudApi from "./componentes/Cruds/CrudApi";
 import Derivaciones from "./pages/Derivaciones";
 import Examen from "./pages/Examen";
-
 import Tratamiento from "./pages/Tratamiento";
 import Tipoexamen from "./pages/Tipoexamen";
 import Tipomuestra from "./pages/Tipomuestra";
