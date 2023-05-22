@@ -13,15 +13,15 @@ class TipotratamientoController extends Controller
     }
     public function store(Request $request)
     {
-    $tipotrata=new Tipotratamiento();
-    $tipotrata->nombre=$request->nombre;
+        $tipotrata = new Tipotratamiento();
+        $tipotrata->nombre = $request->nombre;
         $tipotrata->save();
         return $tipotrata;
     }
     public function update(Request $request, $id)
     {
-        $tipotrata=Tipotratamiento::find($id);
-        $tipotrata->nombre=$request->nombre;
+        $tipotrata = Tipotratamiento::find($id);
+        $tipotrata->nombre = $request->nombre;
         $tipotrata->save();
         return $tipotrata;
     }

@@ -16,7 +16,6 @@ class LaboratorioController extends Controller
         $Laboratorios=new Laboratorios();
         $Laboratorios->nombre=$request->nombre;
         $Laboratorios->ubicacion=$request->ubicacion;
-        $Laboratorios->id_doctores=$request->id_doctores;
         $Laboratorios->contacto=$request->contacto;
         $Laboratorios->email=$request->email;
 
@@ -28,7 +27,6 @@ class LaboratorioController extends Controller
         $Laboratorios=Laboratorios::find($id);
         $Laboratorios->nombre=$request->nombre;
         $Laboratorios->ubicacion=$request->ubicacion;
-        $Laboratorios->id_doctores=$request->id_doctores;
         $Laboratorios->contacto=$request->contacto;
         $Laboratorios->email=$request->email;
         $Laboratorios->save();

@@ -11,12 +11,12 @@ class CreateSeguimientosTable extends Migration
     {
         Schema::create('seguimientos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_pacientes')->constrained('pacientes')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('id_muestras')->constrained('muestras')->cascadeOnUpdate()->cascadeOnDelete();
             $table ->foreignId('id_resultados')->constrained('resultados')->cascadeOnDelete()->cascadeOnDelete();
             $table ->foreignId('id_doctores')->constrained('doctores')->cascadeOnDelete()->cascadeOnDelete();
             $table ->foreignId('id_centros')->constrained('centros')->cascadeOnDelete()->cascadeOnDelete();
             $table->date('fecha');
-            $table ->string('observaciones');
             $table->timestamps();
         });
     }

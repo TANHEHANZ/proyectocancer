@@ -15,6 +15,9 @@ class CreateVisitasTable extends Migration
     {
         Schema::create('visitas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_pacientes')->constrained('pacientes')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->date('fecha');
+            $table->string('detalle');
             $table->timestamps();
         });
     }
