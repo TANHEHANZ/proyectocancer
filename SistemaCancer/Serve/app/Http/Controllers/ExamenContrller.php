@@ -1,15 +1,18 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Examen;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ExamenContrller extends Controller
 {
     public function index()
     {
-        return Examen::all();
+        $examenes = DB::select("SELECT p.nombre as nombre_paciente, te.nombre as nombre_tipo_examen, e.descripcion, e.fecha, e.resultado
+        FROM examen as e
+        JOIN pacientes as p ON e.id_pacientes = p.id
+        JOIN tipoexamens as te ON e.id_tipoexamens = te.id
+       ");
+        return $examenes;
     }
     public function store(Request $request)
     {
@@ -24,7 +27,7 @@ class ExamenContrller extends Controller
     }
     public function update(Request $request, $id)
     {
-        $exam =Examen::find($id);
+        $exam = Examen::find($id);
         $exam->id_pacientes = $request->id_pacientes;
         $exam->id_tipoexamens = $request->id_tipoexamens;
         $exam->descripcion = $request->descripcion;
@@ -33,8 +36,8 @@ class ExamenContrller extends Controller
         $exam->save();
         return $exam;
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         return Examen::destroy($id);
     }
-
 }

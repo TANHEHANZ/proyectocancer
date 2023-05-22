@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 use App\Models\Pacientes;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class PacientesController extends Controller
 {
     public function index()
     {
-        return Pacientes::all();
+        $pacientes = DB::select("SELECT p.nombre, p.ap_paterno, p.ap_materno, p.sexo, p.fecha_nacimiento, p.telefono, p.ci, p.direccion, p.correo, p.edad, d.nombre as nombre_doctor, e.nombre as nombre_enfermera FROM pacientes as p LEFT JOIN doctores as d ON p.id_doctores = d.id LEFT JOIN enfermeras as e ON p.id_enfermeras = e.id;
+       ");
+       return $pacientes;
+        // return Pacientes::all();
     }
     public function store(Request $request)
     {

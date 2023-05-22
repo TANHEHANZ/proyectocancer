@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Doctores;
-
+use Illuminate\Support\Facades\DB;
 
 class DoctoresController extends Controller
 {
     public function index()
     {
-        return Doctores::all();
+        $doctores = DB::select("SELECT d.nombre, d.ap_paterno, d.ap_materno, d.ci, d.correo, d.Direccion, d.Credenciales, d.descripcion, ce.nombre as nombre_centro, e.nombre as nombre_especialidad FROM doctores as d JOIN centros as ce ON d.id_centros = ce.id JOIN especialidades as e ON d.id_especialidades = e.id;
+       ");
+       return $doctores;
+        // return Doctores::all();
     }
     public function store(Request $request)
     {

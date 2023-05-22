@@ -18,7 +18,6 @@ class LaboratorioController extends Controller
         $Laboratorios->ubicacion=$request->ubicacion;
         $Laboratorios->contacto=$request->contacto;
         $Laboratorios->email=$request->email;
-
         $Laboratorios->save();
         return $Laboratorios;
     }
