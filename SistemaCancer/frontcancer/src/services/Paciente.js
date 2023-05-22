@@ -44,12 +44,18 @@ export const updatePacientes = async (pacienteactual,callback) => {
         fecha_nacimiento:pacienteactual.fecha_nacimiento,
         telefono:pacienteactual.telefono,
         ci:pacienteactual.ci,
+        direccion:pacienteactual.direccion,
+        correo:pacienteactual.correo,
+        edad:pacienteactual.edad,
+        id_doctores:pacienteactual.id_doctores,
+        id_enfermeras:pacienteactual.id_enfermeras,
+        
     })});
     if(response.ok){
       callback();
     }
   }
-  export const postPacientes = async (nombre,ap_paterno,ap_materno,sexo,fecha_nacimiento,telefono,ci,callback) => {
+  export const postPacientes = async (nombre,ap_paterno,ap_materno,sexo,fecha_nacimiento,telefono,ci,direccion,correo,edad,id_doctores,id_enfermeras,callback) => {
     const response = await fetch(`${baseUrl}pacientes`, {
       method: "POST",
       headers: {
@@ -64,6 +70,11 @@ export const updatePacientes = async (pacienteactual,callback) => {
         fecha_nacimiento:fecha_nacimiento,
         telefono:telefono,
         ci:ci,
+        direccion:direccion,
+        correo:correo,
+        edad:edad,
+        id_doctores:id_doctores,
+        id_enfermeras:id_enfermeras,
     })});
     if(response.ok){
       callback();

@@ -39,15 +39,13 @@ export const updateCentros= async (centrosactual,callback) => {
       body: JSON.stringify({
         nombre:centrosactual.nombre,
         ubicacion:centrosactual.ubicacion,
-        id_municipios:centrosactual.id_municipios,
       
-        
     })});
     if(response.ok){
       callback();
     }
   }
-  export const postCentros = async (nombre,ubicacion,id_municipios,callback) => {
+  export const postCentros = async (nombre,ubicacion,callback) => {
     const response = await fetch(`${baseUrl}centros`, {
       method: "POST",
       headers: {
@@ -56,9 +54,7 @@ export const updateCentros= async (centrosactual,callback) => {
       },
       body: JSON.stringify({
         nombre:nombre,
-        ubicacion:ubicacion,
-        id_municipios:id_municipios,
-        
+        ubicacion:ubicacion,     
     })});
     if(response.ok){
       callback();

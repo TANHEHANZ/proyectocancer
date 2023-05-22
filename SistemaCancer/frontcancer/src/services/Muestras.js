@@ -37,10 +37,9 @@ export const updateMuestras = async (muestrasactual,callback) => {
         accept: "application/json",
       },
       body: JSON.stringify({
-      
         id_pacientes:muestrasactual.id_pacientes,
-        id_centros:muestrasactual.id_centros,
-        id_tiposcancers:muestrasactual.id_tiposcancers,
+        descripcion:muestrasactual.descripcion,
+        id_tipomuestras:muestrasactual.id_tipomuestras,
         id_enfermeras:muestrasactual.id_enfermeras,
         fecha:muestrasactual.fecha,
       
@@ -49,7 +48,7 @@ export const updateMuestras = async (muestrasactual,callback) => {
       callback();
     }
   }
-  export const postmuestras = async (id_pacientes,id_centros,id_tiposcancers,id_enfermeras,fecha,callback) => {
+  export const postmuestras = async (id_pacientes,descripcion,id_tipomuestras,id_enfermeras,fecha,callback) => {
     const response = await fetch(`${baseUrl}muestras`, {
       method: "POST",
       headers: {
@@ -58,8 +57,8 @@ export const updateMuestras = async (muestrasactual,callback) => {
       },
       body: JSON.stringify({
         id_pacientes:id_pacientes,
-        id_centros:id_centros,
-        id_tiposcancers:id_tiposcancers,
+        descripcion:descripcion,
+        id_tipomuestras:id_tipomuestras,
         id_enfermeras:id_enfermeras,
         fecha:fecha,
       

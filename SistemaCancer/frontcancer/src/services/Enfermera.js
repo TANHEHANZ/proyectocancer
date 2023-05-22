@@ -14,7 +14,7 @@ export const getEnfermera = async () => {
         console.log(error);
     }
 };
-export const deleteDoctores = async (id, callback) => {
+export const deleteEnfermera = async (id, callback) => {
   
     const response = await fetch(`${baseUrl}enfermera/${id}`, {
         method: "DELETE",
@@ -28,7 +28,7 @@ export const deleteDoctores = async (id, callback) => {
         callback();
     }
 };
-export const updateDoctores = async (dooctoresactual,callback) => {
+export const updateEnfermera = async (dooctoresactual,callback) => {
   
     const response = await fetch(`${baseUrl}enfermera/${dooctoresactual.id}`, {
       method: "PUT",
@@ -41,13 +41,16 @@ export const updateDoctores = async (dooctoresactual,callback) => {
         ap_paterno:dooctoresactual.ap_paterno,
         ap_materno:dooctoresactual.ap_materno,
         ci:dooctoresactual.ci,
-        id_especialidades:dooctoresactual.id_especialidades,
+        direccion:dooctoresactual.direccion,
+        experiencia:dooctoresactual.experiencia,
+        correo:dooctoresactual.correo,
+        id_centros:dooctoresactual.id_centros,
     })});
     if(response.ok){
       callback();
     }
   }
-  export const postDoctor = async (nombre,ap_paterno,ap_materno,ci,id_especialidades,callback) => {
+  export const postEnfermera = async (nombre,ap_paterno,ap_materno,ci,direccion,experiencia,correo,id_centros,callback) => {
     const response = await fetch(`${baseUrl}enfermera`, {
       method: "POST",
       headers: {
@@ -59,7 +62,10 @@ export const updateDoctores = async (dooctoresactual,callback) => {
         ap_paterno:ap_paterno,
         ap_materno:ap_materno,
         ci:ci,
-        id_especialidades
+        direccion:direccion,
+        experiencia:experiencia,
+        correo:correo,
+        id_centros:id_centros,
     })});
     if(response.ok){
       callback();

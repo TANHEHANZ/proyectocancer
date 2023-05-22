@@ -38,13 +38,14 @@ export const updateLaboratorio = async (laboratorioactual,callback) => {
       body: JSON.stringify({
         nombre:laboratorioactual.nombre,
         ubicacion:laboratorioactual.ubicacion,
-        id_doctores:laboratorioactual.id_doctores,
+        contacto:laboratorioactual.contacto,
+        email:laboratorioactual.email,
     })});
     if(response.ok){
       callback();
     }
   }
-  export const postlaboratorio = async (nombre,ubicacion,id_doctores,callback) => {
+  export const postlaboratorio = async (nombre,ubicacion,contacto,email,callback) => {
     const response = await fetch(`${baseUrl}laboratorio`, {
       method: "POST",
       headers: {
@@ -54,7 +55,8 @@ export const updateLaboratorio = async (laboratorioactual,callback) => {
       body: JSON.stringify({
         nombre:nombre,
         ubicacion:ubicacion,
-        id_doctores:id_doctores,
+        contacto:contacto,
+        email:email,
     })});
     if(response.ok){
       callback();
