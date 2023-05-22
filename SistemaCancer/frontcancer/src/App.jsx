@@ -29,7 +29,13 @@ import PacienteDetalle from "./pages/PacienteDetalle";
 import CrudApp from "./componentes/Cruds/CrudApp";
 import CrudApi from "./componentes/Cruds/CrudApi";
 import Derivaciones from "./pages/Derivaciones";
+import Examen from "./pages/Examen";
 
+import Tratamiento from "./pages/Tratamiento";
+import Tipoexamen from "./pages/Tipoexamen";
+import Tipomuestra from "./pages/Tipomuestra";
+import Visitas from "./pages/Visitas";
+import Tipostratamiento from "./pages/Tipotratamiento";
 function App() {
   return (
     <>
@@ -52,13 +58,15 @@ function App() {
                   <Route path="pacientes" element={<Pacientes />} />
                   <Route path="derivaciones" element={<Derivaciones />} />
 
-                  <Route path="/pacientes/:id" element={<PacienteDetalle />} />
+                  {/* <Route path="/pacientes/:id" element={<PacienteDetalle />} /> */}
 
-
+                  <Route path="Examen" element={<Examen/>} />
+                  <Route path="Tratamiento" element={<Tratamiento/>} />
+                  <Route path="visitas" element={<Visitas/>} />
                   <Route path="doctores" element={<Doctores />} />
-                  <Route path="crudapi" element={<CrudApi />} />
+                  {/* <Route path="crudapi" element={<CrudApi />} />
                   
-                  <Route path="cruds" element={<CrudApp />} />
+                  <Route path="cruds" element={<CrudApp />} /> */}
                   <Route path="especialidades" element={<Especialidades />} />
                   <Route path="enfermeras" element={< Enfermeras/>} />
                   <Route path="centros" element={<Centros />} />
@@ -66,8 +74,12 @@ function App() {
                   <Route path="muestras" element={<Muestras />} />
                   <Route path="resultados" element={<Resultados />} />
                   <Route path="seguimientos" element={<Seguimientos />} />
-                  <Route path="tiposcancer" element={<Tiposcancer />} />
+                 
                   <Route path="usuarios" element={<Ususarios />} />
+                  <Route path="tiposcancer" element={<Tiposcancer />} />
+                  <Route path="tiposexamen" element={<Tipoexamen />} />
+                  <Route path="tipomuestra" element={<Tipomuestra />} />
+                  <Route path="tipostratamiento" element={<Tipostratamiento />} />
                 </Route>
               </Routes>
               <Modal />

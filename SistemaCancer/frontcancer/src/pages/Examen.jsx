@@ -5,7 +5,7 @@ import ExamenForm from "../models/ExamenForm";
 import { UseFech } from "../hooks/useFech";
 import { Info, Div, Infohijo, Section } from "./Centros";
 import { getExamen  ,deleteExamen} from "../services/Examen";
-const Doctores = () => {
+const Examen = () => {
   const [examenactual, setExamenactual] = useState({});
   const { getApi, data: exa } = UseFech(getExamen);
   const { openModal, closeModal } = useModal(
@@ -122,4 +122,4 @@ const Doctores = () => {
   );
 };
 
-export default Doctores;
+export default Examen;

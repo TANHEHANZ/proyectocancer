@@ -5,7 +5,7 @@ import { useModal } from '../hooks/useModal'
 import TiposcancerForm from '../models/TiposcancerForm'
 import { Info,Div,Infohijo,Section } from './Centros';
 
-const Tiposcancer = () => {
+const Tipostratamiento = () => {
   const [tiposcancersactual, setTiposcancersactual]=useState("");
   const{getApi, data:tip}=UseFech(getTiposcancer);
   const { openModal, closeModal } = useModal(
@@ -93,4 +93,4 @@ const Tiposcancer = () => {
   )
 }
 
-export default Tiposcancer
+export default Tipostratamiento

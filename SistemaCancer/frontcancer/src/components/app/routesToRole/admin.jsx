@@ -47,7 +47,18 @@ const AdminComponent = () => {
               <img src="" alt="" />
             Derivaciones
             </Linkes>
-            
+            <Linkes to="/Examen">
+              <img src="" alt="" />
+            Examen
+            </Linkes>
+            <Linkes to="/Tratamiento">
+              <img src="" alt="" />
+            Tratamiento
+            </Linkes>
+            <Linkes to="/visitas">
+              <img src="" alt="" />
+            Visitas
+            </Linkes>
           </article>
         )}
       </Divbotton>
@@ -92,14 +103,24 @@ const AdminComponent = () => {
               <img src="" alt="" />
               Centros
             </Linkes>
-            <Linkes to="/municipios">
-              <img src="" alt="" />
-              Municipios
-            </Linkes>
+           
             <Linkes to="/tiposCancer">
               <img src="" alt="" />
               Tipos de cancer
             </Linkes>
+            <Linkes to="/tiposexamen">
+              <img src="" alt="" />
+              Tipos de Examen
+            </Linkes>
+            <Linkes to="/tipomuestra">
+              <img src="" alt="" />
+              Tipos de muestra
+            </Linkes>
+            <Linkes to="/tipostratamiento">
+              <img src="" alt="" />
+              Tipos de tratamiento
+            </Linkes>
+           
           </article>
         )}
       </Divbotton>
