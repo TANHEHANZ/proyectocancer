@@ -6,7 +6,7 @@ import {
   updateLaboratorio,
   
 } from "../services/Laboratorios";
-import { getDoctores } from '../services/Doctor';
+import { getDoctor } from '../services/Doctor';
 import { Divinput,Botonagregar,Container,Divboton,Divinputlabel,Input,Select } from './DoctoresForm';
 const LaboratoriosForm = ({ getApi,
     laboratorioactual,
@@ -15,14 +15,16 @@ const LaboratoriosForm = ({ getApi,
 
   const [nombre, setNombre] = useState("");
   const [ubicacion, setUbicacion] = useState("");
-  const [id_doctores, setId_doctores] = useState("");
-  const { data: doc } = UseFech(getDoctores);
-  const [anotificado,setAnotificado]=useState(false);
+  const [contacto, setContacto] = useState("");
+  const [email, setEmail] = useState("");
+
 console.log(anotificado);
         useEffect(() => {
             if (Object.keys(laboratorioactual).length > 0) {
                 setNombre(laboratorioactual.nombre);
                 setUbicacion(laboratorioactual.ubicacion);          
+                setContacto(laboratorioactual.contacto);          
+                setEmail(laboratorioactual.email);          
             }
             return () => {
                 setLaboratorioactual({});
@@ -37,11 +39,14 @@ console.log(anotificado);
                 id: laboratorioactual.id,
                 nombre:laboratorioactual.nombre,
                 ubicacion:laboratorioactual.ubicacion,
-                id_doctores:laboratorioactual.id_doctores,
+                contacto:laboratorioactual.contacto,
+                email:laboratorioactual.email,
                 },
                 () => {
                   setNombre("");
                   setUbicacion("");
+                  setContacto("");
+                  setEmail("");
                   closeModal();
                   setLaboratorioactual({});
                   getApi();
@@ -49,7 +54,7 @@ console.log(anotificado);
               );
             } else {
                 postlaboratorio(
-                    nombre,ubicacion,id_doctores,() => {
+                    nombre,ubicacion,contacto,email,id_doctores,() => {
                 setNombre("");
                 setUbicacion("");
                 getApi();
@@ -90,21 +95,34 @@ console.log(anotificado);
           />
         </Divinputlabel>
       </Divinput>
-      
+    
       <Divinput>
-            <Divinputlabel>
-              <label>doctores</label>
-              <Select onChange={(e) => setId_doctores(e.target.value)}>
-                <option >seleccione </option>
-                {doc.map((v, i) => (
-                  <option key={i} value={v.id}>
-                    {v.nombre}
-                  </option>
-                ))}
-              </Select>
-            </Divinputlabel>
-          </Divinput>
-     
+        <Divinputlabel>
+          <label>contacto</label>
+          <Input
+            name="contacto"
+            placeholder="Ingrese la Ubciacion"
+            type="text"
+            required
+            value={contacto}
+            onChange={(e) => setContacto(e.target.value)}
+          />
+        </Divinputlabel>
+      </Divinput>
+
+      <Divinput>
+        <Divinputlabel>
+          <label>email</label>
+          <Input
+            name="email"
+            placeholder="Ingrese la Ubciacion"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Divinputlabel>
+      </Divinput>
    
       <Divboton>
         <Botonagregar onClick={(e) => updatepost(e)} >

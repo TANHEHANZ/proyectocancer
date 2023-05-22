@@ -5,9 +5,8 @@ import { UseFech } from "../hooks/useFech";
 import { postmuestras, updateMuestras } from "../services/Muestras";
 import { getPacientes } from "../services/Paciente";
 import { getEnfermera } from "../services/Enfermera";
-import { getCentros } from "../services/Centros";
-import { getTiposcancer } from "../services/Tiposcancer";
 import { Divinput,Botonagregar,Container,Divboton,Divinputlabel,Input,Select } from './DoctoresForm';
+import { getTipomuestras } from "../services/Tipomuestras";
 
 const MuestrasForm = ({
   getApi,
@@ -15,29 +14,23 @@ const MuestrasForm = ({
   setMuestrasactual,
   closeModal,
 }) => {
-  // <td>{i + 1}</td>
-  // <td>{v.id_pacientes}</td>
-  // <td>{v.id_centros}</td>
-  // <td>{v.id_tiposcancers}</td>
-  // <td>{v.id_enfermeras}</td>
-  // <td>{v.fecha}</td>
   const [fecha, setFecha] = useState("");
 
   const [id_pacientes, setId_pacientes] = useState("");
   const { data: pacientes } = UseFech(getPacientes);
 
-  const [id_centros, setI_centros] = useState("");
-  const { data: centro } = UseFech(getCentros);
+  const [descripcion, setDescripcion] = useState("");
 
-  const [id_tiposcancers, setId_tiposcancers] = useState("");
-  const { data: tipos } = UseFech(getTiposcancer);
+  const [id_tipomuestra, setId_tipomuestra] = useState("");
+  const { data: tipm } = UseFech(getTipomuestras);
 
   const [id_enfermeras, setId_enfermeras] = useState("");
   const { data: enferm } = UseFech(getEnfermera);
 
   useEffect(() => {
     if (Object.keys(muestrasactual).length > 0) {
-      setNombre(muestrasactual.fecha);
+      setFecha(muestrasactual.fecha);
+      setDescripcion(muestrasactual.descripcion);
     }
     return () => {
       setMuestrasactual({});
@@ -50,8 +43,8 @@ const MuestrasForm = ({
         {
           id: muestrasactual.id,
           id_pacientes: id_pacientes,
-          id_centros: id_centros,
-          id_tiposcancers: id_tiposcancers,
+          id_tipomuestra: id_tipomuestra,
+          descripcion: descripcion,
           id_enfermeras: id_enfermeras,
           fecha: fecha,
         },
@@ -63,7 +56,7 @@ const MuestrasForm = ({
         }
       );
     } else {
-      postmuestras(id_pacientes, id_centros, id_tiposcancers, id_enfermeras,fecha, () => {
+      postmuestras(id_pacientes,id_tipomuestra,descripcion,id_enfermeras,fecha, () => {
         setFecha("");
         getApi();
         closeModal();
@@ -91,10 +84,10 @@ const MuestrasForm = ({
         </Divinput>
         <Divinput>
               <Divinputlabel>
-                <label>Centros</label>
-                <Select onChange={(e) => setI_centros(e.target.value)}>
-                  <option >seleccione un centro</option>
-                  {centro.map((v, i) => (
+                <label>Tipo muestra</label>
+                <Select onChange={(e) => setId_tipomuestra(e.target.value)}>
+                  <option >seleccione un tipo muestra</option>
+                  {tipm.map((v, i) => (
                     <option key={i} value={v.id}>
                       {v.nombre}
                     </option>
@@ -103,17 +96,16 @@ const MuestrasForm = ({
               </Divinputlabel>
         </Divinput>
         <Divinput>
-              <Divinputlabel>
-                <label>Tipos de Cancer</label>
-                <Select onChange={(e) => setId_tiposcancers(e.target.value)}>
-                  <option >seleccione un tipo</option>
-                  {tipos.map((v, i) => (
-                    <option key={i} value={v.id}>
-                      {v.nombre}
-                    </option>
-                  ))}
-                </Select>
-              </Divinputlabel>
+          <Divinputlabel>
+            <label>descripcion </label>
+            <Input
+              name="descripcion"
+              type="text"
+           
+              value={descripcion}
+              onChange={(e) => setDescripcion(e.target.value)}
+            />
+          </Divinputlabel>
         </Divinput>
         <Divinput>
               <Divinputlabel>

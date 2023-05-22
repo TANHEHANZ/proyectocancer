@@ -6,10 +6,8 @@ import { UseFech } from "../hooks/useFech";
 import { deleteResultados, getResultados } from "../services/Resultados";
 import styled from "styled-components";
 const Resultados = () => {
-
   const [resultadoactual, setResultadoactual] = useState({});
   const { getApi, data: resul} = UseFech(getResultados);
-
   const { openModal, closeModal } = useModal(
     Object.keys(resultadoactual).lengTh > 0
       ? "Editar Resultados"
@@ -74,10 +72,13 @@ const Resultados = () => {
           <table>
             <thead>
               <tr>
+         
                 <th>Nº</th>
+                <th>paciente</th>
                 <th>resultados</th>
-                <th>id_muestras</th>
-                <th>id_laboratorios</th>
+                <th>Tipo Cancer</th>
+                <th>descripcion muestra</th>
+                <th>laboratorio</th>
                 <th>fecha</th>
             
               </tr>
@@ -90,9 +91,11 @@ const Resultados = () => {
                 <tbody key={i}>
                   <tr>
                     <td>{i + 1}</td>
+                    <td>{v.nombre_paciente}</td>
                     <td>{v.resultados}</td>
-                    <td>{v.id_muestras}</td>
-                    <td>{v.id_laboratorios}</td>
+                    <td>{v.nombre_tipo_cancer}</td>
+                    <td>{v.descripcion_muestra}</td>
+                    <td>{v.nombre_laboratorio}</td>
                     <td>{v.fecha}</td>
                     <td>
                       <div>

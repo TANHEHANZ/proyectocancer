@@ -60,6 +60,11 @@ const Pacientes = () => {
                   <label>F nacimiento : {v.fecha_nacimiento}</label>
                   <label>Telefono: {v.telefono}</label>
                   <label>Ci: {v.ci}</label>
+                  <label>Ci: {v.direccion}</label>
+                  <label>Ci: {v.correo}</label>
+                  <label>Ci: {v.edad}</label>
+                  <label>Ci: {v.nombre_doctor}</label>
+                  <label>Ci: {v.nombre_enfermera}</label>
                   <button  onClick={() => {
                       setPacienteactual(v);
                     }}>Mas info</button>

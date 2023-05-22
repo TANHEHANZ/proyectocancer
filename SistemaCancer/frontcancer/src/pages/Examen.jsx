@@ -1,21 +1,21 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useModal } from "../hooks/useModal";
-import EnfermerasForm from "../models/EnfermerasForm";
+import ExamenForm from "../models/ExamenForm";
 import { UseFech } from "../hooks/useFech";
 import { Info, Div, Infohijo, Section } from "./Centros";
-import { getEnfermera,deleteEnfermera } from "../services/Enfermera";
-const Enfermeras = () => {
-  const [enfermeraactual, setEnfermeraactual] = useState({});
-  const { getApi, data: enfer } = UseFech(getEnfermera);
+import { getExamen  ,deleteExamen} from "../services/Examen";
+const Doctores = () => {
+  const [examenactual, setExamenactual] = useState({});
+  const { getApi, data: exa } = UseFech(getExamen);
   const { openModal, closeModal } = useModal(
-    Object.keys(enfermeraactual).length > 0
+    Object.keys(examenactual).lengTh > 0
       ? "Editar Doctores"
       : "Agregar Doctores",
-    <EnfermerasForm
+    <ExamenForm
       getApi={getApi}
-      enfermeraactual={enfermeraactual}
-      setEnfermeraactual={setEnfermeraactual}
+      examenactual={examenactual}
+      setExamenactual={setExamenactual}
       closeModal={() => {
         closeModal();
       }}
@@ -23,19 +23,18 @@ const Enfermeras = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(enfermeraactual).lengTh > 0) {
+    if (Object.keys(examenactual).length > 0) {
       openModal();
     }
-  }, [enfermeraactual]);
+  }, [examenactual]);
 
   return (
     <Section>
       <Info>
-     
         <Infohijo>
           <div>
             <article>
-              <h2>{enfer.length}</h2>
+              <h2>{exa.length}</h2>
               <p>Pacientes</p>
             </article>
             <img src="src\img\paciente.png" alt="" />
@@ -45,7 +44,7 @@ const Enfermeras = () => {
         <Infohijo>
           <div>
             <article>
-              <h2>{enfer.length}</h2>
+              <h2>{exa.length}</h2>
               <p>Pacientes</p>
             </article>
             <img src="src\img\paciente.png" alt="" />
@@ -55,7 +54,7 @@ const Enfermeras = () => {
         <Infohijo>
           <div>
             <article>
-              <h2>{enfer.length}</h2>
+              <h2>{exa.length}</h2>
               <p>Pacientes</p>
             </article>
             <img src="src\img\paciente.png" alt="" />
@@ -65,7 +64,7 @@ const Enfermeras = () => {
       </Info>
       <Div>
         <section>
-          <h1>Registro Enfermeras</h1>
+          <h1>Registro Examen de cada paciente</h1>
           <button onClick={openModal}> nuevo</button>
           <button onClick={openModal}> Excel</button>
           <button onClick={openModal}> Pdf</button>
@@ -74,18 +73,16 @@ const Enfermeras = () => {
           <thead>
             <tr>
               <th>Nº</th>
-              <th>Nombre</th>
-              <th>Ap Paterno</th>
-              <th>Ap Materno</th>
-              <th>Ci</th>
-              <th>Direccion</th>
-              <th>experiencia</th>
-              <th>correo</th>
-              <th>Centro</th>
+              <th>Paciente</th>
+              <th>TipoExamen</th>
+              <th>Descripcion</th>
+              <th>Especialidades</th>
+              <th>fecha</th>
+              <th>resultado</th>
               <th>ACCIONES</th>
             </tr>
           </thead>
-          {enfer
+          {exa
             .filter((v) =>
               v.nombre.toLowerCase().includes(filtro.toLowerCase())
             )
@@ -93,27 +90,23 @@ const Enfermeras = () => {
               <tbody key={i}>
                 <tr>
                   <td>{i + 1}</td>
-                  <td>{v.nombre}</td>
-                  <td>{v.ap_paterno}</td>
-                  <td>{v.ap_materno}</td>
-                  <td>{v.ci}</td>
-                  <td>{v.direccion}</td>
-                  <td>{v.experiencia}</td>
-                  <td>{v.correo}</td>
-                  <td>{v.nombre_centro}</td>
-
+                  <td>{v.nombre_paciente}</td>
+                  <td>{v.nombre_tipo_examen}</td>
+                  <td>{v.descripcion}</td>
+                  <td>{v.fecha}</td>
+                  <td>{v.resultado}</td>
                   <td>
                     <div>
                       <button
                         onClick={() => {
-                          setEnfermeraactual(v);
+                          setExamenactual(v);
                         }}
                       >
                         Editar
                       </button>
                       <button
                         onClick={() => {
-                          deleteEnfermera(v.id, getApi);
+                            deleteExamen(v.id, getApi);
                         }}
                       >
                         Eliminar
@@ -129,4 +122,4 @@ const Enfermeras = () => {
   );
 };
 
-export default Enfermeras;
+export default Doctores;

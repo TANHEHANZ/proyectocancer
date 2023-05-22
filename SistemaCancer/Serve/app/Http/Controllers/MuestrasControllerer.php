@@ -9,7 +9,11 @@ class MuestrasControllerer extends Controller
 {
     public function index()
     {
-        $muestras = DB::select("SELECT d.nombre, d.ap_paterno, d.ap_materno, d.ci, d.correo, d.Direccion, d.Credenciales, d.descripcion, ce.nombre as nombre_centro, e.nombre as nombre_especialidad FROM doctores as d JOIN centros as ce ON d.id_centros = ce.id JOIN especialidades as e ON d.id_especialidades = e.id;
+        $muestras = DB::select("SELECT p.nombre as nombre_paciente, m.descripcion, m.fecha, tm.nombre as nombre_tipo_muestra, e.nombre as nombre_enfermera
+        FROM muestras as m
+        JOIN pacientes as p ON m.id_pacientes = p.id
+        JOIN tipomuestras as tm ON m.id_tipomuestras = tm.id
+        JOIN enfermeras as e ON m.id_enfermeras = e.id
        ");
 
 return $muestras;

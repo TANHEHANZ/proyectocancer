@@ -6,13 +6,10 @@ import {
   Divboton,
   Divinputlabel,
   Input,
-  Select,
 } from "./DoctoresForm";
 
 import { useState, useEffect } from "react";
-import { UseFech } from "../hooks/useFech";
 import { postCentros, updateCentros } from "../services/Centros";
-import { getMunicipio } from "../services/Municipios";
 const CentrosForm = ({
   getApi,
   centrosactual,
@@ -21,13 +18,11 @@ const CentrosForm = ({
 }) => {
   const [nombre, setNombre] = useState("");
   const [ubicacion, setUbicacion] = useState("");
-  const [id_municipios, setId_municipios] = useState("");
-  const { data: mun } = UseFech(getMunicipio);
 
   useEffect(() => {
     if (Object.keys(centrosactual).length > 0) {
       setNombre(centrosactual.nombre);
-      setAp_paterno(centrosactual.ubicacion);
+      setUbicacion(centrosactual.ubicacion);
     }
     return () => {
       setCentrosactual({});
@@ -42,7 +37,6 @@ const CentrosForm = ({
           id: centrosactual.id,
           nombre: nombre,
           ubicacion: ubicacion,
-          id_municipios: id_municipios,
         },
         () => {
           setNombre("");
@@ -52,7 +46,7 @@ const CentrosForm = ({
         }
       );
     } else {
-      postCentros(nombre, ubicacion, id_municipios, () => {
+      postCentros(nombre, ubicacion, () => {
         setNombre("");
         setUbicacion("");
         getApi();
@@ -91,20 +85,6 @@ const CentrosForm = ({
             />
           </Divinputlabel>
         </Divinput>
-
-        <Divinput>
-              <Divinputlabel>
-                <label>municipios</label>
-                <Select onChange={(e) => setId_municipios(e.target.value)}>
-                  <option >seleccione </option>
-                  {mun.map((v, i) => (
-                    <option key={i} value={v.id}>
-                      {v.nombre}
-                    </option>
-                  ))}
-                </Select>
-              </Divinputlabel>
-            </Divinput>
         <Divboton>
           <Botonagregar onClick={(e) => updatepost(e)}>
             {Object.keys(centrosactual).length > 0 ? "Editar" : "Agregar"}

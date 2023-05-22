@@ -28,23 +28,23 @@ export const deleteEnfermera = async (id, callback) => {
         callback();
     }
 };
-export const updateEnfermera = async (dooctoresactual,callback) => {
+export const updateEnfermera = async (enfermeraactual,callback) => {
   
-    const response = await fetch(`${baseUrl}enfermera/${dooctoresactual.id}`, {
+    const response = await fetch(`${baseUrl}enfermera/${enfermeraactual.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         accept: "application/json",
       },
       body: JSON.stringify({
-        nombre:dooctoresactual.nombre,
-        ap_paterno:dooctoresactual.ap_paterno,
-        ap_materno:dooctoresactual.ap_materno,
-        ci:dooctoresactual.ci,
-        direccion:dooctoresactual.direccion,
-        experiencia:dooctoresactual.experiencia,
-        correo:dooctoresactual.correo,
-        id_centros:dooctoresactual.id_centros,
+        nombre:enfermeraactual.nombre,
+        ap_paterno:enfermeraactual.ap_paterno,
+        ap_materno:enfermeraactual.ap_materno,
+        ci:enfermeraactual.ci,
+        direccion:enfermeraactual.direccion,
+        experiencia:enfermeraactual.experiencia,
+        correo:enfermeraactual.correo,
+        id_centros:enfermeraactual.id_centros,
     })});
     if(response.ok){
       callback();

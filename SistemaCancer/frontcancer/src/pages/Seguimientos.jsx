@@ -75,14 +75,14 @@ const Seguimientos = () => {
           <table>
             <thead>
               <tr>
-              
+       
                 <th>Nº</th>
-                <th>id_muestras</th>
-                <th>id_resultados</th>
-                <th>id_doctores</th>
-                <th>id_centros</th>
+                <th>paciente</th>
+                <th>muestra</th>
+                <th>resultados</th>
+                <th>doctores</th>
+                <th>centro</th>
                 <th>fecha</th>
-                <th>observaciones</th>
             
               </tr>
             </thead>
@@ -94,10 +94,11 @@ const Seguimientos = () => {
                 <tbody key={i}>
                   <tr>
                     <td>{i + 1}</td>
-                    <td>{v.id_muestras}</td>
-                    <td>{v.id_resultados}</td>
-                    <td>{v.id_doctores}</td>
-                    <td>{v.id_centros}</td>
+                    <td>{v.nombre_paciente}</td>
+                    <td>{v.descripcion_muestra}</td>
+                    <td>{v.resultados}</td>
+                    <td>{v.nombre_doctor}</td>
+                    <td>{v.nombre_centro}</td>
                     <td>{v.fecha}</td>
                   
                     <td>{v.observaciones}</td>

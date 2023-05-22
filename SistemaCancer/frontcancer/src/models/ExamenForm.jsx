@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Ciudades = () => {
+const ExamenForm = () => {
   return (
     <div>
-      ciudades
+      adsas
     </div>
   )
 }
 
-export default Ciudades
+export default ExamenForm

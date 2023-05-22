@@ -43,10 +43,16 @@ const AdminComponent = () => {
               <img src="" alt="" />
               Muestras
             </Linkes>
+            <Linkes to="/derivaciones">
+              <img src="" alt="" />
+            Derivaciones
+            </Linkes>
+            
           </article>
         )}
       </Divbotton>
-      <h2>Registro de Doctores</h2>
+      <h2>Registro de Personal</h2>
+      
       <Divbotton onClick={() => setExpandir1(!expandir1)}>
         <section>
           <img src="src\img\paciente.png" alt="" />
@@ -61,6 +67,9 @@ const AdminComponent = () => {
             <Linkes to="/especialidades">
               <img src="" alt="" />
               Especialidades
+            </Linkes>
+            <Linkes to="/Enfermeras">
+              <img src="" alt="" /> Enfermeras
             </Linkes>
           </article>
         )}

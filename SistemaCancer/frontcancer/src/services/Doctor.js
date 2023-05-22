@@ -1,7 +1,7 @@
 const baseUrl =
     import.meta.env.VITE_BACKEND_URL
 
-export const getDoctores = async () => {
+export const getDoctor = async () => {
     try {
         const response = await fetch(`${baseUrl}doctores`, {
             method: "GET",
@@ -14,7 +14,7 @@ export const getDoctores = async () => {
         console.log(error);
     }
 };
-export const deletedoctores = async (id, callback) => {
+export const deleteDoctor = async (id, callback) => {
   
     const response = await fetch(`${baseUrl}doctores/${id}`, {
         method: "DELETE",
@@ -28,7 +28,7 @@ export const deletedoctores = async (id, callback) => {
         callback();
     }
 };
-export const updatedoctores = async (dooctoresactual,callback) => {
+export const updateDoctor = async (dooctoresactual,callback) => {
   
     const response = await fetch(`${baseUrl}doctores/${dooctoresactual.id}`, {
       method: "PUT",

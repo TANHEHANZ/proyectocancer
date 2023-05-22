@@ -8,6 +8,7 @@ import { deleteMuestras, getMuestras } from "../services/Muestras";
 import styled from "styled-components";
 
 const Muestras = () => {
+
   const [muestrasactual, setMuestrasactual] = useState({});
   const { getApi, data: muest} = UseFech(getMuestras);
 
@@ -77,11 +78,10 @@ const Muestras = () => {
           <table>
             <thead>
               <tr>
-             
                 <th>Nº</th>
                 <th>id_pacientes</th>
-                <th>id_centros</th>
-                <th>id_tiposcancers</th>
+                <th>descripcion</th>
+                <th>id_tipomuestras</th>
                 <th>id_enfermeras</th>
                 <th>fecha</th>
                
@@ -95,13 +95,11 @@ const Muestras = () => {
                 <tbody key={i}>
                   <tr>
                     <td>{i + 1}</td>
-                    <td>{v.id_pacientes}</td>
-                    <td>{v.id_centros}</td>
-                    <td>{v.id_tiposcancers}</td>
-                    <td>{v.id_enfermeras}</td>
+                    <td>{v.nombre_paciente}</td>
+                    <td>{v.descripcion}</td>
+                    <td>{v.nombre_tipo_muestra}</td>
+                    <td>{v.nombre_enfermera}</td>
                     <td>{v.fecha}</td>
-                
-  
                     <td>
                       <div>
                         <button

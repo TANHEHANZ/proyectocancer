@@ -2,61 +2,56 @@ import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { UseFech } from "../hooks/useFech";
-import {
-
-  postDoctor,
-  updateDoctor,
-} from "../services/Doctor";
-import { getEspecialidades} from "../services/Especialidad";
 import { getCentros} from "../services/Centros";
+import { postEnfermera,updateEnfermera } from "../services/Enfermera";
 
-const DoctoresForm = ({
+const EnfermerasForm = ({
   getApi,
-  doctoresactual,
-  setDoctoresactual,
+  enfermeraactual,
+  setEnfermeraactual,
   closeModal,
 }) => {
-
+    
   const [nombre, setNombre] = useState("");
   const [ap_paterno, setAp_paterno] = useState("");
   const [ap_materno, setAp_materno] = useState("");
   const [ci, setCi] = useState("");
   const [correo, setCorreo] = useState("");
   const [direccion, setDireccion] = useState("");
-  const [credenciales, setCredenciales] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [id_especialidades, setId_especialidades] = useState("");
-  const { data: especi } = UseFech(getEspecialidades);
+  const [experiencia, setExperiencia] = useState("");
   const [id_centros, setId_centros] = useState("");
   const { data: centr } = UseFech(getCentros);
   useEffect(() => {
-    if (Object.keys(doctoresactual).length > 0) {
-        setNombre(doctoresactual.nombre);
-        setAp_paterno(doctoresactual.ap_paterno);
-        setAp_materno(doctoresactual.ap_materno);
-        setCi(doctoresactual.ci);
+    if (Object.keys(enfermeraactual).length > 0) {
+        setNombre(enfermeraactual.nombre);
+        setAp_paterno(enfermeraactual.ap_paterno);
+        setAp_materno(enfermeraactual.ap_materno);
+        setCi(enfermeraactual.ci);
+        setCorreo(enfermeraactual.correo);
+        setDireccion(enfermeraactual.direccion);
+        setExperiencia(enfermeraactual.experiencia);
+        
     }
     return () => {
-        setDoctoresactual({});
+        setEnfermeraactual({});
     };
-  }, [doctoresactual]);
+  }, [enfermeraactual]);
 
   const updatepost = (e) => {
     e.preventDefault();
-    if (Object.keys(doctoresactual).length > 0) {
-      updateDoctor(
+    if (Object.keys(enfermeraactual).length > 0) {
+      updateEnfermera(
         {
-        id: doctoresactual.id,
+        id: enfermeraactual.id,
         nombre:nombre,
         ap_paterno:ap_paterno,
         ap_materno:ap_materno,
         ci:ci,
         correo:correo,
         direccion:direccion,
-        credenciales:credenciales,
-        descripcion:descripcion,
+        experiencia:experiencia,
         id_centros:id_centros,
-        id_especialidades:id_especialidades,
+      
         },
         () => {
           setNombre("");
@@ -65,25 +60,22 @@ const DoctoresForm = ({
           setCi("");
           setCorreo("");
           setDireccion("");
-          setDescripcion("");
-          setCredenciales("");
+          setExperiencia("");
           closeModal();
-          setDoctoresactual({});
+          setEnfermeraactual({});
           getApi();
         }
       );
     } else {
-        postDoctor(
+        postEnfermera(
             nombre,
         ap_paterno,
         ap_materno,
         ci,
         correo,
         direccion,
-        credenciales,
-        descripcion,
+        experiencia,
         id_centros,
-        id_especialidades,
         () => {
         setNombre("");
           setAp_paterno("");
@@ -165,14 +157,14 @@ const DoctoresForm = ({
       </Divinput>
       <Divinput>
       <Divinputlabel>
-          <label>credenciales</label>
+          <label>Experiencia</label>
           <Input
-            name="credenciales"
-            placeholder="Ingrese credenciales"
+            name="experiencia"
+            placeholder="Ingrese Su experiencia"
             type="text"
             required
-            value={credenciales}
-            onChange={(e) => setCredenciales(e.target.value)}
+            value={experiencia}
+            onChange={(e) => setExperiencia(e.target.value)}
           />
         </Divinputlabel>
       </Divinput>
@@ -190,32 +182,7 @@ const DoctoresForm = ({
           />
         </Divinputlabel>
       </Divinput>
-      <Divinput>
-      <Divinputlabel>
-          <label>Descripcion</label>
-          <Input
-            name="descripcion"
-            placeholder="Ingrese descripcion"
-            type="text"
-            required
-            value={descripcion}
-            onChange={(e) => setDescripcion(e.target.value)}
-          />
-        </Divinputlabel>
-      </Divinput>
-      <Divinput>
-            <Divinputlabel>
-              <label>especialidades</label>
-              <Select onChange={(e) => setId_especialidades(e.target.value)}>
-                <option >seleccione las especialidades</option>
-                {especi.map((v, i) => (
-                  <option key={i} value={v.id}>
-                    {v.nombre}
-                  </option>
-                ))}
-              </Select>
-            </Divinputlabel>
-          </Divinput>
+    
           <Divinput>
             <Divinputlabel>
               <label>centro</label>
@@ -234,7 +201,7 @@ const DoctoresForm = ({
 
       <Divboton>
         <Botonagregar onClick={(e) => updatepost(e)}>
-          {Object.keys(doctoresactual).length > 0 ? "Editar" : "Agregar"}
+          {Object.keys(enfermeraactual).length > 0 ? "Editar" : "Agregar"}
         </Botonagregar>
       </Divboton>
     </form>
@@ -242,7 +209,7 @@ const DoctoresForm = ({
 </Container>
   )
 };
-export default DoctoresForm;
+export default EnfermerasForm;
 
 export const Container = styled.div``;
 export const Divinputlabel = styled.div`

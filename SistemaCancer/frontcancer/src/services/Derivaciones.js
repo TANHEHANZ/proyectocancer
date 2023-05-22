@@ -51,7 +51,7 @@ export const updateDerivaciones= async (derivacionesactual,callback) => {
       callback();
     }
   }
-  export const postCentros = async (id_pacientes,id_doctores,id_tratamientos,id_centros,id_resultados,fecha_inicio,fecha_fin,callback) => {
+  export const postDerivaciones = async (id_pacientes,id_doctores,id_tratamientos,id_centros,id_resultados,fecha_inicio,fecha_fin,callback) => {
     const response = await fetch(`${baseUrl}derivaciones`, {
       method: "POST",
       headers: {

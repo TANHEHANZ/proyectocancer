@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { UseFech } from '../hooks/useFech';
-import styled from 'styled-components';
-import { getMunicipio ,deleteMunicipios} from '../services/Municipios';
+import React, { useEffect, useState } from 'react'
+import { UseFech } from '../hooks/useFech'
+import { getTiposcancer, deleteTiposcancer } from '../services/Tiposcancer'
+import { useModal } from '../hooks/useModal'
+import TiposcancerForm from '../models/TiposcancerForm'
 import { Info,Div,Infohijo,Section } from './Centros';
-import MunicipiosForm from '../models/MunicipiosForm';
-import { useModal } from '../hooks/useModal';
 
-const Municipios = () => {
-  const [municipiosactual, setMunicipiosactual]=useState("");
-  const{getApi, data:mun}=UseFech(getMunicipio);
+const Tipoexamen = () => {
+  const [tiposcancersactual, setTiposcancersactual]=useState("");
+  const{getApi, data:tip}=UseFech(getTiposcancer);
   const { openModal, closeModal } = useModal(
-    Object.keys(municipiosactual).lengTh > 0
+    Object.keys(tiposcancersactual).lengTh > 0
       ? "Editar Municipios"
       : "Agregar Municipios",
-    <MunicipiosForm
+    <TiposcancerForm
       getApi={getApi}
-      municipiosactual={municipiosactual}
-      setMunicipiosactual={setMunicipiosactual}
+      tiposcancersactual={tiposcancersactual}
+      setTiposcancersactual={setTiposcancersactual}
       closeModal={() => {
         closeModal();
       }}
@@ -24,19 +23,18 @@ const Municipios = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(municipiosactual).lengTh > 0) {
+    if (Object.keys(tiposcancersactual).lengTh > 0) {
       openModal();
     }
-  }, [municipiosactual]);
-
+  }, [tiposcancersactual]);
   return (
     <Section>
     <Info>
  <Infohijo>
  <div>
   <article>
-    <h2>{mun.length}</h2>
-  <p>muicipios</p>
+    <h2>{tip.length}</h2>
+  <p>Tipos Cancer</p>
   </article>
    <img src="src\img\paciente.png" alt="" />
  </div>
@@ -45,7 +43,7 @@ const Municipios = () => {
    </Info>
      <Div>
      <section>
-           <h1>Registro Municipios</h1>
+           <h1>Registro Tipos Cancer</h1>
            <button onClick={openModal}> nuevo</button>
            <button onClick={openModal}> Excel</button>
            <button onClick={openModal}> Pdf</button>
@@ -55,12 +53,9 @@ const Municipios = () => {
            <tr>
              <th>Nº</th>
              <th>Nombre</th>
-             
-             <th>id_provincias</th>
-            
            </tr>
          </thead>
-         {mun
+         {tip
            .filter((v) =>
              v.nombre.toLowerCase().includes(filtro.toLowerCase())
            )
@@ -70,19 +65,19 @@ const Municipios = () => {
              
                  <td>{i + 1}</td>
                  <td>{v.nombre}</td>
-                 <td>{v.id_provincias}</td>
+                
                  <td>
                    <div>
                      <button
                        onClick={() => {
-                         setMunicipiosactual(v);
+                         setTiposcancersactual(v);
                        }}
                      >
                        Editar
                      </button>
                      <button
                        onClick={() => {
-                         deleteMunicipios(v.id, getApi);
+                         deleteTiposcancer(v.id, getApi);
                        }}
                      >
                       Eliminar
@@ -98,4 +93,4 @@ const Municipios = () => {
   )
 }
 
-export default Municipios
+export default Tipoexamen

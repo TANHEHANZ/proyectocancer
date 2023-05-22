@@ -1,21 +1,21 @@
-import React from 'react'
-import { useState, useEffect } from "react";
-import { useModal } from "../hooks/useModal";
-import LaboratoriosForm from "../models/LaboratoriosForm";
-import { UseFech } from "../hooks/useFech";
-import { deleteLaboratorio, getLaboratotio } from "../services/Laboratorios";
+import React, { useEffect, useState } from 'react'
+import { UseFech } from '../hooks/useFech'
+import { getTiposcancer, deleteTiposcancer } from '../services/Tiposcancer'
+import { useModal } from '../hooks/useModal'
+import TiposcancerForm from '../models/TiposcancerForm'
 import { Info,Div,Infohijo,Section } from './Centros';
-const Laboratorios = () => {
-  const [laboratorioactual, setLaboratorioactual] = useState({});
-  const { getApi, data: lab } = UseFech(getLaboratotio);
+
+const Tiposcancer = () => {
+  const [tiposcancersactual, setTiposcancersactual]=useState("");
+  const{getApi, data:tip}=UseFech(getTiposcancer);
   const { openModal, closeModal } = useModal(
-    Object.keys(laboratorioactual).lengTh > 0
-      ? "Editar pacientes"
-      : "Agregar Pacientes",
-    <LaboratoriosForm
+    Object.keys(tiposcancersactual).lengTh > 0
+      ? "Editar Municipios"
+      : "Agregar Municipios",
+    <TiposcancerForm
       getApi={getApi}
-      laboratorioactual={laboratorioactual}
-      setLaboratorioactual={setLaboratorioactual}
+      tiposcancersactual={tiposcancersactual}
+      setTiposcancersactual={setTiposcancersactual}
       closeModal={() => {
         closeModal();
       }}
@@ -23,28 +23,18 @@ const Laboratorios = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(laboratorioactual).lengTh > 0) {
+    if (Object.keys(tiposcancersactual).lengTh > 0) {
       openModal();
     }
-  }, [laboratorioactual]);
-
-
+  }, [tiposcancersactual]);
   return (
     <Section>
-       <div>
-      <h2>Notificaciones del Laboratorio</h2>
-      <ul>
-        {notificaciones.map((paciente) => (
-          <li key={paciente.id}>{paciente.nombre}</li>
-        ))}
-      </ul>
-    </div>
     <Info>
  <Infohijo>
  <div>
   <article>
-    <h2>{lab.length}</h2>
-  <p>Laboratorio</p>
+    <h2>{tip.length}</h2>
+  <p>Tipos Cancer</p>
   </article>
    <img src="src\img\paciente.png" alt="" />
  </div>
@@ -53,7 +43,7 @@ const Laboratorios = () => {
    </Info>
      <Div>
      <section>
-           <h1>Registro Laboratorio</h1>
+           <h1>Registro Tipos Cancer</h1>
            <button onClick={openModal}> nuevo</button>
            <button onClick={openModal}> Excel</button>
            <button onClick={openModal}> Pdf</button>
@@ -63,35 +53,31 @@ const Laboratorios = () => {
            <tr>
              <th>Nº</th>
              <th>Nombre</th>
-             <th>ubicacion</th>
-             <th>contacto</th>
-             <th>email</th>
            </tr>
          </thead>
-         {lab
+         {tip
            .filter((v) =>
              v.nombre.toLowerCase().includes(filtro.toLowerCase())
            )
            .map((v, i) => (
              <tbody key={i}>
                <tr>
+             
                  <td>{i + 1}</td>
                  <td>{v.nombre}</td>
-                 <td>{v.ubicacion}</td>
-                 <td>{v.contacto}</td>
-                 <td>{v.email}</td>
+                
                  <td>
                    <div>
                      <button
                        onClick={() => {
-                         setLaboratorioactual(v);
+                         setTiposcancersactual(v);
                        }}
                      >
                        Editar
                      </button>
                      <button
                        onClick={() => {
-                         deleteLaboratorio(v.id, getApi);
+                         deleteTiposcancer(v.id, getApi);
                        }}
                      >
                       Eliminar
@@ -107,4 +93,4 @@ const Laboratorios = () => {
   )
 }
 
-export default Laboratorios
+export default Tiposcancer

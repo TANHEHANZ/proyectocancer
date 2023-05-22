@@ -9,7 +9,7 @@ const Centros = () => {
   const [centrosactual , setCentrosactual]= useState("");
   const {getApi,data:cen}=UseFech(getCentros);
   const { openModal, closeModal } = useModal(
-    Object.keys(centrosactual).lengTh > 0
+    Object.keys(centrosactual).length > 0
       ? "Editar Centros"
       : "Agregar Centros",
     <CentrosForm
@@ -23,7 +23,7 @@ const Centros = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(centrosactual).lengTh > 0) {
+    if (Object.keys(centrosactual).length > 0) {
       openModal();
     }
   }, [centrosactual]);
@@ -55,9 +55,7 @@ const Centros = () => {
            <tr>
              <th>Nº</th>
              <th>Nombre</th>
-             <th>ubicacion</th>
-             <th>id_municipios</th>
-            
+             <th>ubicacion</th>            
            </tr>
          </thead>
          {cen
@@ -70,7 +68,6 @@ const Centros = () => {
                  <td>{i + 1}</td>
                  <td>{v.nombre}</td>
                  <td>{v.ubicacion}</td>
-                 <td>{v.id_municipios}</td>
                  <td>
                    <div>
                      <button
