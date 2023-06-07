@@ -13,9 +13,9 @@ const Muestras = () => {
   const { getApi, data: muest} = UseFech(getMuestras);
 
   const { openModal, closeModal } = useModal(
-    Object.keys(muestrasactual).lengTh > 0
-      ? "Editar Resultados"
-      : "Agregar Resultado",
+    Object.keys(muestrasactual).length > 0
+      ? "Editar Muestras"
+      : "Agregar Muestras",
     <MuestrasForm
       getApi={getApi}
       muestrasactual={muestrasactual}
@@ -93,7 +93,9 @@ const Muestras = () => {
               )
               .map((v, i) => (
                 <tbody key={i}>
-                  <tr>
+                  <tr    onClick={() => {
+                            setMuestrasactual(v);
+                          }}>
                     <td>{i + 1}</td>
                     <td>{v.nombre_paciente}</td>
                     <td>{v.descripcion}</td>
@@ -102,13 +104,6 @@ const Muestras = () => {
                     <td>{v.fecha}</td>
                     <td>
                       <div>
-                        <button
-                          onClick={() => {
-                            setMuestrasactual(v);
-                          }}
-                        >
-                          Editar
-                        </button>
                         <button
                           onClick={() => {
                             deleteMuestras(v.id, getApi);

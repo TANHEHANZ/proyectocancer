@@ -9,7 +9,7 @@ const Resultados = () => {
   const [resultadoactual, setResultadoactual] = useState({});
   const { getApi, data: resul} = UseFech(getResultados);
   const { openModal, closeModal } = useModal(
-    Object.keys(resultadoactual).lengTh > 0
+    Object.keys(resultadoactual).length > 0
       ? "Editar Resultados"
       : "Agregar Resultado",
     <ResultadosForm

@@ -1,19 +1,15 @@
-import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { UseFech } from "../hooks/useFech";
-import { Divinput,Botonagregar,Container,Divboton,Divinputlabel,Input,Select } from './DoctoresForm';
-
-import {
-  postPacientes,
-  updatePacientes,
-  getPacientes,
-} from "../services/Paciente";
+import { Container, Divinput, Divboton, Botonagregar, Select } from "../styles/CrudStyle"
+import { getDoctor } from "../services/Doctor";
+import { getEnfermera } from "../services/Enfermera";
+import { postPacientedos ,updatePacientedos } from "../services/pacientes2";
 
 const PacientesForm = ({
   getApi,
-  pacienteactual,
-  setPacienteactual,
+  pacienteactualdos,
+  setPacienteactualdos,
   closeModal,
 }) => {
   const [nombre, setNombre] = useState("");
@@ -23,34 +19,50 @@ const PacientesForm = ({
   const [fecha_nacimiento, setFecha_nacimiento] = useState("");
   const [telefono, setTelefono] = useState("");
   const [ci, setCi] = useState("");
+  const [direccion, setDireccion] = useState("");
+  const [correo, setCorreo] = useState("");
+  const [edad, setEdad] = useState("");
+  const [id_doctores, setId_doctores] = useState("");
+  const { data: doc } = UseFech(getDoctor);
+  const [id_enfermeras, setId_enfermeras] = useState("");
+  const { data: enfe } = UseFech(getEnfermera);
+
   useEffect(() => {
-    if (Object.keys(pacienteactual).length > 0) {
-        setNombre(pacienteactual.nombre);
-        setAp_paterno(pacienteactual.ap_paterno);
-        setAp_materno(pacienteactual.ap_materno);
-        setSexo(pacienteactual.sexo);
-        setFecha_nacimiento(pacienteactual.fecha_nacimiento);
-        setTelefono(pacienteactual.telefono);
-        setCi(pacienteactual.ci);
+    if (Object.keys(pacienteactualdos).length > 0) {
+      setNombre(pacienteactualdos.nombre);
+      setAp_paterno(pacienteactualdos.ap_paterno);
+      setAp_materno(pacienteactualdos.ap_materno);
+      setSexo(pacienteactualdos.sexo);
+      setFecha_nacimiento(pacienteactualdos.fecha_nacimiento);
+      setTelefono(pacienteactualdos.telefono);
+      setCi(pacienteactualdos.ci);
+      setDireccion(pacienteactualdos.direccion);
+      setCorreo(pacienteactualdos.correo);
+      setEdad(pacienteactualdos.edad);
     }
     return () => {
-        setPacienteactual({});
+      setPacienteactualdos({});
     };
-  }, [pacienteactual]);
+  }, [pacienteactualdos]);
 
   const updatepost = (e) => {
     e.preventDefault();
-    if (Object.keys(pacienteactual).length > 0) {
-        updatePacientes(
+    if (Object.keys(pacienteactualdos).length > 0) {
+      updatePacientedos(
         {
-        id: pacienteactual.id,
-        nombre:nombre,
-        ap_paterno:ap_paterno,
-        ap_materno:ap_materno,
-        sexo:sexo,
-        fecha_nacimiento:fecha_nacimiento,
-        telefono:telefono,
-        ci:ci,
+          id: pacienteactualdos.id,
+          nombre: nombre,
+          ap_paterno: ap_paterno,
+          ap_materno: ap_materno,
+          sexo: sexo,
+          fecha_nacimiento: fecha_nacimiento,
+          telefono: telefono,
+          ci: ci,
+          direccion: direccion,
+          correo: correo,
+          edad: edad,
+          id_doctores: id_doctores,
+          id_enfermeras: id_enfermeras,
         },
         () => {
           setNombre("");
@@ -60,42 +72,65 @@ const PacientesForm = ({
           setFecha_nacimiento("");
           setTelefono("");
           setCi("");
-
-
+          setDireccion("");
+          setCorreo("");
+          setEdad("");
           closeModal();
-          setPacienteactual({});
+          setPacienteactualdos({});
           getApi();
         }
       );
     } else {
-        postPacientes(
-            nombre,
+      postPacientedos(
+        nombre,
         ap_paterno,
         ap_materno,
         sexo,
         fecha_nacimiento,
         telefono,
-        ci, () => {
-        setNombre("");
+        ci,
+        direccion,
+        correo,
+        edad,
+        id_doctores,
+        id_enfermeras,
+        () => {
+          setNombre("");
           setAp_paterno("");
           setAp_materno("");
           setSexo("");
           setFecha_nacimiento("");
           setTelefono("");
           setCi("");
-        getApi();
-        closeModal();
-      });
+          setDireccion("");
+          setCorreo("");
+          setEdad("");
+          getApi();
+          closeModal();
+        }
+      );
     }
+
+    console.log("Nombre:", nombre);
+    console.log("Apellido paterno:", ap_paterno);
+    console.log("Apellido materno:", ap_materno);
+    console.log("Sexo:", sexo);
+    console.log("Fecha de nacimiento:", fecha_nacimiento);
+    console.log("Teléfono:", telefono);
+    console.log("CI:", ci);
+    console.log("Dirección:", direccion);
+    console.log("Correo:", correo);
+    console.log("Edad:", edad);
+    console.log("ID de doctores:", id_doctores);
+    console.log("ID de enfermeras:", id_enfermeras);
   };
-  return(
-  <Container>
-  <div>
-    <form>
-      <Divinput>
-        <Divinputlabel>
+
+  return (
+    <Container>
+      <form>
+        <Divinput>
           <label>Nombre:</label>
-          <Input
+          <input
             name="Nombre"
             placeholder="Ingrese un Nombre"
             type="text"
@@ -103,12 +138,10 @@ const PacientesForm = ({
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
-        </Divinputlabel>
-      </Divinput>
-      <Divinput>
-        <Divinputlabel>
-          <label>apeliido paterno:</label>
-          <Input
+        </Divinput>
+        <Divinput>
+          <label>Apellido paterno:</label>
+          <input
             name="app"
             placeholder="Ingrese apellido paterno"
             type="text"
@@ -116,75 +149,123 @@ const PacientesForm = ({
             value={ap_paterno}
             onChange={(e) => setAp_paterno(e.target.value)}
           />
-        </Divinputlabel>
-      </Divinput>
-      <Divinput>
-      <Divinputlabel>
-          <label>apeliido materno:</label>
-          <Input
-            name="app m"
+        </Divinput>
+        <Divinput>
+          <label>Apellido materno:</label>
+          <input
+            name="ap_materno"
             placeholder="Ingrese apellido materno"
             type="text"
             required
             value={ap_materno}
             onChange={(e) => setAp_materno(e.target.value)}
           />
-        </Divinputlabel>
-      </Divinput>
-      <Divinput>
-        <Divinputlabel>
-          <label>sexo:</label>
-          <Input
+        </Divinput>
+        <Divinput>
+          <label>Sexo:</label>
+          <input
             name="sexo"
-            placeholder="seleccione un sexo"
+            placeholder="Seleccione un sexo"
             type="text"
             required
             value={sexo}
             onChange={(e) => setSexo(e.target.value)}
           />
-        </Divinputlabel>
-      </Divinput>
-      <Divinput>
-        <Divinputlabel>
-        <label>Fecha:</label>
-                <Input type="date" placeholder='Ingrese Fecha' value={fecha_nacimiento} onChange={(e) => setFecha_nacimiento(e.target.value)}/>
-            </Divinputlabel>
-      </Divinput>
-      <Divinput>
-        <Divinputlabel>
-          <label>telefono</label>
-          <Input
+        </Divinput>
+        <Divinput>
+          <label>Fecha:</label>
+          <input
+            type="date"
+            placeholder="Ingrese Fecha"
+            value={fecha_nacimiento}
+            onChange={(e) => setFecha_nacimiento(e.target.value)}
+          />
+        </Divinput>
+        <Divinput>
+          <label>Teléfono:</label>
+          <input
             name="Telefono"
-            placeholder="Seguimiento de telefono"
+            placeholder="Seguimiento de teléfono"
             type="number"
             value={telefono}
             required
             onChange={(e) => setTelefono(e.target.value)}
           />
-        </Divinputlabel>
-      </Divinput>
-      <Divinput>
-        <Divinputlabel>
-          <label>Ci:</label>
-          <Input
+        </Divinput>
+        <Divinput>
+          <label>CI:</label>
+          <input
             name="ci"
-            placeholder="Ingrese un ci"
+            placeholder="Ingrese un CI"
             type="number"
             required
             value={ci}
             onChange={(e) => setCi(e.target.value)}
           />
-        </Divinputlabel>
-      </Divinput>
-
-      <Divboton>
-        <Botonagregar onClick={(e) => updatepost(e)}>
-          {Object.keys(pacienteactual).length > 0 ? "Editar" : "Agregar"}
-        </Botonagregar>
-      </Divboton>
-    </form>
-  </div>
-</Container>
-  )
+        </Divinput>
+        <Divinput>
+          <label>Dirección:</label>
+          <input
+            name="direccion"
+            placeholder="Ingrese una dirección"
+            type="text"
+            required
+            value={direccion}
+            onChange={(e) => setDireccion(e.target.value)}
+          />
+        </Divinput>
+        <Divinput>
+          <label>Correo:</label>
+          <input
+            name="correo"
+            placeholder="Ingrese un correo"
+            type="text"
+            required
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
+          />
+        </Divinput>
+        <Divinput>
+          <label>Edad:</label>
+          <input
+            name="edad"
+            placeholder="Ingrese una edad"
+            type="number"
+            required
+            value={edad}
+            onChange={(e) => setEdad(e.target.value)}
+          />
+        </Divinput>
+        <Divinput>
+          <label>Doctor</label>
+          <Select onChange={(e) => setId_doctores(e.target.value)}>
+            <option>Seleccione</option>
+            {doc.map((v, i) => (
+              <option key={i} value={v.id}>
+                {v.nombre}
+              </option>
+            ))}
+          </Select>
+        </Divinput>
+        <Divinput>
+          <label>Enfermera</label>
+          <Select onChange={(e) => setId_enfermeras(e.target.value)}>
+            <option>Seleccione</option>
+            {enfe.map((v, i) => (
+              <option key={i} value={v.id}>
+                {v.nombre}
+              </option>
+            ))}
+          </Select>
+        </Divinput>
+        <Divboton>
+          <Botonagregar onClick={(e) => updatepost(e)}>
+            {Object.keys(pacienteactualdos).length > 0 ? "Editar" : "Agregar"}
+          </Botonagregar>
+        </Divboton>
+      </form>
+    </Container>
+  );
 };
+
 export default PacientesForm;

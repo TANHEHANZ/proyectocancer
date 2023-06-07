@@ -10,7 +10,7 @@ class EnfermeraContreoller extends Controller
 {
     public function index()
     {
-        $enfermeras = DB::select("SELECT e.nombre, e.ap_paterno, e.ap_materno, e.ci, e.direccion, e.experiencia, e.correo, ce.nombre as nombre_centro
+        $enfermeras = DB::select("SELECT e.id, e.nombre, e.ap_paterno, e.ap_materno, e.ci, e.direccion, e.experiencia, e.correo, ce.nombre as nombre_centro
         FROM enfermeras as e
         JOIN centros as ce ON e.id_centros = ce.id
        ");

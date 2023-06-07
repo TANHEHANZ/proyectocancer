@@ -9,7 +9,7 @@ const Doctores = () => {
   const [doctoresactual, setDoctoresactual] = useState({});
   const { getApi, data: doc } = UseFech(getDoctor);
   const { openModal, closeModal } = useModal(
-    Object.keys(doctoresactual).lengTh > 0
+    Object.keys(doctoresactual).length > 0
       ? "Editar Doctores"
       : "Agregar Doctores",
     <DoctoresForm
@@ -23,7 +23,7 @@ const Doctores = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(doctoresactual).lengTh > 0) {
+    if (Object.keys(doctoresactual).length > 0) {
       openModal();
     }
   }, [doctoresactual]);
@@ -92,7 +92,9 @@ const Doctores = () => {
             )
             .map((v, i) => (
               <tbody key={i}>
-                <tr>
+                <tr   onClick={() => {
+                          setDoctoresactual(v);
+                        }} >
                   <td>{i + 1}</td>
                   <td>{v.nombre}</td>
                   <td>{v.ap_paterno}</td>
@@ -107,13 +109,6 @@ const Doctores = () => {
 
                   <td>
                     <div>
-                      <button
-                        onClick={() => {
-                          setDoctoresactual(v);
-                        }}
-                      >
-                        Editar
-                      </button>
                       <button
                         onClick={() => {
                           deleteDoctor(v.id, getApi);

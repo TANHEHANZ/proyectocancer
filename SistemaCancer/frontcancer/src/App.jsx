@@ -3,7 +3,6 @@ import { Navcontextprovider } from "./context/navcontext";
 import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 import Login from "./pages/Login";
 import { ModalContextProvider } from "./context/modalContext";
 import { Usercontextprovider } from "./context/userContext";
@@ -35,13 +34,14 @@ import Tipoexamen from "./pages/Tipoexamen";
 import Tipomuestra from "./pages/Tipomuestra";
 import Visitas from "./pages/Visitas";
 import Tipostratamiento from "./pages/Tipotratamiento";
+import { PacienteProvider } from "./context/pacienteContext";
 function App() {
   return (
     <>
       <BrowserRouter>
       <ModalContextProvider>
-
         <Usercontextprovider>
+        <PacienteProvider>
           <Navcontextprovider>
           <Routes>
                 <Route path="login" element={<Login />} />
@@ -54,10 +54,11 @@ function App() {
                   }
                 >
                   <Route path="home" element={<Home />} />
-                  <Route path="pacientes" element={<Pacientes />} />
+                  <Route path="paciente" element={<Pacientes/>} />
+                  <Route path="detalle-paciente" element={<PacienteDetalle/>} />
                   <Route path="derivaciones" element={<Derivaciones />} />
 
-                  {/* <Route path="/pacientes/:id" element={<PacienteDetalle />} /> */}
+                  <Route path="/pacientesdetalle" element={<PacienteDetalle />} />
 
                   <Route path="Examen" element={<Examen/>} />
                   <Route path="Tratamiento" element={<Tratamiento/>} />
@@ -83,6 +84,7 @@ function App() {
               </Routes>
               <Modal />
           </Navcontextprovider>
+          </PacienteProvider>
         </Usercontextprovider>
         </ModalContextProvider>
         <ToastContainer />
@@ -90,5 +92,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;

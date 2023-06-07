@@ -1,4 +1,4 @@
-import React ,{ useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { UseFech } from "../hooks/useFech";
 import {
   Divinput,
@@ -9,68 +9,74 @@ import {
   Input,
   Select,
 } from "./DoctoresForm";
-import { getCentros} from "../services/Centros";
-import { postDerivaciones, updateDerivaciones } from "../services/Derivaciones";
-import { getPacientedos } from "../services/pacientes2";
+import { postTratamiento, updateTratamiento } from "../services/Tratamiento";
+import { getPacientes } from "../services/Paciente";
 import { getDoctor } from "../services/Doctor";
-import { getTratamiento } from "../services/Tratamiento";
-import { getResultados } from "../services/Resultados";
+import { getTipotratamiento } from "../services/Tipotratamiento";
 
-const DerivacionesForm = ({
+const TratamientoForm = ({
   getApi,
-  derivaciones,
-  setDerivaciones,
+  tratamiento,
+  setTratamiento,
   closeModal,
-}
-)=> {
-  const [fecha_inicio, setFecha_inicio] = useState("");
-  const [fecha_fin, setFecha_fin] = useState("");
+}) => {
   const [id_pacientes, setId_pacientes] = useState("");
-  const { data: paci } = UseFech(getPacientedos);
+  const { data: pac } = UseFech(getPacientes);
+
   const [id_doctores, setId_doctores] = useState("");
   const { data: doc } = UseFech(getDoctor);
-  const [id_tratamientos, setId_tratamientos] = useState("");
-  const { data: tra } = UseFech(getTratamiento);
-  const [id_centros, setId_centros] = useState("");
-  const { data: cen } = UseFech(getCentros);
-  const [id_resultados, setId_resultados] = useState("");
-  const { data: res } = UseFech(getResultados);
+
+  const [id_tipotratamientos, setId_tipotratamientos] = useState("");
+  const { data: tipotrat } = UseFech(getTipotratamiento);
+  const [fecha_inicio, setFecha_inicio] = useState("");
+  const [fecha_fin, setFecha_fin] = useState("");
+  const [observaciones, setObservaciones] = useState("");
+  const [estadotratamiento, setEstadotratamiento] = useState("");
+
   useEffect(() => {
-    if(Object.keys(derivaciones).length > 0){
-    setFecha_fin(derivaciones.fecha_fin);
-    setFecha_inicio(derivaciones.fecha_inicio);
+    if(Object.keys(tratamiento).length > 0){
+    setFecha_fin(tratamiento.fecha_fin);
+    setFecha_inicio(tratamiento.fecha_inicio);
+    setObservaciones(tratamiento.observaciones);
+    setEstadotratamiento(tratamiento.estadotratamiento);
     }
     return () => {
-      setDerivaciones({});
+      setTratamiento({});
     }
-  }, [derivaciones])
+  }, [tratamiento])
   
   const updatepost = (e) => {
     e.preventDefault();
-    if (Object.keys(derivaciones).length > 0) {
-      updateDerivaciones(
+    if (Object.keys(tratamiento).length > 0) {
+      updateTratamiento(
         {
-        id: derivaciones.id,
-        id_centros:id_centros,
-        fecha_inicio:fecha_inicio,
-        fecha_fin:fecha_fin,
+        id: tratamiento.id,
         id_pacientes:id_pacientes,
         id_doctores:id_doctores,
-        id_tratamientos:id_tratamientos,
-        id_resultados:id_resultados,
+        id_tipotratamientos:id_tipotratamientos,
+        fecha_inicio:fecha_inicio,
+        fecha_fin:fecha_fin,
+        observaciones:observaciones,
+        estadotratamiento:estadotratamiento,
         },
         () => {
           setFecha_fin("");
           setFecha_inicio("");
+          setObservaciones("");
+          setEstadotratamiento("");
           closeModal();
-          setDerivaciones({});
+          setObservaciones({});
           getApi();
         }
       );
     } else {
-        postDerivaciones(
-          id_pacientes,id_doctores,id_tratamientos,id_centros,id_resultados,fecha_inicio,fecha_fin,
+        postTratamiento(
+            id_pacientes,id_tipotratamientos,id_doctores,fecha_inicio,fecha_fin,observaciones,estadotratamiento,
         () => {
+            setFecha_fin("");
+            setFecha_inicio("");
+            setObservaciones("");
+            setEstadotratamiento("");
           setFecha_fin("");
           setFecha_inicio("");
         getApi();
@@ -78,7 +84,6 @@ const DerivacionesForm = ({
       });
     }
   };
-
   return (
     <Container>
     <div>
@@ -109,13 +114,13 @@ const DerivacionesForm = ({
             />
           </Divinputlabel>
         </Divinput>
-
+      
         <Divinput>
               <Divinputlabel>
                 <label>Paciente</label>
                 <Select onChange={(e) => setId_pacientes(e.target.value)}>
                   <option >seleccione el paciente</option>
-                  {paci.map((v, i) => (
+                  {pac.map((v, i) => (
                     <option key={i} value={v.id}>
                       {v.nombre}
                     </option>
@@ -136,27 +141,13 @@ const DerivacionesForm = ({
                 </Select>
               </Divinputlabel>
             </Divinput>
-    
+,
             <Divinput>
               <Divinputlabel>
                 <label>Tratamientos del paciente</label>
-                <Select onChange={(e) => setId_tratamientos(e.target.value)}>
+                <Select onChange={(e) => setId_tipotratamientos(e.target.value)}>
                   <option >seleccione el tratameinto ref del paciente</option>
-                  {tra.map((v, i) => (
-                    <option key={i} value={v.id}>
-                      {v.	estadotratamiento}
-                    </option>
-                  ))}
-                </Select>
-              </Divinputlabel>
-            </Divinput>
-
-            <Divinput>
-              <Divinputlabel>
-                <label>Centro Referido</label>
-                <Select onChange={(e) => setId_centros(e.target.value)}>
-                  <option >seleccione el centro refe</option>
-                  {cen.map((v, i) => (
+                  {tipotrat.map((v, i) => (
                     <option key={i} value={v.id}>
                       {v.nombre}
                     </option>
@@ -164,28 +155,44 @@ const DerivacionesForm = ({
                 </Select>
               </Divinputlabel>
             </Divinput>
-            <Divinput>
-              <Divinputlabel>
-                <label>Resultados del paciente</label>
-                <Select onChange={(e) => setId_resultados(e.target.value)}>
-                  <option >seleccione el resultado refdel paciente</option>
-                  {res.map((v, i) => (
-                    <option key={i} value={v.id}>
-                      {v.resultados}
-                    </option>
-                  ))}
-                </Select>
-              </Divinputlabel>
-            </Divinput>
+            
+
+   
+        <Divinput>
+          <Divinputlabel>
+            <label>observaciones:</label>
+            <Input
+              name="observaciones"
+              placeholder="observaciones"
+              type="text"
+              required
+              value={observaciones}
+              onChange={(e) => setObservaciones(e.target.value)}
+            />
+          </Divinputlabel>
+        </Divinput>
+        <Divinput>
+          <Divinputlabel>
+            <label>Estadotratamiento:</label>
+            <Input
+              name="estadotratamiento"
+              placeholder="estadotratamiento"
+              type="text"
+              required
+              value={estadotratamiento}
+              onChange={(e) => setEstadotratamiento(e.target.value)}
+            />
+          </Divinputlabel>
+        </Divinput>
         <Divboton>
           <Botonagregar onClick={(e) => updatepost(e)}>
-            {Object.keys(derivaciones).length > 0 ? "Editar" : "Agregar"}
+            {Object.keys(tratamiento).length > 0 ? "Editar" : "Agregar"}
           </Botonagregar>
         </Divboton>
       </form>
     </div>
   </Container>
   )
-}
+};
 
-export default DerivacionesForm
+export default TratamientoForm;

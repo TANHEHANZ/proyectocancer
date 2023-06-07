@@ -10,11 +10,12 @@ import {
 import { Info, Div, Infohijo, Section } from "./Centros";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 export const Especialidades = () => {
   const [especialidadactual, setEspecialidadactual] = useState({});
   const { getApi, data: espe } = UseFech(getEspecialidades);
   const { openModal, closeModal } = useModal(
-    Object.keys(especialidadactual).lengTh > 0
+    Object.keys(especialidadactual).length > 0
       ? "Editar Especialidades"
       : "Agregar Especialidades",
     <EspecialidadesForm

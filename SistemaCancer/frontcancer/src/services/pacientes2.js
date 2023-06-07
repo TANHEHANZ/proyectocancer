@@ -1,7 +1,7 @@
 const baseUrl =
-    import.meta.env.VITE_BACKEND_URL;
+    import.meta.env.VITE_BACKEND_URL
 
-export const getPacientes = async () => {
+export const getPacientedos = async () => {
     try {
         const response = await fetch(`${baseUrl}pacientes`, {
             method: "GET",
@@ -14,7 +14,7 @@ export const getPacientes = async () => {
         console.log(error);
     }
 };
-export const deletePacientes = async (id, callback) => {
+export const deletePacientedos = async (id, callback) => {
   
     const response = await fetch(`${baseUrl}pacientes/${id}`, {
         method: "DELETE",
@@ -22,44 +22,39 @@ export const deletePacientes = async (id, callback) => {
             "Content-Type": "application/json",
             accept: "application/json",
         },
-
     })
     if (response.ok) {
         callback();
     }
 };
-
-export const updatePacientes = async (pacienteactual,callback) => {
+export const updatePacientedos = async (pacienteactualdos,callback) => {
   
-    const response = await fetch(`${baseUrl}pacientes/${pacienteactual.id}`, {
+    const response = await fetch(`${baseUrl}pacientes/${pacienteactualdos.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         accept: "application/json",
       },
       body: JSON.stringify({
-        nombre:pacienteactual.nombre,
-        ap_paterno:pacienteactual.ap_paterno,
-        ap_materno:pacienteactual.ap_materno,
-        sexo:pacienteactual.sexo,
-        fecha_nacimiento:pacienteactual.fecha_nacimiento,
-        telefono:pacienteactual.telefono,
-        ci:pacienteactual.ci,
-        direccion:pacienteactual.direccion,
-        correo:pacienteactual.correo,
-        edad:pacienteactual.edad,
-        id_doctores:pacienteactual.id_doctores,
-        id_enfermeras:pacienteactual.id_enfermeras,
-        
+        nombre:pacienteactualdos.nombre,
+        ap_paterno:pacienteactualdos.ap_paterno,
+        ap_materno:pacienteactualdos.ap_materno,
+        sexo:pacienteactualdos.sexo,
+        fecha_nacimiento:pacienteactualdos.fecha_nacimiento,
+        telefono:pacienteactualdos.telefono,
+        ci:pacienteactualdos.ci,
+        direccion:pacienteactualdos.direccion,
+        correo:pacienteactualdos.correo,
+        edad:pacienteactualdos.edad,
+        id_doctores:pacienteactualdos.id_doctores,
+        id_enfermeras:pacienteactualdos.id_enfermeras,
     })});
     if(response.ok){
       callback();
     }
   }
-
-
-  export const postPacientes = async (nombre,ap_paterno,ap_materno,sexo,fecha_nacimiento,telefono,ci,direccion,correo,edad,id_doctores,id_enfermeras,callback) => {
-    const response = await fetch(`${baseUrl}pacientes`, {
+  export const postPacientedos = async (nombre,ap_paterno,ap_materno,sexo,fecha_nacimiento,telefono,ci,direccion,correo,edad,id_doctores,id_enfermeras,callback) => {
+    const response = await fetch(`http://127.0.0.1:8000/api/pacientes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,4 +78,3 @@ export const updatePacientes = async (pacienteactual,callback) => {
       callback();
     }
   }
-

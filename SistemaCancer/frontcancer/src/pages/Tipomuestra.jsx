@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { UseFech } from '../hooks/useFech'
-import { getTiposcancer, deleteTiposcancer } from '../services/Tiposcancer'
 import { useModal } from '../hooks/useModal'
-import TiposcancerForm from '../models/TiposcancerForm'
+
 import { Info,Div,Infohijo,Section } from './Centros';
+import TiposMuestrasForm from '../models/TiposMuestrasForm'
+import { getTipomuestras ,deleteTipomuestras} from '../services/Tipomuestras'
+
 
 const Tipomuestra = () => {
-  const [tiposcancersactual, setTiposcancersactual]=useState("");
-  const{getApi, data:tip}=UseFech(getTiposcancer);
+  const [muestraactual, setMuestraactual] = useState("");
+  const{getApi, data:tip}=UseFech(getTipomuestras);
   const { openModal, closeModal } = useModal(
-    Object.keys(tiposcancersactual).lengTh > 0
-      ? "Editar Municipios"
-      : "Agregar Municipios",
-    <TiposcancerForm
+    Object.keys(muestraactual).length > 0
+      ? "Editar Tipo Muestras"
+      : "Agregar Tipo Muestras",
+    <TiposMuestrasForm
       getApi={getApi}
-      tiposcancersactual={tiposcancersactual}
-      setTiposcancersactual={setTiposcancersactual}
+      muestraactual={muestraactual}
+      setMuestraactual={setMuestraactual}
       closeModal={() => {
         closeModal();
       }}
@@ -23,10 +25,10 @@ const Tipomuestra = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(tiposcancersactual).lengTh > 0) {
+    if (Object.keys(muestraactual).length > 0) {
       openModal();
     }
-  }, [tiposcancersactual]);
+  }, [muestraactual]);
   return (
     <Section>
     <Info>
@@ -34,7 +36,7 @@ const Tipomuestra = () => {
  <div>
   <article>
     <h2>{tip.length}</h2>
-  <p>Tipos Cancer</p>
+  <p>Tipos Muestra</p>
   </article>
    <img src="src\img\paciente.png" alt="" />
  </div>
@@ -43,7 +45,7 @@ const Tipomuestra = () => {
    </Info>
      <Div>
      <section>
-           <h1>Registro Tipos Cancer</h1>
+           <h1>Registro Tipos muestra</h1>
            <button onClick={openModal}> nuevo</button>
            <button onClick={openModal}> Excel</button>
            <button onClick={openModal}> Pdf</button>
@@ -61,23 +63,16 @@ const Tipomuestra = () => {
            )
            .map((v, i) => (
              <tbody key={i}>
-               <tr>
-             
+               <tr   onClick={() => {
+                         setMuestraactual(v);
+                       }}>
                  <td>{i + 1}</td>
                  <td>{v.nombre}</td>
-                
                  <td>
                    <div>
                      <button
                        onClick={() => {
-                         setTiposcancersactual(v);
-                       }}
-                     >
-                       Editar
-                     </button>
-                     <button
-                       onClick={() => {
-                         deleteTiposcancer(v.id, getApi);
+                        deleteTipomuestras(v.id, getApi);
                        }}
                      >
                       Eliminar

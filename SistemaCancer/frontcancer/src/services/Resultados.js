@@ -3,7 +3,7 @@ const baseUrl =
 
 export const getResultados = async () => {
     try {
-        const response = await fetch(`${baseUrl}resultados`, {
+        const response = await fetch(`${baseUrl}resultas`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -16,7 +16,7 @@ export const getResultados = async () => {
 };
 export const deleteResultados = async (id, callback) => {
    
-    const response = await fetch(`${baseUrl}resultados/${id}`, {
+    const response = await fetch(`${baseUrl}resultas/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const deleteResultados = async (id, callback) => {
 };
 export const updateResultados = async (resultadoactual,callback) => {
   
-    const response = await fetch(`${baseUrl}resultados/${resultadoactual.id}`, {
+    const response = await fetch(`${baseUrl}resultas/${resultadoactual.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const updateResultados = async (resultadoactual,callback) => {
     }
   }
   export const postResultados = async (resultados,id_pacientes,id_tiposcancers,id_muestras,id_laboratorios,fecha,callback) => {
-    const response = await fetch(`${baseUrl}resultados`, {
+    const response = await fetch(`${baseUrl}resultas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

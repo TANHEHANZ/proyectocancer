@@ -8,10 +8,10 @@ import styled from "styled-components";
 
 const Seguimientos = () => {
 
-  const [seguimientoactual, setSeguimientoactual] = useState({});
+  const [seguimientoactual, setSeguimientoactual] = useState("");
   const { getApi, data: segui} = UseFech(getSeguimiento);
   const { openModal, closeModal } = useModal(
-    Object.keys(seguimientoactual).lengTh > 0
+    Object.keys(seguimientoactual).length > 0
       ? "Editar Resultados"
       : "Agregar Resultado",
     <SeguimientosForm
@@ -75,7 +75,6 @@ const Seguimientos = () => {
           <table>
             <thead>
               <tr>
-       
                 <th>Nº</th>
                 <th>paciente</th>
                 <th>muestra</th>
@@ -88,11 +87,14 @@ const Seguimientos = () => {
             </thead>
             {segui
               .filter((v) =>
-                v.observaciones.toLowerCase().includes(filtro.toLowerCase())
+                v.nombre_paciente.toLowerCase().includes(filtro.toLowerCase())
               )
               .map((v, i) => (
                 <tbody key={i}>
-                  <tr>
+                 
+                  <tr  onClick={() => {
+                            setSeguimientoactual(v);
+                          }}>
                     <td>{i + 1}</td>
                     <td>{v.nombre_paciente}</td>
                     <td>{v.descripcion_muestra}</td>
@@ -100,17 +102,10 @@ const Seguimientos = () => {
                     <td>{v.nombre_doctor}</td>
                     <td>{v.nombre_centro}</td>
                     <td>{v.fecha}</td>
-                  
-                    <td>{v.observaciones}</td>
+             
                     <td>
                       <div>
-                        <button
-                          onClick={() => {
-                            setSeguimientoactual(v);
-                          }}
-                        >
-                          Editar
-                        </button>
+                      
                         <button
                           onClick={() => {
                             deleteSeguimiento(v.id, getApi);

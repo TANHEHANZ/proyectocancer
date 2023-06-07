@@ -42,6 +42,7 @@ const CentrosForm = ({
           setNombre("");
           setUbicacion("");
           setCentrosactual({});
+          closeModal();
           getApi();
         }
       );

@@ -10,7 +10,12 @@ class DoctoresController extends Controller
 {
     public function index()
     {
-        $doctores = DB::select("SELECT d.nombre, d.ap_paterno, d.ap_materno, d.ci, d.correo, d.Direccion, d.Credenciales, d.descripcion, ce.nombre as nombre_centro, e.nombre as nombre_especialidad FROM doctores as d JOIN centros as ce ON d.id_centros = ce.id JOIN especialidades as e ON d.id_especialidades = e.id;
+        $doctores = DB::select("SELECT d.id, d.nombre, d.ap_paterno, d.ap_materno, d.ci, d.correo, d.Direccion, d.Credenciales, d.descripcion, ce.nombre as nombre_centro, e.nombre as nombre_especialidad
+        FROM doctores as d
+        JOIN centros as ce
+        ON d.id_centros = ce.id
+        JOIN especialidades as e
+        ON d.id_especialidades = e.id;
        ");
        return $doctores;
         // return Doctores::all();

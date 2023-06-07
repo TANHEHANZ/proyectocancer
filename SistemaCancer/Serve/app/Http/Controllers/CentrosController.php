@@ -11,6 +11,7 @@ class CentrosController extends Controller
     {
         return Centros::all();
     }
+    
     public function store(Request $request)
     {
         $Centros=new Centros();

@@ -12,6 +12,7 @@ use App\Http\Controllers\EspecialidadesController;
 use App\Http\Controllers\ExamenContrller;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\MuestrasControllerer;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\ResultadosControllerer;
 use App\Http\Controllers\SeguimientoControllerer;
 use App\Http\Controllers\TipoexamensController;
@@ -37,10 +38,14 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
 Route::get('/centros', [CentrosController::class, 'index']);
 Route::post('/centros', [CentrosController::class, 'store']);
 Route::put('/centros/{id}', [CentrosController::class, 'update']);
 Route::delete('/centros/{id}', [CentrosController::class, 'destroy']);
+
 
 Route::get('/derivaciones', [DerivacionesController::class, 'index']);
 Route::post('/derivaciones', [DerivacionesController::class, 'store']);
@@ -63,10 +68,10 @@ Route::post('/especialidades', [EspecialidadesController::class, 'store']);
 Route::put('/especialidades/{id}', [EspecialidadesController::class, 'update']);
 Route::delete('/especialidades/{id}', [EspecialidadesController::class, 'destroy']);
 
-Route::get('/examen', [ExamenContrller::class, 'index']);
-Route::post('/examen', [ExamenContrller::class, 'store']);
-Route::put('/examen/{id}', [ExamenContrller::class, 'update']);
-Route::delete('/examen/{id}', [ExamenContrller::class, 'destroy']);
+Route::get('/examenes', [ExamenContrller::class, 'index']);
+Route::post('/examenes', [ExamenContrller::class, 'store']);
+Route::put('/examenes/{id}', [ExamenContrller::class, 'update']);
+Route::delete('/examenes/{id}', [ExamenContrller::class, 'destroy']);
 
 Route::get('/laboratorio', [LaboratorioController::class, 'index']);
 Route::post('/laboratorio', [LaboratorioController::class, 'store']);
@@ -84,11 +89,10 @@ Route::post('/pacientes', [PacientesController::class, 'store']);
 Route::put('/pacientes/{id}', [PacientesController::class, 'update']);
 Route::delete('/pacientes/{id}', [PacientesController::class, 'destroy']);
 
-
-Route::get('/resultados', [ResultadosControllerer::class, 'index']);
-Route::post('/resultados', [ResultadosControllerer::class, 'store']);
-Route::put('/resultados/{id}', [ResultadosControllerer::class, 'update']);
-Route::delete('/resultados/{id}', [ResultadosControllerer::class, 'destroy']);
+Route::get('/resultas', [ResultadosControllerer::class, 'index']);
+Route::post('/resultas', [ResultadosControllerer::class, 'store']);
+Route::put('/resultas/{id}', [ResultadosControllerer::class, 'update']);
+Route::delete('/resultas/{id}', [ResultadosControllerer::class, 'destroy']);
 
 Route::get('/seguimiento', [SeguimientoControllerer::class, 'index']);
 Route::post('/seguimiento', [SeguimientoControllerer::class, 'store']);
@@ -125,10 +129,12 @@ Route::post('/visitas', [VisitasController::class, 'store']);
 Route::put('/visitas/{id}', [VisitasController::class, 'update']);
 Route::delete('/visitas/{id}', [VisitasController::class, 'destroy']);
 
+// reportes
+
+Route::get('/Reportes-pdf', [ReportesController::class, 'reporteCenPac']);
 
 
-
-// reportes 
+// reportes
 Route::post('/generar-reporte', [ConsultasController::class, 'generarReporte']);
 
 Route::get('ciudad-pdf', [ConsultasController::class, 'indexgrapciudadpdf']);

@@ -3,7 +3,7 @@ const baseUrl =
 
 export const getTipomuestras = async () => {
     try {
-        const response = await fetch(`${baseUrl}tipomuestrass`, {
+        const response = await fetch(`${baseUrl}tipomuestras`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -16,7 +16,7 @@ export const getTipomuestras = async () => {
 };
 export const deleteTipomuestras= async (id, callback) => {
   
-    const response = await fetch(`${baseUrl}tipomuestrass/${id}`, {
+    const response = await fetch(`${baseUrl}tipomuestras/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -28,16 +28,16 @@ export const deleteTipomuestras= async (id, callback) => {
         callback();
     }
 };
-export const updateTipomuestras = async (tipomuestrassactual,callback) => {
+export const updateTipomuestras = async (tipomuestrasactual,callback) => {
   
-    const response = await fetch(`${baseUrl}tipomuestrass/${tipomuestrassactual.id}`, {
+    const response = await fetch(`${baseUrl}tipomuestras/${tipomuestrasactual.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         accept: "application/json",
       },
       body: JSON.stringify({
-        nombre:tipomuestrassactual.nombre,
+        nombre:tipomuestrasactual.nombre,
        
     })});
     if(response.ok){
@@ -45,7 +45,7 @@ export const updateTipomuestras = async (tipomuestrassactual,callback) => {
     }
   }
   export const postTipomuestras = async (nombre,callback) => {
-    const response = await fetch(`${baseUrl}tipomuestrass`, {
+    const response = await fetch(`${baseUrl}tipomuestras`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

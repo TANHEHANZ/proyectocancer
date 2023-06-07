@@ -230,8 +230,7 @@ const DoctoresForm = ({
             </Divinputlabel>
           </Divinput>
    
-     
-
+  
       <Divboton>
         <Botonagregar onClick={(e) => updatepost(e)}>
           {Object.keys(doctoresactual).length > 0 ? "Editar" : "Agregar"}

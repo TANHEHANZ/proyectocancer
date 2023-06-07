@@ -7,8 +7,8 @@ class ExamenContrller extends Controller
 {
     public function index()
     {
-        $examenes = DB::select("SELECT p.nombre as nombre_paciente, te.nombre as nombre_tipo_examen, e.descripcion, e.fecha, e.resultado
-        FROM examen as e
+        $examenes = DB::select("SELECT e.id, p.nombre as nombre_paciente, te.nombre as nombre_tipo_examen, e.descripcion, e.fecha, e.resultado
+        FROM examens as e
         JOIN pacientes as p ON e.id_pacientes = p.id
         JOIN tipoexamens as te ON e.id_tipoexamens = te.id
        ");

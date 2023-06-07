@@ -34,8 +34,10 @@ const MunicipiosForm = ({
             },
             () => {
               setNombre("");
-              setMunicipiosactual({});
+            closeModal();
+            setMunicipiosactual({});
               getApi();
+
             }
           );
         } else {

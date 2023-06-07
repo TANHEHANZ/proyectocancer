@@ -9,9 +9,9 @@ const Examen = () => {
   const [examenactual, setExamenactual] = useState({});
   const { getApi, data: exa } = UseFech(getExamen);
   const { openModal, closeModal } = useModal(
-    Object.keys(examenactual).lengTh > 0
-      ? "Editar Doctores"
-      : "Agregar Doctores",
+    Object.keys(examenactual).length > 0
+      ? "Editar Examen"
+      : "Agregar Examen",
     <ExamenForm
       getApi={getApi}
       examenactual={examenactual}
@@ -27,7 +27,6 @@ const Examen = () => {
       openModal();
     }
   }, [examenactual]);
-
   return (
     <Section>
       <Info>
@@ -76,7 +75,6 @@ const Examen = () => {
               <th>Paciente</th>
               <th>TipoExamen</th>
               <th>Descripcion</th>
-              <th>Especialidades</th>
               <th>fecha</th>
               <th>resultado</th>
               <th>ACCIONES</th>
@@ -84,11 +82,13 @@ const Examen = () => {
           </thead>
           {exa
             .filter((v) =>
-              v.nombre.toLowerCase().includes(filtro.toLowerCase())
+              v.nombre_paciente.toLowerCase().includes(filtro.toLowerCase())
             )
             .map((v, i) => (
               <tbody key={i}>
-                <tr>
+                <tr  onClick={() => {
+                          setExamenactual(v);
+                        }}>
                   <td>{i + 1}</td>
                   <td>{v.nombre_paciente}</td>
                   <td>{v.nombre_tipo_examen}</td>
@@ -97,13 +97,7 @@ const Examen = () => {
                   <td>{v.resultado}</td>
                   <td>
                     <div>
-                      <button
-                        onClick={() => {
-                          setExamenactual(v);
-                        }}
-                      >
-                        Editar
-                      </button>
+                    
                       <button
                         onClick={() => {
                             deleteExamen(v.id, getApi);

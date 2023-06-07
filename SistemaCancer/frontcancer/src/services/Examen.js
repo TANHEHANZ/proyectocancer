@@ -3,7 +3,7 @@ const baseUrl =
 
 export const getExamen = async () => {
     try {
-        const response = await fetch(`${baseUrl}examen`, {
+        const response = await fetch(`${baseUrl}examenes`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -16,7 +16,7 @@ export const getExamen = async () => {
 };
 export const deleteExamen = async (id, callback) => {
   
-    const response = await fetch(`${baseUrl}examen/${id}`, {
+    const response = await fetch(`${baseUrl}examenes/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export const deleteExamen = async (id, callback) => {
 };
 export const updateExamen = async (examenactual,callback) => {
   
-    const response = await fetch(`${baseUrl}examen/${examenactual.id}`, {
+    const response = await fetch(`${baseUrl}examenes/${examenactual.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const updateExamen = async (examenactual,callback) => {
     }
   }
   export const postExamen = async (id_pacientes,id_tipoexamens,descripcion,fecha,resultado,callback) => {
-    const response = await fetch(`${baseUrl}examen`, {
+    const response = await fetch(`${baseUrl}examenes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

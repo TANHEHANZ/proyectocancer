@@ -6,8 +6,7 @@ import {
   updateLaboratorio,
   
 } from "../services/Laboratorios";
-import { getDoctor } from '../services/Doctor';
-import { Divinput,Botonagregar,Container,Divboton,Divinputlabel,Input,Select } from './DoctoresForm';
+import { Divinput,Botonagregar,Container,Divboton,Divinputlabel,Input } from './DoctoresForm';
 const LaboratoriosForm = ({ getApi,
     laboratorioactual,
     setLaboratorioactual,
@@ -18,7 +17,6 @@ const LaboratoriosForm = ({ getApi,
   const [contacto, setContacto] = useState("");
   const [email, setEmail] = useState("");
 
-console.log(anotificado);
         useEffect(() => {
             if (Object.keys(laboratorioactual).length > 0) {
                 setNombre(laboratorioactual.nombre);
@@ -54,7 +52,7 @@ console.log(anotificado);
               );
             } else {
                 postlaboratorio(
-                    nombre,ubicacion,contacto,email,id_doctores,() => {
+                    nombre,ubicacion,contacto,email,() => {
                 setNombre("");
                 setUbicacion("");
                 getApi();

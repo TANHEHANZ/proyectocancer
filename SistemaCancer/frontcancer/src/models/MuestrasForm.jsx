@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { UseFech } from "../hooks/useFech";
 import { postmuestras, updateMuestras } from "../services/Muestras";
@@ -21,7 +20,7 @@ const MuestrasForm = ({
 
   const [descripcion, setDescripcion] = useState("");
 
-  const [id_tipomuestra, setId_tipomuestra] = useState("");
+  const [id_tipomuestras, setId_tipomuestras] = useState("");
   const { data: tipm } = UseFech(getTipomuestras);
 
   const [id_enfermeras, setId_enfermeras] = useState("");
@@ -31,11 +30,13 @@ const MuestrasForm = ({
     if (Object.keys(muestrasactual).length > 0) {
       setFecha(muestrasactual.fecha);
       setDescripcion(muestrasactual.descripcion);
+      
     }
     return () => {
       setMuestrasactual({});
     };
   }, [muestrasactual]);
+
   const updatepost = (e) => {
     e.preventDefault();
     if (Object.keys(muestrasactual).length > 0) {
@@ -43,26 +44,30 @@ const MuestrasForm = ({
         {
           id: muestrasactual.id,
           id_pacientes: id_pacientes,
-          id_tipomuestra: id_tipomuestra,
+          id_tipomuestras: id_tipomuestras,
           descripcion: descripcion,
           id_enfermeras: id_enfermeras,
           fecha: fecha,
         },
         () => {
           setFecha("");
+          setDescripcion("");
           closeModal();
-          setdooctoractual({});
+          setMuestrasactual({});
           getApi();
         }
       );
     } else {
-      postmuestras(id_pacientes,id_tipomuestra,descripcion,id_enfermeras,fecha, () => {
+      postmuestras(id_pacientes,id_tipomuestras,descripcion,id_enfermeras,fecha, () => {
         setFecha("");
+        setDescripcion("");
         getApi();
         closeModal();
       });
     }
+ 
   };
+
 
   return(
     <Container>
@@ -85,7 +90,7 @@ const MuestrasForm = ({
         <Divinput>
               <Divinputlabel>
                 <label>Tipo muestra</label>
-                <Select onChange={(e) => setId_tipomuestra(e.target.value)}>
+                <Select onChange={(e) => setId_tipomuestras(e.target.value)}>
                   <option >seleccione un tipo muestra</option>
                   {tipm.map((v, i) => (
                     <option key={i} value={v.id}>
@@ -101,7 +106,6 @@ const MuestrasForm = ({
             <Input
               name="descripcion"
               type="text"
-           
               value={descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
             />

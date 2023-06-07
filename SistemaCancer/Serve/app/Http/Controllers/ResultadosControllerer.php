@@ -9,15 +9,15 @@ class ResultadosControllerer extends Controller
 {
     public function index()
     {
-        $resultados = DB::select("SELECT r.resultados, p.nombre as nombre_paciente, tc.nombre as nombre_tipo_cancer, m.descripcion as descripcion_muestra, l.nombre as nombre_laboratorio, r.fecha FROM resultados as r JOIN pacientes as p ON r.id_pacientes = p.id JOIN tiposcancers as tc ON r.id_tiposcancers = tc.id JOIN muestras as m ON r.id_muestras = m.id JOIN laboratorios as l ON r.id_laboratorios = l.id;
+        $resultados = DB::select("SELECT r.id, r.resultados, p.nombre as nombre_paciente, tc.nombre as nombre_tipo_cancer, m.descripcion as descripcion_muestra, l.nombre as nombre_laboratorio, r.fecha FROM resultados as r JOIN pacientes as p ON r.id_pacientes = p.id JOIN tiposcancers as tc ON r.id_tiposcancers = tc.id JOIN muestras as m ON r.id_muestras = m.id JOIN laboratorios as l ON r.id_laboratorios = l.id;
        ");
 
 return $resultados;
-        // return Resultados::all();
+    
     }
     public function store(Request $request)
     {
-      
+
         $resultados = new Resultados();
         $resultados->resultados = $request->resultados;
         $resultados->id_pacientes = $request->id_pacientes;

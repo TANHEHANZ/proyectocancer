@@ -9,6 +9,6 @@ class Especialidades extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nombre'    
+        'nombre'
     ];
-}
+}   

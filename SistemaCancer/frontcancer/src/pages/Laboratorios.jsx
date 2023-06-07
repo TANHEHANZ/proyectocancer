@@ -9,7 +9,7 @@ const Laboratorios = () => {
   const [laboratorioactual, setLaboratorioactual] = useState({});
   const { getApi, data: lab } = UseFech(getLaboratotio);
   const { openModal, closeModal } = useModal(
-    Object.keys(laboratorioactual).lengTh > 0
+    Object.keys(laboratorioactual).length > 0
       ? "Editar pacientes"
       : "Agregar Pacientes",
     <LaboratoriosForm
@@ -23,7 +23,7 @@ const Laboratorios = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(laboratorioactual).lengTh > 0) {
+    if (Object.keys(laboratorioactual).length > 0) {
       openModal();
     }
   }, [laboratorioactual]);
@@ -31,14 +31,14 @@ const Laboratorios = () => {
 
   return (
     <Section>
-       <div>
+       {/* <div>
       <h2>Notificaciones del Laboratorio</h2>
       <ul>
         {notificaciones.map((paciente) => (
           <li key={paciente.id}>{paciente.nombre}</li>
         ))}
       </ul>
-    </div>
+    </div> */}
     <Info>
  <Infohijo>
  <div>
@@ -74,7 +74,9 @@ const Laboratorios = () => {
            )
            .map((v, i) => (
              <tbody key={i}>
-               <tr>
+               <tr   onClick={() => {
+                         setLaboratorioactual(v);
+                       }}>
                  <td>{i + 1}</td>
                  <td>{v.nombre}</td>
                  <td>{v.ubicacion}</td>
@@ -82,13 +84,7 @@ const Laboratorios = () => {
                  <td>{v.email}</td>
                  <td>
                    <div>
-                     <button
-                       onClick={() => {
-                         setLaboratorioactual(v);
-                       }}
-                     >
-                       Editar
-                     </button>
+                   
                      <button
                        onClick={() => {
                          deleteLaboratorio(v.id, getApi);

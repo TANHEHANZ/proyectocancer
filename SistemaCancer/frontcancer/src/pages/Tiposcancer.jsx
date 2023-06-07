@@ -9,7 +9,7 @@ const Tiposcancer = () => {
   const [tiposcancersactual, setTiposcancersactual]=useState("");
   const{getApi, data:tip}=UseFech(getTiposcancer);
   const { openModal, closeModal } = useModal(
-    Object.keys(tiposcancersactual).lengTh > 0
+    Object.keys(tiposcancersactual).length > 0
       ? "Editar Municipios"
       : "Agregar Municipios",
     <TiposcancerForm
@@ -23,7 +23,7 @@ const Tiposcancer = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(tiposcancersactual).lengTh > 0) {
+    if (Object.keys(tiposcancersactual).length > 0) {
       openModal();
     }
   }, [tiposcancersactual]);
@@ -61,20 +61,16 @@ const Tiposcancer = () => {
            )
            .map((v, i) => (
              <tbody key={i}>
-               <tr>
+               <tr  onClick={() => {
+                         setTiposcancersactual(v);
+                       }}>
              
                  <td>{i + 1}</td>
                  <td>{v.nombre}</td>
                 
                  <td>
                    <div>
-                     <button
-                       onClick={() => {
-                         setTiposcancersactual(v);
-                       }}
-                     >
-                       Editar
-                     </button>
+                  
                      <button
                        onClick={() => {
                          deleteTiposcancer(v.id, getApi);

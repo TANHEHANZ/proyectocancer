@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class SeguimientoControllerer extends Controller
 {
-  
+
     public function index()
     {
-        $seguimientos = DB::select("SELECT p.nombre as nombre_paciente, m.descripcion as descripcion_muestra, r.resultados, d.nombre as nombre_doctor, ce.nombre as nombre_centro, s.fecha
+        $seguimientos = DB::select("SELECT s.id, p.nombre as nombre_paciente, m.descripcion as descripcion_muestra, r.resultados, d.nombre as nombre_doctor, ce.nombre as nombre_centro, s.fecha
         FROM seguimientos as s
         JOIN pacientes as p ON s.id_pacientes = p.id
         JOIN muestras as m ON s.id_muestras = m.id
@@ -25,6 +25,7 @@ return $seguimientos;
     }
     public function store(Request $request)
     {
+        
         $segumient = new Seguimientos();
         $segumient->id_pacientes = $request->id_pacientes;
         $segumient->id_muestras = $request->id_muestras;

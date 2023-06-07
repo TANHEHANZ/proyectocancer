@@ -50,7 +50,7 @@ export const updateTratamiento = async (tratamientoactual,callback) => {
       callback();
     }
   }
-  export const posttratamiento = async (id_pacientes,id_tipotratamientos,id_doctores,fecha_inicio,fecha_fin,observaciones,estadotratamiento,callback) => {
+  export const postTratamiento = async (id_pacientes,id_tipotratamientos,id_doctores,fecha_inicio,fecha_fin,observaciones,estadotratamiento,callback) => {
     const response = await fetch(`${baseUrl}tratamiento`, {
       method: "POST",
       headers: {

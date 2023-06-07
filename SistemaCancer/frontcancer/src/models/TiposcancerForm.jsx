@@ -2,7 +2,6 @@ import React from 'react'
 import { Divinput,Botonagregar,Container,Divboton,Divinputlabel,Input,Select } from './DoctoresForm';
 
 import { useState, useEffect } from "react";
-import { UseFech } from "../hooks/useFech";
 import { postTiposcancer, updateTiposcancer } from "../services/Tiposcancer";
 
 const TiposcancerForm = ({getApi,
@@ -31,6 +30,7 @@ const TiposcancerForm = ({getApi,
                 },
                 () => {
                   setNombre("");
+                  closeModal();
                   setTiposcancersactual({});
                   getApi();
                 }

@@ -11,7 +11,7 @@ class VisitasController extends Controller
 {
     public function index()
     {
-        $vistas = DB::select("SELECT p.nombre as nombre_paciente, v.fecha, v.detalle
+        $vistas = DB::select("SELECT v.id, p.nombre as nombre_paciente, v.fecha, v.detalle
         FROM visitas as v
         JOIN pacientes as p ON v.id_pacientes = p.id
        ");

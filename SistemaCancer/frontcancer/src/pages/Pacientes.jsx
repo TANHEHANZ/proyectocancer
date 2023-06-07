@@ -1,22 +1,22 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useModal } from "../hooks/useModal";
 import PacientesForm from "../models/PacientesForm";
 import { UseFech } from "../hooks/useFech";
-import { deletePacientes, getPacientes } from "../services/Paciente";
+import { getPacientes } from "../services/Paciente";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { PacienteContext, PacienteProvider } from "../context/pacienteContext";
 
 const Pacientes = () => {
-  const [pacienteactual, setPacienteactual] = useState({});
+  const [pacienteactualdos, setPacienteactualdos] = useState({});
   const { getApi, data: pac } = UseFech(getPacientes);
   const { openModal, closeModal } = useModal(
-    Object.keys(pacienteactual).length > 0
-      ? "Editar pacientes"
-      : "Agregar Pacientes",
+    "Agregar Pacientes",
     <PacientesForm
       getApi={getApi}
-      pacienteactual={pacienteactual}
-      setPacienteactual={setPacienteactual}
+      pacienteactualdos={pacienteactualdos}
+      setPacienteactualdos={setPacienteactualdos}
       closeModal={() => {
         closeModal();
       }}
@@ -24,11 +24,17 @@ const Pacientes = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(pacienteactual).length > 0) {
+    if (Object.keys(pacienteactualdos).length > 0) {
       openModal();
     }
-  }, [pacienteactual]);
+  }, [pacienteactualdos]);
 
+  const { paciento, guardarPaciente } = useContext(PacienteContext);
+
+  const handleClick = (v) => {
+    guardarPaciente(v);
+  };
+  console.log(paciento);
   return (
     <Section>
       <div>
@@ -45,6 +51,7 @@ const Pacientes = () => {
           <section>
             <h1>Registro Pacientes</h1>
             <button onClick={openModal}> nuevo</button>
+            <p> cantidad de Registros {pac.length}</p>
           </section>
           <Paciente>
             {pac
@@ -52,7 +59,7 @@ const Pacientes = () => {
                 v.nombre.toLowerCase().includes(filtro.toLowerCase())
               )
               .map((v, i) => (
-                <Car>
+                <Car key={i}>
                   <label>Id° : {v.id}</label>
                   <label>Nombre : {v.nombre}</label>
                   <label>Ap Paterno:{v.ap_paterno}</label>
@@ -60,56 +67,14 @@ const Pacientes = () => {
                   <label>F nacimiento : {v.fecha_nacimiento}</label>
                   <label>Telefono: {v.telefono}</label>
                   <label>Ci: {v.ci}</label>
-                  <label>Ci: {v.direccion}</label>
-                  <label>Ci: {v.correo}</label>
-                  <label>Ci: {v.edad}</label>
-                  <label>Ci: {v.nombre_doctor}</label>
-                  <label>Ci: {v.nombre_enfermera}</label>
-                  <button  onClick={() => {
-                      setPacienteactual(v);
-                    }}>Mas info</button>
+                  <button onClick={() => handleClick(v)}>
+                    <Linkes to="/detalle-paciente">
+                      Ver detalles del paciente
+                    </Linkes>
+                  </button>
                 </Car>
               ))}
           </Paciente>
-          {/* <table>
-            <thead>
-             
-            </thead>
-            {pac
-              .filter((v) =>
-                v.nombre.toLowerCase().includes(filtro.toLowerCase())
-              )
-              .map((v, i) => (
-                <tbody key={i}>
-                  <tr
-                    onClick={() => {
-                      setPacienteactual(v);
-                    }}
-                  >
-                    <td>{v.id}</td>
-                    <td>{v.nombre}</td>
-                    <td>{v.ap_paterno}</td>
-                    <td>{v.ap_materno}</td>
-                    <td>{v.sexo}</td>
-                    <td>{v.fecha_nacimiento}</td>
-                    <td>{v.telefono}</td>
-                    <td>{v.ci}</td>
-
-                    <td>
-                      <div>
-                        <button
-                          onClick={() => {
-                            deletePacientes(v.id, getApi);
-                          }}
-                        >
-                          Eliminar
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              ))}
-          </table> */}
         </Div>
       </div>
     </Section>
@@ -168,6 +133,11 @@ const Div = styled.div`
     flex-direction: row;
     gap: 1em;
     margin: 0.5em 1em 0 1em;
+    & > p {
+      color: #069266;
+      text-transform: uppercase;
+      font-size: 0.8em;
+    }
     & > h1 {
       font-size: 0.9em;
       font-weight: 100;
@@ -263,11 +233,19 @@ const Car = styled.article`
   border: ridge 1px #fff2;
   color: #fff;
   gap: 0.5em;
-  font-size:0.9em;
+  font-size: 0.9em;
   & button {
     width: 100%;
     height: 2.5em;
     border-radius: 0.5em;
     border: none;
   }
+`;
+export const Linkes = styled(Link)`
+text-decoration:none;
+color: #000;
+background-color:transparent; 
+
+
+
 `;

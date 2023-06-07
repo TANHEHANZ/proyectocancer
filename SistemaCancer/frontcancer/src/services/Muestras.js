@@ -48,7 +48,8 @@ export const updateMuestras = async (muestrasactual,callback) => {
       callback();
     }
   }
-  export const postmuestras = async (id_pacientes,descripcion,id_tipomuestras,id_enfermeras,fecha,callback) => {
+ 
+  export const postmuestras = async ( id_pacientes,id_tipomuestras,descripcion,id_enfermeras,fecha,callback) => {
     const response = await fetch(`${baseUrl}muestras`, {
       method: "POST",
       headers: {

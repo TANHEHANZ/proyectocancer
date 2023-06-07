@@ -2,9 +2,7 @@ import React from "react";
 import {
   postResultados,
   updateResultados,
-  getResultados,
 } from "../services/Resultados";
-import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { UseFech } from "../hooks/useFech";
 import { getMuestras } from "../services/Muestras";
@@ -75,12 +73,7 @@ const ResultadosForm = ({
       );
     } else {
       postResultados(
-        resultados,
-        id_muestras,
-        id_tiposcancers,
-        id_pacientes,
-        id_laboratorios,
-        fecha,
+        resultados,id_pacientes,id_tiposcancers,id_muestras,id_laboratorios,fecha,
         () => {
           setResultados("");
           setFecha("");
@@ -174,7 +167,6 @@ const ResultadosForm = ({
               />
             </Divinputlabel>
           </Divinput>
-
           <Divboton>
             <Botonagregar onClick={(e) => updatepost(e)}>
               {Object.keys(resultadoactual).length > 0 ? "Editar" : "Agregar"}

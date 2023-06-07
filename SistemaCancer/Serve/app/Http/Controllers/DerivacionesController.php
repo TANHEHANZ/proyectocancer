@@ -10,7 +10,7 @@ class DerivacionesController extends Controller
 {
     public function index()
     {
-        $derivaciones = DB::select("SELECT p.nombre as nombre_paciente, doc.nombre as nombre_doctor, t.estadotratamiento as estadotratamiento, ce.nombre as nombre_centro, r.resultados as nombre_resultado, d.fecha_inicio, d.fecha_fin
+        $derivaciones = DB::select("SELECT p.nombre as nombre_paciente, doc.nombre as nombre_doctor, t.estadotratamiento as estadotratamiento, ce.nombre as nombre_centro, r.resultados as nombre_resultado, d.fecha_inicio, d.fecha_fin ,d.id
         FROM derivaciones as d
         JOIN pacientes as p ON d.id_pacientes = p.id
         JOIN doctores as doc ON d.id_doctores = doc.id
