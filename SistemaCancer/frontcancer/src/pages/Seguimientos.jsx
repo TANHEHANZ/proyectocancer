@@ -5,6 +5,7 @@ import SeguimientosForm from "../models/SeguimientosForm";
 import { UseFech } from "../hooks/useFech";
 import { deleteSeguimiento, getSeguimiento } from "../services/Seguimentos";
 import styled from "styled-components";
+import CantidadSeguimiento from '../Report/MuestrasPorSeguimiento';
 
 const Seguimientos = () => {
 
@@ -32,36 +33,17 @@ const Seguimientos = () => {
 
   return (
     <Section>
+      <CantidadSeguimiento/>
     <Info>
   <Infohijo>
   <div>
    <article>
      <h2>{segui.length}</h2>
-   <p>Resultados</p>
+   <p>Seguimientos</p>
    </article>
     <img src="src\img\paciente.png" alt="" />
   </div>
-  <p>Lorem ipsum dolor sit amet.</p>
-  </Infohijo>
-  <Infohijo>
-  <div>
-   <article>
-     <h2>{segui.length}</h2>
-   <p>Resultados</p>
-   </article>
-    <img src="src\img\paciente.png" alt="" />
-  </div>
-  <p>Lorem ipsum dolor sit amet.</p>
-  </Infohijo>
-  <Infohijo>
-  <div>
-   <article>
-     <h2>{segui.length}</h2>
-   <p>Pacientes</p>
-   </article>
-    <img src="src\img\paciente.png" alt="" />
-  </div>
-  <p>Lorem ipsum dolor sit amet.</p>
+  <p>Cantidad de registros</p>
   </Infohijo>
     </Info>
         <Div>

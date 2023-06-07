@@ -69,7 +69,7 @@ const Pacientes = () => {
                   <label>Ci: {v.ci}</label>
                   <button onClick={() => handleClick(v)}>
                     <Linkes to="/detalle-paciente">
-                      Ver detalles del paciente
+                     Historial paciente
                     </Linkes>
                   </button>
                 </Car>

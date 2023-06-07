@@ -5,6 +5,7 @@ import ResultadosForm from "../models/ResultadosForm";
 import { UseFech } from "../hooks/useFech";
 import { deleteResultados, getResultados } from "../services/Resultados";
 import styled from "styled-components";
+import CantidadTipoR from '../Report/CantidadTipoResultados';
 const Resultados = () => {
   const [resultadoactual, setResultadoactual] = useState({});
   const { getApi, data: resul} = UseFech(getResultados);
@@ -29,7 +30,10 @@ const Resultados = () => {
   }, [resultadoactual]);
   return (
     <Section>
-    <Info>
+<CantidadTipoR/>
+
+<article>
+
   <Infohijo>
   <div>
    <article>
@@ -38,29 +42,11 @@ const Resultados = () => {
    </article>
     <img src="src\img\paciente.png" alt="" />
   </div>
-  <p>Lorem ipsum dolor sit amet.</p>
+  <p>Cantidad de registros</p>
   </Infohijo>
-  <Infohijo>
-  <div>
-   <article>
-     <h2>{resul.length}</h2>
-   <p>Resultados</p>
-   </article>
-    <img src="src\img\paciente.png" alt="" />
-  </div>
-  <p>Lorem ipsum dolor sit amet.</p>
-  </Infohijo>
-  <Infohijo>
-  <div>
-   <article>
-     <h2>{resul.length}</h2>
-   <p>Pacientes</p>
-   </article>
-    <img src="src\img\paciente.png" alt="" />
-  </div>
-  <p>Lorem ipsum dolor sit amet.</p>
-  </Infohijo>
-    </Info>
+      
+</article>
+
         <Div>
         
           <section>
@@ -186,6 +172,11 @@ const Section = styled.section`
   height: 100%;
   background-color: transparent;
   padding: 1em;
+  & > article{
+    display:flex;
+    justify-content:center;
+  }
+ 
 `;
 
 const Div = styled.div`

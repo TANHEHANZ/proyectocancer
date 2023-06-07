@@ -3,6 +3,7 @@ import ReporteForm from './Reportes';
 import Porcentro from '../Report/ReportesPacientes';
 import styled from 'styled-components';
 import EstadoTratamiento from '../Report/EstadoTratamiento';
+import CantidadTipoR from '../Report/CantidadTipoResultados';
 
  const Home = () => {
   return (
@@ -24,10 +25,10 @@ import EstadoTratamiento from '../Report/EstadoTratamiento';
           </section>
           <section>
             <article>
-              <h1>Cantidad de Doctores por Centros</h1>
+              <h1>Por tipo de resultados</h1>
               <button >Generar Export</button>
             </article>
-            <Porcentro />
+            <CantidadTipoR />
           </section>
           <section>
             <article>
