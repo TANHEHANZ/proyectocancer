@@ -40,32 +40,13 @@ const Muestras = () => {
   <div>
    <article>
      <h2>{muest.length}</h2>
-   <p>Pacientes</p>
+   <p>Cantidades</p>
    </article>
     <img src="src\img\paciente.png" alt="" />
   </div>
-  <p>Lorem ipsum dolor sit amet.</p>
+  <p>Registro de muestras</p>
   </Infohijo>
-  <Infohijo>
-  <div>
-   <article>
-     <h2>{muest.length}</h2>
-   <p>Pacientes</p>
-   </article>
-    <img src="src\img\paciente.png" alt="" />
-  </div>
-  <p>Lorem ipsum dolor sit amet.</p>
-  </Infohijo>
-  <Infohijo>
-  <div>
-   <article>
-     <h2>{muest.length}</h2>
-   <p>Pacientes</p>
-   </article>
-    <img src="src\img\paciente.png" alt="" />
-  </div>
-  <p>Lorem ipsum dolor sit amet.</p>
-  </Infohijo>
+ 
     </Info>
         <Div>
         

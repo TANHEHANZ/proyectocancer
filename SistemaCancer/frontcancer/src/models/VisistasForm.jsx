@@ -99,14 +99,9 @@ const VisistasForm = ({
                     </Select>
                   </Divinputlabel>
                 </Divinput>
-          
-    ,
-                
-    
-       
             <Divinput>
               <Divinputlabel>
-                <label>Detalle:</label>
+                <label>Concepto de Visita:</label>
                 <Input
                   name="detalle"
                   placeholder="detalle"

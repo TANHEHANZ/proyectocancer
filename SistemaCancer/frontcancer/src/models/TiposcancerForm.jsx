@@ -30,9 +30,10 @@ const TiposcancerForm = ({getApi,
                 },
                 () => {
                   setNombre("");
+                  getApi();
                   closeModal();
                   setTiposcancersactual({});
-                  getApi();
+
                 }
               );
             } else {
@@ -40,6 +41,8 @@ const TiposcancerForm = ({getApi,
                 setNombre("");
                 getApi();
                 closeModal();
+                setTiposcancersactual({});
+
               });
             }
           };

@@ -118,7 +118,7 @@ const TratamientoForm = ({
         <Divinput>
               <Divinputlabel>
                 <label>Paciente</label>
-                <Select onChange={(e) => setId_pacientes(e.target.value)}>
+                <Select value={id_pacientes} onChange={(e) => setId_pacientes(e.target.value)}>
                   <option >seleccione el paciente</option>
                   {pac.map((v, i) => (
                     <option key={i} value={v.id}>
@@ -131,7 +131,7 @@ const TratamientoForm = ({
             <Divinput>
               <Divinputlabel>
                 <label>Doctores</label>
-                <Select onChange={(e) => setId_doctores(e.target.value)}>
+                <Select value={id_doctores} onChange={(e) => setId_doctores(e.target.value)}>
                   <option >seleccione doctores</option>
                   {doc.map((v, i) => (
                     <option key={i} value={v.id}>
@@ -141,11 +141,10 @@ const TratamientoForm = ({
                 </Select>
               </Divinputlabel>
             </Divinput>
-,
             <Divinput>
               <Divinputlabel>
                 <label>Tratamientos del paciente</label>
-                <Select onChange={(e) => setId_tipotratamientos(e.target.value)}>
+                <Select value={id_tipotratamientos} onChange={(e) => setId_tipotratamientos(e.target.value)}>
                   <option >seleccione el tratameinto ref del paciente</option>
                   {tipotrat.map((v, i) => (
                     <option key={i} value={v.id}>
@@ -160,7 +159,7 @@ const TratamientoForm = ({
    
         <Divinput>
           <Divinputlabel>
-            <label>observaciones:</label>
+            <label>observaciones - Causasa:</label>
             <Input
               name="observaciones"
               placeholder="observaciones"

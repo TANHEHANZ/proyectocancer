@@ -33,12 +33,12 @@ function Tratamiento() {
  <Infohijo>
  <div>
   <article>
-    <h2>{tratamiento.length}</h2>
-  <p>registro Tratamiento</p>
+    <h2>{trata.length}</h2>
+  <p>Cantidad</p>
   </article>
    <img src="src\img\paciente.png" alt="" />
  </div>
- <p>Lorem ipsum dolor sit amet.</p>
+ <p>Registros por tratamiento</p>
  </Infohijo>
    </Info>
      <Div>
@@ -68,7 +68,9 @@ function Tratamiento() {
            )
            .map((v, i) => (
              <tbody key={i}>
-               <tr>
+               <tr   onClick={() => {
+                         setTratamiento(v);
+                       }}>
                  <td>{i + 1}</td>
                  <td>{v.nombre_paciente}</td>
                  <td>{v.nombre_doctor}</td>
@@ -79,13 +81,7 @@ function Tratamiento() {
                  <td>{v.estadotratamiento}</td>
                  <td>
                    <div>
-                     <button
-                       onClick={() => {
-                         setTratamiento(v);
-                       }}
-                     >
-                       Editar
-                     </button>
+                   
                      <button
                        onClick={() => {
                         deleteTratamiento(v.id, getApi);

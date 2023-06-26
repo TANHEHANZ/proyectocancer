@@ -35,6 +35,8 @@ import Tipomuestra from "./pages/Tipomuestra";
 import Visitas from "./pages/Visitas";
 import Tipostratamiento from "./pages/Tipotratamiento";
 import { PacienteProvider } from "./context/pacienteContext";
+import PostTratamiento from "./pages/PostTratamiento";
+
 function App() {
   return (
     <>
@@ -80,6 +82,8 @@ function App() {
                   <Route path="tiposexamen" element={<Tipoexamen />} />
                   <Route path="tipomuestra" element={<Tipomuestra />} />
                   <Route path="tipostratamiento" element={<Tipostratamiento />} />
+                  <Route path="post-tratamientos" element={<PostTratamiento />} />
+                  
                 </Route>
               </Routes>
               <Modal />

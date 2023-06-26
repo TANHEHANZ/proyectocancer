@@ -30,9 +30,11 @@ const Resultados = () => {
   }, [resultadoactual]);
   return (
     <Section>
-<CantidadTipoR/>
 
 <article>
+<aside>
+<CantidadTipoR/>
+</aside>
 
   <Infohijo>
   <div>
@@ -173,8 +175,14 @@ const Section = styled.section`
   background-color: transparent;
   padding: 1em;
   & > article{
-    display:flex;
-    justify-content:center;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ flex-direction:row-reverse;
+ & aside{
+  width:50%;
+}
+
   }
  
 `;

@@ -27,34 +27,37 @@ const Visitas = () => {
       openModal();
     }
   }, [visit]);
+  const [showTable, setShowTable] = useState(false); // Estado para controlar la visibilidad de la tabla
+  const [toggleButtonText, setToggleButtonText] = useState("Ver Registros"); // Estado para el texto del botón
+
+  const handleVerRegistros = () => {
+     if (showTable) {
+      setShowTable(false);
+      setToggleButtonText("Ver Registros");
+    } else {
+      setShowTable(true);
+      setToggleButtonText("Ocultar");
+    }
+  };
+
   return (
     <Section>
-    <Info>
- <Infohijo>
- <div>
-  <article>
-    <h2>{visit.length}</h2>
-  <p>cantidad de registros</p>
-  </article>
-   <img src="src\img\paciente.png" alt="" />
- </div>
- <p>Lorem ipsum dolor sit amet.</p>
- </Infohijo>
-   </Info>
+  
      <Div>
      <section>
-           <h1>Registro  visit por paciente</h1>
+           <h1> visitas por paciente</h1>
            <button onClick={openModal}> nuevo</button>
-           <button onClick={openModal}> Excel</button>
-           <button onClick={openModal}> Pdf</button>
+           <button onClick={handleVerRegistros}>{toggleButtonText}</button>
+
          </section>
+         {showTable && (
        <table>
          <thead>
            <tr>
              <th>Nº</th>
              <th>Nombre Paciente</th>
              <th>Descripcion</th>
-             <th>Fecha</th>
+             <th>Concepto de Visita</th>
              <th>Acciones</th>
          
            </tr>
@@ -94,6 +97,7 @@ const Visitas = () => {
              </tbody>
            ))}
        </table>
+           )}
      </Div>
    </Section>
   )

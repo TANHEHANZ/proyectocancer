@@ -92,9 +92,19 @@ const Doctores = () => {
             )
             .map((v, i) => (
               <tbody key={i}>
-                <tr   onClick={() => {
-                          setDoctoresactual(v);
-                        }} >
+                 <tr onClick={() => setDoctoresactual({
+    id: v.id,
+    nombre: v.nombre,
+    ap_paterno: v.ap_paterno,
+    ap_materno: v.ap_materno,
+    ci: v.ci,
+    correo: v.correo,
+    direccion: v.Direccion,  // Aquí asignamos v.Direccion a direccion
+    credenciales: v.Credenciales,  // Aquí asignamos v.Credenciales a credenciales
+    descripcion: v.descripcion,
+    id_especialidades: v.id_especialidades,
+    id_centros: v.id_centros
+  })}>
                   <td>{i + 1}</td>
                   <td>{v.nombre}</td>
                   <td>{v.ap_paterno}</td>
@@ -106,7 +116,6 @@ const Doctores = () => {
                   <td>{v.Credenciales}</td>
                   <td>{v.nombre_especialidad}</td>
                   <td>{v.nombre_centro}</td>
-
                   <td>
                     <div>
                       <button

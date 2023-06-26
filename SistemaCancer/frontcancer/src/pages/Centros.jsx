@@ -151,7 +151,7 @@ export const Section = styled.section`
 
 export const Div = styled.div`
   width: 90%;
-  height: 60vh;
+  height: auto;
   display: flex;
   margin: 0 auto;
   flex-direction: column;

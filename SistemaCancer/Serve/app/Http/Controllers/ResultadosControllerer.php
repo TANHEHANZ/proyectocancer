@@ -17,11 +17,11 @@ return $resultados;
     }
     public function store(Request $request)
     {
-
+       
         $resultados = new Resultados();
         $resultados->resultados = $request->resultados;
         $resultados->id_pacientes = $request->id_pacientes;
-        $resultados->id_tiposcancers = $request->id_pacientes;
+        $resultados->id_tiposcancers = $request->id_tiposcancers;
         $resultados->id_muestras = $request->id_muestras;
         $resultados->id_laboratorios = $request->id_laboratorios;
         $resultados->fecha = $request->fecha;
@@ -33,7 +33,7 @@ return $resultados;
         $resultados = Resultados::find($id);
         $resultados->resultados = $request->resultados;
         $resultados->id_pacientes = $request->id_pacientes;
-        $resultados->id_tiposcancers = $request->id_pacientes;
+        $resultados->id_tiposcancers = $request->id_tiposcancers;
         $resultados->id_muestras = $request->id_muestras;
         $resultados->id_laboratorios = $request->id_laboratorios;
         $resultados->fecha = $request->fecha;

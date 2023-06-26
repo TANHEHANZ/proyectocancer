@@ -28,8 +28,14 @@ export const deleteLaboratorio = async (id, callback) => {
     }
 };
 export const updateLaboratorio = async (laboratorioactual,callback) => {
-  
+  console.log(JSON.stringify({
+    nombre:laboratorioactual.nombre,
+    ubicacion:laboratorioactual.ubicacion,
+    contacto:laboratorioactual.contacto,
+    email:laboratorioactual.email,
+}));
     const response = await fetch(`${baseUrl}laboratorio/${laboratorioactual.id}`, {
+      
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

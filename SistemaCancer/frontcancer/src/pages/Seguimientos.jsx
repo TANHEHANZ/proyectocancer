@@ -33,9 +33,10 @@ const Seguimientos = () => {
 
   return (
     <Section>
-      <CantidadSeguimiento/>
+   <aside>
     <Info>
   <Infohijo>
+   <CantidadSeguimiento/>
   <div>
    <article>
      <h2>{segui.length}</h2>
@@ -46,6 +47,7 @@ const Seguimientos = () => {
   <p>Cantidad de registros</p>
   </Infohijo>
     </Info>
+   </aside>
         <Div>
         
           <section>
@@ -109,7 +111,7 @@ const Seguimientos = () => {
 export default Seguimientos
 
 const Info = styled.article`
-width:100%;
+width:50%;
 height:8em;
 display:flex;
 flex-direction:row;
@@ -117,10 +119,9 @@ flex-wrap:wrap;
 gap:2em;
 margin: 1em auto;
 justify-content:center;
-
 `;
 const Infohijo = styled.section`
-width:calc(80% / 4);
+width:100% ;
 height:90%;
 backdrop-filter: blur(12px) saturate(29%);
     -webkit-backdrop-filter: blur(12px) saturate(29%);
@@ -168,6 +169,13 @@ const Section = styled.section`
   height: 100%;
   background-color: transparent;
   padding: 1em;
+  display:flex;
+  & aside{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    
+  }
 `;
 
 const Div = styled.div`

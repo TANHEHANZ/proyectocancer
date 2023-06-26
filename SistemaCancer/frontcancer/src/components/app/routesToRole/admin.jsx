@@ -6,6 +6,7 @@ const AdminComponent = () => {
   const [expandir, setExpandir] = useState(false);
   const [expandir1, setExpandir1] = useState(false);
   const [expandir2, setExpandir2] = useState(false);
+  const [informativa, setInformativa] = useState(false);
 
   return (
     <Master>
@@ -34,18 +35,18 @@ const AdminComponent = () => {
                 <img src="" alt="" />
                 resultados
               </Linkes>
-              <Linkes to="/seguimientos">
+              {/* <Linkes to="/seguimientos">
                 <img src="" alt="" />
                 Seguimientos
-              </Linkes>
+              </Linkes> */}
               <Linkes to="/muestras">
                 <img src="" alt="" />
                 Muestras
               </Linkes>
-              <Linkes to="/derivaciones">
+              {/* <Linkes to="/derivaciones">
                 <img src="" alt="" />
                 Derivaciones
-              </Linkes>
+              </Linkes> */}
               <Linkes to="/Examen">
                 <img src="" alt="" />
                 Examen
@@ -54,10 +55,10 @@ const AdminComponent = () => {
                 <img src="" alt="" />
                 Tratamiento
               </Linkes>
-              <Linkes to="/visitas">
+              {/* <Linkes to="/visitas">
                 <img src="" alt="" />
                 Visitas
-              </Linkes>
+              </Linkes> */}
             </article>
           )}
         </Divbotton>
@@ -102,7 +103,6 @@ const AdminComponent = () => {
                 <img src="" alt="" />
                 Centros
               </Linkes>
-
               <Linkes to="/tiposCancer">
                 <img src="" alt="" />
                 Tipos de cancer
@@ -122,22 +122,18 @@ const AdminComponent = () => {
             </article>
           )}
         </Divbotton>
-
         <h2>Gestionar Pagina</h2>
-        <Divbotton onClick={() => setExpandir1(!expandir1)}>
+        <Divbotton onClick={() => setInformativa(!informativa)}>
           <section>
             <img src="" alt="" /> Pagina Informativa
             <img src="src\img\abajo.png" alt="img" />
           </section>
-          {expandir1 && (
+          {informativa && (
             <article>
-              <Linkes to="/doctores">
-                <img src="" alt="" /> Doctores
+              <Linkes to="/post-tratamientos">
+                <img src="" alt="" /> post Tratamientos
               </Linkes>
-              <Linkes to="/especialidades">
-                <img src="" alt="" />
-                Especialidades
-              </Linkes>
+              
             </article>
           )}
         </Divbotton>

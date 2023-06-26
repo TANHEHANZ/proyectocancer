@@ -21,6 +21,7 @@ use App\Http\Controllers\TiposcancersControllererrer;
 use App\Http\Controllers\TipotratamientoController;
 use App\Http\Controllers\TratamioentosController;
 use App\Http\Controllers\VisitasController;
+use App\Http\Controllers\PosttratamientoController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -140,3 +141,8 @@ Route::post('/generar-reporte', [ConsultasController::class, 'generarReporte']);
 Route::get('ciudad-pdf', [ConsultasController::class, 'indexgrapciudadpdf']);
 Route::post('generar-pdf', [ConsultasController::class, 'generar']);
 
+
+Route::get('/post-tratamientos', [PosttratamientoController::class, 'index']);
+Route::post('/post-tratamientos', [PosttratamientoController::class, 'store']);
+Route::put('/post-tratamientos/{id}', [PosttratamientoController::class, 'update']);
+Route::delete('/post-tratamientos/{id}', [PosttratamientoController::class, 'destroy']);

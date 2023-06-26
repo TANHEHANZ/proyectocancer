@@ -27,6 +27,7 @@ const Tipoexamen = () => {
       openModal();
     }
   }, [examenactual]);
+  
   return (
     <Section>
       <Info>

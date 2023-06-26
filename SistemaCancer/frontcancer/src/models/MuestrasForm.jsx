@@ -102,7 +102,7 @@ const MuestrasForm = ({
         </Divinput>
         <Divinput>
           <Divinputlabel>
-            <label>descripcion </label>
+            <label>Concepto </label>
             <Input
               name="descripcion"
               type="text"

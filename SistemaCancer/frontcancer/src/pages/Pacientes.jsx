@@ -4,9 +4,13 @@ import { useModal } from "../hooks/useModal";
 import PacientesForm from "../models/PacientesForm";
 import { UseFech } from "../hooks/useFech";
 import { getPacientes } from "../services/Paciente";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { PacienteContext, PacienteProvider } from "../context/pacienteContext";
+import Derivaciones from "./Derivaciones";
+import ReportesPacientesGeneral from "../Report/ReportesPacientesGeneral";
+import ReportesPacienteEdad from "../Report/ReportesPacienteEdad";
+import Visitas from "./Visitas";
 
 const Pacientes = () => {
   const [pacienteactualdos, setPacienteactualdos] = useState({});
@@ -30,7 +34,6 @@ const Pacientes = () => {
   }, [pacienteactualdos]);
 
   const { paciento, guardarPaciente } = useContext(PacienteContext);
-
   const handleClick = (v) => {
     guardarPaciente(v);
   };
@@ -39,7 +42,7 @@ const Pacientes = () => {
     <Section>
       <div>
         <article>
-          <label htmlFor="">Busqueda por criterios</label>
+          <label htmlFor="">Busqueda por el nombre del paciente</label>
           <input
             type="text"
             placeholder="Buscar"
@@ -47,11 +50,21 @@ const Pacientes = () => {
             onChange={(e) => setFiltro(e.target.value)}
           />
         </article>
+
         <Div>
           <section>
             <h1>Registro Pacientes</h1>
             <button onClick={openModal}> nuevo</button>
             <p> cantidad de Registros {pac.length}</p>
+          </section>
+          <section>
+          <h1>Registro de Derivaciones</h1>
+          <Derivaciones/>
+
+          </section>
+          <section>
+            <h1>registro de visitas por cada paciente</h1>
+            <Visitas/>
           </section>
           <Paciente>
             {pac
@@ -68,20 +81,31 @@ const Pacientes = () => {
                   <label>Telefono: {v.telefono}</label>
                   <label>Ci: {v.ci}</label>
                   <button onClick={() => handleClick(v)}>
-                    <Linkes to="/detalle-paciente">
-                     Historial paciente
-                    </Linkes>
+                    <Linkes to="/detalle-paciente">Historial paciente</Linkes>
                   </button>
                 </Car>
               ))}
           </Paciente>
         </Div>
+        <aside>
+          <ReportesPacientesGeneral />
+          <ReportesPacienteEdad/>
+        </aside>
       </div>
     </Section>
   );
 };
 
 export default Pacientes;
+const animat = keyframes`
+  0% {
+    transform:translateX(10px);
+  }
+  100% {
+    transform:translateX(0px);
+    
+  }
+`;
 
 const Section = styled.section`
   width: 100%;
@@ -90,10 +114,21 @@ const Section = styled.section`
   padding: 1em;
   display: flex;
   flex-direction: row;
-
   & > div {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    & aside {
+      width: 48%;
+      height: auto;
+      display: flex;
+      margin: 0 auto;
+      flex-direction: column;
+      border-radius: 15px;
+      border: solid 1px #fff2;
+    }
     & > article {
       height: 3em;
       gap: 1em;
@@ -108,19 +143,21 @@ const Section = styled.section`
         font-weight: 400;
         width: 15%;
         color: #fff;
+        margin-left: 2em;
       }
       & input {
         width: 70%;
         border: solid 1px #069266;
         background-color: transparent;
         color: #069266;
+        outline: #fff;
       }
     }
   }
 `;
 
 const Div = styled.div`
-  width: 100%;
+  width: 50%;
   height: auto;
   display: flex;
   margin: 0 auto;
@@ -133,6 +170,16 @@ const Div = styled.div`
     flex-direction: row;
     gap: 1em;
     margin: 0.5em 1em 0 1em;
+    border-bottom: solid 1px #069266;
+    padding: 1em 0;
+    &:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    }
+    &:nth-child(3){
+    display: flex;
+    flex-direction: column;
+    }
     & > p {
       color: #069266;
       text-transform: uppercase;
@@ -152,68 +199,6 @@ const Div = styled.div`
       cursor: pointer;
     }
   }
-
-  & table {
-    margin: 1em auto;
-    /* background-color: transparent; */
-    width: 90%;
-    background-color: rgb(59, 78, 87);
-    height: auto;
-    border-collapse: collapse;
-
-    & button {
-      background-color: transparent;
-      border: solid 1px #09216f;
-      color: #fff;
-      margin: 0 5px;
-      cursor: pointer;
-      padding: 0.2em 1em;
-      &:nth-child(2) {
-        border: solid 1px #6f0909;
-      }
-      &:hover {
-        background-color: #09216f;
-        &:nth-child(2) {
-          background-color: #6f0909;
-        }
-      }
-    }
-    & th {
-      font-size: 1em;
-      font-weight: 100;
-    }
-    & td {
-      color: #fff;
-      font-weight: lighter;
-      font-size: 0.8em;
-      padding: 0.5em 0;
-      text-align: center;
-      &:nth-child(1) {
-        padding: 0 1.5em;
-      }
-    }
-
-    & tr {
-      border-top: solid 1px #fff2;
-      border-bottom: solid 1px #fff2;
-
-      &:hover {
-        background-color: #069266;
-        color: #fff;
-      }
-    }
-    & thead {
-      color: #069266;
-      padding: 1em 0;
-      & tr {
-        &:hover {
-          background-color: transparent;
-          color: #069266;
-          font-weight: 100;
-        }
-      }
-    }
-  }
 `;
 const Paciente = styled.div`
   width: 100%;
@@ -225,7 +210,7 @@ const Paciente = styled.div`
   gap: 1em;
 `;
 const Car = styled.article`
-  width: calc(90% / 3);
+  width: calc(90% / 2);
   height: 20em;
   display: flex;
   flex-direction: column;
@@ -234,18 +219,21 @@ const Car = styled.article`
   color: #fff;
   gap: 0.5em;
   font-size: 0.9em;
+  &:hover {
+  box-shadow: 0 3px 5px #fff2;
+  transform: translateX(5px);
+}
   & button {
     width: 100%;
-    height: 2.5em;
+    height: 3em;
     border-radius: 0.5em;
     border: none;
+    background-color: #069266;
+    padding: 0.4em 0;
   }
 `;
 export const Linkes = styled(Link)`
-text-decoration:none;
-color: #000;
-background-color:transparent; 
-
-
-
+  text-decoration: none;
+  color: #fff;
+  background-color: transparent;
 `;

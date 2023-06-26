@@ -4,6 +4,7 @@ import { useModal } from "../hooks/useModal";
 import DerivacionesForm from "../models/DerivacionesForm";
 import { UseFech } from "../hooks/useFech";
 import { Info, Div, Infohijo, Section } from "./Centros";
+import styled from "styled-components";
 import { getDerivaciones, deleteDerivaciones } from "../services/Derivaciones";
 const Derivaciones = () => {
   const [derivaciones, setDerivaciones] = useState({});
@@ -22,6 +23,19 @@ const Derivaciones = () => {
     />
   );
   const [filtro, setFiltro] = useState("");
+  const [showTable, setShowTable] = useState(false); // Estado para controlar la visibilidad de la tabla
+  const [toggleButtonText, setToggleButtonText] = useState("Ver Registros"); // Estado para el texto del botón
+
+  const handleVerRegistros = () => {
+     if (showTable) {
+      setShowTable(false);
+      setToggleButtonText("Ver Registros");
+    } else {
+      setShowTable(true);
+      setToggleButtonText("Ocultar");
+    }
+  };
+
   useEffect(() => {
     if (Object.keys(derivaciones).length > 0) {
       openModal();
@@ -30,45 +44,13 @@ const Derivaciones = () => {
 
   return (
     <Section>
-      <Info>
-        <Infohijo>
-          <div>
-            <article>
-              <h2>{deriv.length}</h2>
-              <p>Pacientes</p>
-            </article>
-            <img src="src\img\paciente.png" alt="" />
-          </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </Infohijo>
-        <Infohijo>
-          <div>
-            <article>
-              <h2>{deriv.length}</h2>
-              <p>Pacientes</p>
-            </article>
-            <img src="src\img\paciente.png" alt="" />
-          </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </Infohijo>
-        <Infohijo>
-          <div>
-            <article>
-              <h2>{deriv.length}</h2>
-              <p>Pacientes</p>
-            </article>
-            <img src="src\img\paciente.png" alt="" />
-          </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </Infohijo>
-      </Info>
       <Div>
         <section>
           <h1>Derivaciones</h1>
           <button onClick={openModal}> nuevo</button>
-          <button onClick={openModal}> Excel</button>
-          <button onClick={openModal}> Pdf</button>
+          <button onClick={handleVerRegistros}>{toggleButtonText}</button>
         </section>
+        {showTable && (
         <table>
           <thead>
             <tr>
@@ -119,6 +101,7 @@ const Derivaciones = () => {
               </tbody>
             ))}
         </table>
+         )}
       </Div>
     </Section>
   );

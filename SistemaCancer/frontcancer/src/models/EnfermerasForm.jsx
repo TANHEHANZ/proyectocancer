@@ -11,7 +11,6 @@ const EnfermerasForm = ({
   setEnfermeraactual,
   closeModal,
 }) => {
-    
   const [nombre, setNombre] = useState("");
   const [ap_paterno, setAp_paterno] = useState("");
   const [ap_materno, setAp_materno] = useState("");
@@ -23,6 +22,7 @@ const EnfermerasForm = ({
   const { data: centr } = UseFech(getCentros);
   useEffect(() => {
     if (Object.keys(enfermeraactual).length > 0) {
+
         setNombre(enfermeraactual.nombre);
         setAp_paterno(enfermeraactual.ap_paterno);
         setAp_materno(enfermeraactual.ap_materno);

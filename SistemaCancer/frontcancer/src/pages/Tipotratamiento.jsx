@@ -61,18 +61,13 @@ const Tipostratamiento = () => {
            )
            .map((v, i) => (
              <tbody key={i}>
-               <tr>
+               <tr  onClick={() => {
+                         setTipotratamiento(v);
+                       }}>
                  <td>{i + 1}</td>
                  <td>{v.nombre}</td>
                  <td>
                    <div>
-                     <button
-                       onClick={() => {
-                         setTipotratamiento(v);
-                       }}
-                     >
-                       Editar
-                     </button>
                      <button
                        onClick={() => {
                          deleteTipotratamiento(v.id, getApi);

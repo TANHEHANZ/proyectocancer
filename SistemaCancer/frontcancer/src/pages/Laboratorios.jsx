@@ -10,8 +10,8 @@ const Laboratorios = () => {
   const { getApi, data: lab } = UseFech(getLaboratotio);
   const { openModal, closeModal } = useModal(
     Object.keys(laboratorioactual).length > 0
-      ? "Editar pacientes"
-      : "Agregar Pacientes",
+      ? "Editar registro de laboratorio"
+      : "Agregar registro de laboratorio",
     <LaboratoriosForm
       getApi={getApi}
       laboratorioactual={laboratorioactual}
@@ -84,7 +84,6 @@ const Laboratorios = () => {
                  <td>{v.email}</td>
                  <td>
                    <div>
-                   
                      <button
                        onClick={() => {
                          deleteLaboratorio(v.id, getApi);

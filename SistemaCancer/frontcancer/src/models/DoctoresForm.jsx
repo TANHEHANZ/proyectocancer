@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { UseFech } from "../hooks/useFech";
 import {
-
   postDoctor,
   updateDoctor,
 } from "../services/Doctor";
@@ -16,7 +15,6 @@ const DoctoresForm = ({
   setDoctoresactual,
   closeModal,
 }) => {
-
   const [nombre, setNombre] = useState("");
   const [ap_paterno, setAp_paterno] = useState("");
   const [ap_materno, setAp_materno] = useState("");
@@ -35,7 +33,13 @@ const DoctoresForm = ({
         setAp_paterno(doctoresactual.ap_paterno);
         setAp_materno(doctoresactual.ap_materno);
         setCi(doctoresactual.ci);
+        setCorreo(doctoresactual.correo);
+
+        setDireccion(doctoresactual.direccion);
+        setCredenciales(doctoresactual.credenciales);
+        setDescripcion(doctoresactual.descripcion);
     }
+    console.log(doctoresactual)
     return () => {
         setDoctoresactual({});
     };
@@ -128,7 +132,7 @@ const DoctoresForm = ({
       <Divinputlabel>
           <label>apeliido materno:</label>
           <Input
-            name="app m"
+            name="ap_materno"
             placeholder="Ingrese apellido materno"
             type="text"
             required
@@ -154,7 +158,7 @@ const DoctoresForm = ({
       <Divinputlabel>
           <label>Direccion:</label>
           <Input
-            name="Direcccion"
+            name="direccion"
             placeholder="Ingrese direccion"
             type="text"
             required
@@ -279,7 +283,7 @@ padding:0.5em 0;
   color: #fff;
   border-radius: 7px;
   border:solid 1px #0002;
-
+z-index:2;
   &:hover {
     background: #ffffff;
     color:#05bd79;

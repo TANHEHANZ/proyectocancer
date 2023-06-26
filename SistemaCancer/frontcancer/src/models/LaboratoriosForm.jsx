@@ -35,10 +35,10 @@ const LaboratoriosForm = ({ getApi,
                 updateLaboratorio(
                 {
                 id: laboratorioactual.id,
-                nombre:laboratorioactual.nombre,
-                ubicacion:laboratorioactual.ubicacion,
-                contacto:laboratorioactual.contacto,
-                email:laboratorioactual.email,
+                nombre:nombre,
+                ubicacion:ubicacion,
+                contacto:contacto,
+                email:email,
                 },
                 () => {
                   setNombre("");
@@ -55,6 +55,8 @@ const LaboratoriosForm = ({ getApi,
                     nombre,ubicacion,contacto,email,() => {
                 setNombre("");
                 setUbicacion("");
+                setContacto("");
+                setEmail("");
                 getApi();
                 closeModal();
               });
@@ -99,7 +101,7 @@ const LaboratoriosForm = ({ getApi,
           <label>contacto</label>
           <Input
             name="contacto"
-            placeholder="Ingrese la Ubciacion"
+            placeholder="Ingrese la ubicacion"
             type="text"
             required
             value={contacto}
@@ -113,7 +115,7 @@ const LaboratoriosForm = ({ getApi,
           <label>email</label>
           <Input
             name="email"
-            placeholder="Ingrese la Ubciacion"
+            placeholder="Ingrese la email"
             type="email"
             required
             value={email}

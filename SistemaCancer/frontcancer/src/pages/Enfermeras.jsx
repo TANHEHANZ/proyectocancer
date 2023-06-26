@@ -10,8 +10,8 @@ const Enfermeras = () => {
   const { getApi, data: enfer } = UseFech(getEnfermera);
   const { openModal, closeModal } = useModal(
     Object.keys(enfermeraactual).length > 0
-      ? "Editar Doctores"
-      : "Agregar Doctores",
+      ? "Editar registro de enfermera"
+      : "Agregar registro de enfermera",
     <EnfermerasForm
       getApi={getApi}
       enfermeraactual={enfermeraactual}
@@ -23,7 +23,7 @@ const Enfermeras = () => {
   );
   const [filtro, setFiltro] = useState("");
   useEffect(() => {
-    if (Object.keys(enfermeraactual).lengTh > 0) {
+    if (Object.keys(enfermeraactual).length > 0) {
       openModal();
     }
   }, [enfermeraactual]);
