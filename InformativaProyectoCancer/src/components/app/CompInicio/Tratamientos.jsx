@@ -5,10 +5,7 @@ function Tratamientos() {
   return (
     <Tratamientoss>
       <article>
-        <h2>
-          Esta plataforma te brinda infromacion de Tipos de cancer tratados en
-          bolivia
-        </h2>
+        <h2>Detección temprana y prevención:</h2>
       </article>
       <article>
         <h3>
@@ -16,11 +13,10 @@ function Tratamientos() {
           bolivia
         </h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet voluptas
-          voluptatum eligendi, blanditiis alias sint harum culpa maiores vel
-          ducimus, iusto possimus ad, quo nisi ut? Odio, illo vitae. Modi?
-        <img src={doc1} alt="" />
-
+          Las campañas de concientización y educación sobre los signos y
+          síntomas del cáncer también son importantes para fomentar la detección
+          temprana y la búsqueda de atención médica.
+          <img src={doc1} alt="" />
         </p>
       </article>
     </Tratamientoss>
@@ -45,30 +41,30 @@ const Tratamientoss = styled.section`
     flex-direction: column;
     gap: 1em;
     color: #fff;
-    &:nth-child(1){
-width:40%;
+    &:nth-child(1) {
+      width: 40%;
     }
-   
+
     & p {
       background-color: transparent;
-      display:flex;
-      flex-direction:row;
-      justify-content:center;
-      align-items:center;
-      & img{
-        width:50%;
-        height:200px;
-        object-fit:cover;
-      border: solid 1.5px #127369;
-      border-radius: 15px;
-      margin-bottom:1em;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      & img {
+        width: 50%;
+        height: 200px;
+        object-fit: cover;
+        border: solid 1.5px #127369;
+        border-radius: 15px;
+        margin-bottom: 1em;
       }
     }
     & h3 {
       background-color: transparent;
       font-weight: 100;
-      padding:3em 1em 0 0;
-      text-align:center;
+      padding: 3em 1em 0 0;
+      text-align: center;
     }
     & h2 {
       background-color: transparent;
@@ -76,8 +72,5 @@ width:40%;
       height: auto;
       font-weight: 100;
     }
-  
-   
   }
-
 `;

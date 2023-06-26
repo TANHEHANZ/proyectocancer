@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::get('registeruser', [UserController::class, 'Userregister']);
+Route::get('/usuarios', [UserController::class, 'index']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('users-profile', [UserController::class, 'userProfile']);

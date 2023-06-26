@@ -16,7 +16,7 @@ const Nav = () => {
             <li><Links to="/Tratamientos">Tratamientos</Links></li>
             <li><Links to="/Efectos_Secundarios">Efectos Secundarios</Links></li>
             <li><Links to="/Contactanos">Contactanos</Links></li>
-            <li><Linkss to="http://127.0.0.1:5174/login">Ingresar</Linkss></li>
+            <li><Linkss to="http://localhost:5173/login">Ingresar</Linkss></li>
           </Divnav>
         </Nava>
     </Bodydiv>
